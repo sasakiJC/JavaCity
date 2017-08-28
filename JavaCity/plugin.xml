@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Test City View"
+            icon="icons/sample.gif"
+            class="javacity.views.MyViewPart"
+            id="javacity.views.MyViewPart">
+      </view>
+   </extension>
+
+</plugin>

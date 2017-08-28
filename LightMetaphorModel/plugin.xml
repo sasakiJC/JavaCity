@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://pdo-thesis-SS12.de/metaphor-metamodel/metaphor-metamodel"
+            class="metaphor.MetaphorPackage"
+            genModel="metamodel/metaphor.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://pdo-thesis-SS12.de/metaphor-metamodel/types"
+            class="metaphor.types.TypesPackage"
+            genModel="metamodel/metaphor.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://pdo-thesis-SS12.de/metaphor-metamodel/entities"
+            class="metaphor.entities.EntitiesPackage"
+            genModel="metamodel/metaphor.genmodel"/>
+   </extension>
+
+</plugin>
