@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.input.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<MenuBar xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.javacity.core.MenuBarController">
+	<menus>
+		<Menu mnemonicParsing="false" text="File">
+			<accelerator>
+				<KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+			</accelerator>
+			<items>
+				<MenuItem fx:id="menuitem_IS" mnemonicParsing="false" onAction="#importStaticsAction" text="Import Statics(KDM)">
+					<accelerator>
+						<KeyCodeCombination alt="DOWN" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+					</accelerator>
+				</MenuItem>
+				<SeparatorMenuItem mnemonicParsing="false" />
+				<MenuItem fx:id="menuitem_L" mnemonicParsing="false" onAction="#loadAction" text="Load" />
+				<MenuItem fx:id="menuitem_S" disable="true" mnemonicParsing="false" onAction="#saveAction" text="Save" />
+				<SeparatorMenuItem mnemonicParsing="false" />
+				<MenuItem fx:id="menuitem_E" mnemonicParsing="false" onAction="#exitAction" text="Exit" />
+			</items>
+		</Menu>
+
+		<Menu mnemonicParsing="false" text="Edit">
+			<items>
+				<MenuItem fx:id="menuitem_Search" mnemonicParsing="false" onAction="#searchAction" text="Search" />
+				<Menu mnemonicParsing="false" text="Settings">
+					<items>
+						<MenuItem fx:id="setting_color" onAction="#settingAction" text="Setting Color" />
+						<CheckMenuItem fx:id="checkmenuitem" onAction="#showExecPathAction" text="Show Execution Path" />
+					</items>
+				</Menu>
+			</items>
+		</Menu>
+
+		<Menu mnemonicParsing="false" text="Snapshot">
+			<items>
+				<MenuItem id="menu_item_SS" mnemonicParsing="false" onAction="#saveSnapshotAction" text="Save Snapshot" />
+				<MenuItem id="menu_item_PS" mnemonicParsing="false" onAction="#printSnapshotAction" text="Print Snapshot" />
+			</items>
+		</Menu>
+
+		<Menu mnemonicParsing="false" text="Relation">
+			<items>
+				<MenuItem id="menu_item_SLR" mnemonicParsing="false" onAction="#showLocalRelationsAction" text="Show Local Relations" />
+				<MenuItem id="menu_item_SGR" mnemonicParsing="false" onAction="#showGlobalRelationsAction" text="Show Global Relations" />
+				<MenuItem id="menu_item_HR" mnemonicParsing="false" onAction="#hideAllRelationsAction" text="Hide Relations" />
+			</items>
+		</Menu>
+
+		<Menu mnemonicParsing="false" text="Help">
+			<items>
+				<MenuItem mnemonicParsing="false" text="About" />
+			</items>
+		</Menu>
+	</menus>
+</MenuBar>

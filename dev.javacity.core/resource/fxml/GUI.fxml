@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.SubScene?>
+<?import javafx.scene.layout.StackPane?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.javacity.core.GUIController">
+   <children>
+      <fx:include fx:id="menubar" source="MenuBar.fxml" />
+
+      <SplitPane dividerPositions="0.8277591973244147" prefHeight="500.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+        <items>
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL">
+               <items>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL">
+                     <items>
+                        <StackPane fx:id="pane1" minHeight="320.0" minWidth="640.0" />
+                     </items>
+                  </SplitPane>
+               </items>
+            </SplitPane>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>
