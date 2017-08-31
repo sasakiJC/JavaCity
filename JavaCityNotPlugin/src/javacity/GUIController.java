@@ -5,15 +5,8 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
-import javacity.importer.kdm.KDMImporter;
-import javacity.logic.Logic;
-import javacity.models.city.CityModel;
-import javacity.models.data.DataModel;
-import javacity.models.metaphor.MetaphorImporter;
-import javacity.models.metaphor.MetaphorModel;
-import javacity.models.view.ViewImporter;
-import javacity.models.view.ViewModel;
-import javacity.observer.ObserverManager;
+import dev.javacity.core.Core;
+import dev.javacity.core.TestCamera;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -36,24 +29,6 @@ public class GUIController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-		// create model instances
-		final DataModel dataModel = new DataModel();
-		final MetaphorModel metaphorModel = new MetaphorModel();
-		final ViewModel viewModel = new ViewModel();
-		final CityModel sceneModel = new CityModel();
-
-		// create data model importers
-		final KDMImporter kdmImporter = new KDMImporter(dataModel);
-		Logic.getInstance().getSavesManager().init(dataModel);
-
-		// create and initialize model to model importers
-		final MetaphorImporter metaphorImporter = new MetaphorImporter(metaphorModel);
-		final ViewImporter viewImporter = new ViewImporter(viewModel);
-		Logic.getInstance().getCityController().init(sceneModel);
-
-		// connect by observer pattern
-		ObserverManager.getInstance().connect(dataModel, sceneModel, metaphorModel, metaphorImporter, viewImporter);
-
 		Group root = new Group();
 		Group g = new Group();
 		root.getChildren().add(g);
@@ -64,11 +39,12 @@ public class GUIController implements Initializable{
 		TestCamera tes = new TestCamera();
 		final PerspectiveCamera camera = TestCamera.build(root);
 
+		Core core = new Core();
+		core.init(subscene);
 		subscene.setCamera(camera);
 		tes.handleMouse(subscene, root);
-		viewModel.init(subscene);
 
-    	menubarController.set(dataModel, kdmImporter);
+//    	menubarController.set(dataModel, kdmImporter);
 
     }
 }
