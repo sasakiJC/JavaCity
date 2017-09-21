@@ -17,7 +17,9 @@
                <items>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL">
                      <items>
-                        <StackPane fx:id="pane1" minHeight="320.0" minWidth="640.0" />
+                        <StackPane fx:id="pane1" minHeight="320.0" minWidth="640.0">
+                        	<SubScene fx:id="cityScene"></SubScene>
+                        </StackPane>
                      </items>
                   </SplitPane>
                </items>
