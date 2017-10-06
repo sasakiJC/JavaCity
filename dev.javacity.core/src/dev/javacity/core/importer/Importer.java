@@ -21,7 +21,7 @@ public class Importer {
 
 			xmlReader.parse(inputSource);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(stream);
 		}
 		return null;
 

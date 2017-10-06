@@ -7,7 +7,7 @@
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.layout.StackPane?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.javacity.core.GUIController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.javacity.core.TestGUIController">
    <children>
       <fx:include fx:id="menubar" source="MenuBar.fxml" />
 
@@ -17,9 +17,7 @@
                <items>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL">
                      <items>
-                        <StackPane fx:id="pane1" minHeight="320.0" minWidth="640.0">
-                        	<SubScene fx:id="cityScene"></SubScene>
-                        </StackPane>
+                        <StackPane fx:id="pane1" minHeight="320.0" minWidth="640.0"/>
                      </items>
                   </SplitPane>
                </items>

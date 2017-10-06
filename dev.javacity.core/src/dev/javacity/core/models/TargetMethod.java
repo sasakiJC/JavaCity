@@ -2,19 +2,13 @@ package dev.javacity.core.models;
 
 import java.util.List;
 
-public class TargetClass implements TargetEntity {
-
-	public enum ClassType {
-		INTERFACE, ABSTRACT, CONCRETE, ENUM
-	}
+public class TargetMethod implements TargetEntity {
 
 	private String name;
-	private ClassType type;
-	public TargetClass(String name, ClassType type) {
+//	private String signature;
+	public TargetMethod(String name) {
 		this.name = name;
-		this.type = type;
 	}
-
 
 	@Override
 	public void addChild(TargetEntity child) {
@@ -39,5 +33,9 @@ public class TargetClass implements TargetEntity {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
+
+//	public void setSignature(String signature) {
+//
+//	}
 
 }

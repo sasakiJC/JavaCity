@@ -1,85 +1,14 @@
 package dev.javacity.core.models;
 
-import dev.javacity.core.models.view.BranchGroup;
-import javafx.scene.AmbientLight;
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 
-public class CityView extends Group {
+public class CityView extends Group implements Observer {
 
-	public void init() {
-
-		// add viewpoint
-//		ViewPoint.getInstance().init(this.universe);
-//		ViewPoint.getInstance().resetViewpoint();
-
-		// add lightning
-		final AmbientLight amblight = new AmbientLight(Color.WHITE);
-
-		root = (Group)((Group)subscene.getRoot()).getChildren().get(0);
-		root.getChildren().add(amblight);
-
-		// add behaviors
-//		this.addBehaviors(cityCanvas);
-
-		//subscene.getCamera().setNearClip(1);
-		//subscene.getCamera().setFarClip(100);
-
-		subscene.setFill(Color.WHITE);
-
-		this.scene = subscene;
-	}
-
-	/**
-	 * Add all behaviors to this view model. This method will add a {@link MouseRotationBehavior}, {@link MouseSelectionBehavior}, {@link MouseWheelZoomBehavior} and
-	 * {@link KeyboardBehavior} to the specified canvas or the root branch group {@link #root}.
-	 *
-	 * @param cityCanvas
-	 *            The canvas to add the behaviors to.
-	 */
-//	private void addBehaviors(final CityCanvas cityCanvas) {
-//
-//		final BoundingSphere bounds = new BoundingSphere(new Point3d(), Float.MAX_VALUE);
-//
-//		// add transform group to root (parent) to allow mouse initiated rotations
-//		final TransformGroup rootTG = new TransformGroup();
-//		rootTG.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
-//		rootTG.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-//
-//		rootTG.addChild(this.rootParent);
-//		this.root.addChild(rootTG);
-//
-//		// add selection behavior
-//		final MouseSelectionBehavior selectionBehavior = new MouseSelectionBehavior(cityCanvas);
-//		selectionBehavior.setSchedulingBounds(bounds);
-//		this.root.addChild(selectionBehavior);
-//
-//		// add keyboard behavior
-//		final KeyboardBehavior keyboardBehavior = new KeyboardBehavior(this.universe.getViewingPlatform().getViewPlatformTransform());
-//		keyboardBehavior.setSchedulingBounds(bounds);
-//		this.root.addChild(keyboardBehavior);
-//
-//		// add mouse rotation behavior
-//		final MouseRotationBehavior rotationBehavior = new MouseRotationBehavior(rootTG);
-//		rotationBehavior.setSchedulingBounds(bounds);
-//		this.root.addChild(rotationBehavior);
-//
-//		// add zoom behavior
-//		final MouseWheelZoomBehavior zoomBehavior = new MouseWheelZoomBehavior(this.universe.getViewingPlatform().getViewPlatformTransform());
-//		zoomBehavior.setEnable(true);
-//		zoomBehavior.setSchedulingBounds(bounds);
-//		this.root.addChild(zoomBehavior);
-//	}
-
-	/**
-	 * Clean up all memory used by the underlying simple universe and remove all references from it. This method should typically be invoked when the application is
-	 * about to exit.
-	 */
-//	public void cleanUpScene() {
-//
-//		this.universe.cleanup();
-//	}
+	private TestDataModel testDataModel;
 
 	/**
 	 * Removes all objects from this view, i.e. clears the entire visualization.
@@ -127,15 +56,11 @@ public class CityView extends Group {
 
 	}
 
-	/**
-	 * Returns the root branch group of this view model instance, i.e. {@link #root}.
-	 *
-	 * @return The root branch group of this Java3D model's branch graph.
-	 */
-//	public BranchGroup getRootBranchGroup() {
-//
-//		return this.root;
-//	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
 
 
 }

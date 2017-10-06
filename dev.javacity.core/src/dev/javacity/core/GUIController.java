@@ -58,8 +58,6 @@ public class GUIController implements Initializable{
 		ObserverManager.getInstance().connect(dataModel, sceneModel, metaphorModel, metaphorImporter, viewImporter);
 
 		Group root = new Group();
-		Group g = new Group();
-		root.getChildren().add(g);
 		SubScene subscene = new SubScene(root, 640, 320);
 		pane1.getChildren().add(subscene);
 

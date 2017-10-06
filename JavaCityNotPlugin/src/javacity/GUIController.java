@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import dev.javacity.core.Core;
 import dev.javacity.core.TestCamera;
+import dev.javacity.core.importer.Importer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -46,5 +47,7 @@ public class GUIController implements Initializable{
 
 //    	menubarController.set(dataModel, kdmImporter);
 
+		Importer importer = new Importer();
+		importer.importFromFile(this.getClass().getResourceAsStream("/KDMSample.xml"));
     }
 }

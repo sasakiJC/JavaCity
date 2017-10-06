@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="javacity.ProjectAccessCommandHandler"
+            id="javacity.ProjectAccessCommand"
+            name="VisualizetoCity">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?after=additions">
+         <command
+               commandId="javacity.ProjectAccessCommand"
+               style="push">
+            <visibleWhen>
+               <with variable="activeMenuSelection">
+                  <iterate ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.jdt.core.IJavaProject">
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="Test City View"
+            name="City View"
             icon="icons/sample.gif"
             class="javacity.views.MyViewPart"
             id="javacity.views.MyViewPart">
