@@ -76,11 +76,11 @@ public class ProjectAnalyzer {
 	}
 
 	private TargetClass analyzeClass(ICompilationUnit unit) {
-		System.out.println(" " + unit.getElementName());
+//		System.out.println(" " + unit.getElementName());
 		CompilationUnit parse = parse(unit);
 		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor();
 		parse.accept(visitor);
-		return null;
+		return visitor.getTargetClass();
 	}
 
 	private CompilationUnit parse(ICompilationUnit unit) {

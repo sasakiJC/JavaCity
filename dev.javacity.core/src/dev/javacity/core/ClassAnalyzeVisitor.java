@@ -1,5 +1,6 @@
 package dev.javacity.core;
 
+import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.Block;
@@ -10,6 +11,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 import dev.javacity.core.models.TargetClass;
+import dev.javacity.core.models.TargetClass.ClassType;
 
 public class ClassAnalyzeVisitor extends ASTVisitor {
 
@@ -21,8 +23,17 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
-		// TODO 自動生成されたメソッド・スタブ
-		return super.visit(node);
+		if(node.isInterface()) {
+			this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.INTERFACE);
+		}else{
+			if(Flags.isAbstract(node.getModifiers())) {
+				this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.ABSTRACT);
+			}else{
+				this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.CONCRETE);
+			}
+
+		}
+		return true;
 	}
 
 	@Override
@@ -63,7 +74,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 
 	public TargetClass getTargetClass() {
-		return null;
+		return this.clazz;
 	}
 
 }
