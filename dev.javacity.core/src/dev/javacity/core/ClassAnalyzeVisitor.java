@@ -31,26 +31,27 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 			}else{
 				this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.CONCRETE);
 			}
-
 		}
+		this.clazz.setModifiers(node.modifiers());
+		return true;
+	}
+
+	@Override
+	public boolean visit(EnumDeclaration node) {
+		this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.ENUM);
+		this.clazz.setModifiers(node.modifiers());
 		return true;
 	}
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		// TODO 自動生成されたメソッド・スタブ
+//		System.out.println("MethodDeclaration");
 		return super.visit(node);
 	}
 
 	@Override
 	public boolean visit(FieldDeclaration node) {
-		// TODO 自動生成されたメソッド・スタブ
-		return super.visit(node);
-	}
-
-	@Override
-	public boolean visit(EnumDeclaration node) {
-		// TODO 自動生成されたメソッド・スタブ
+//		System.out.println("FieldDeclaration");
 		return super.visit(node);
 	}
 

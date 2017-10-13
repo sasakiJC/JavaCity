@@ -1,8 +1,8 @@
 package dev.javacity.core.models;
 
-import org.eclipse.jdt.core.dom.Modifier;
+import java.util.List;
 
 public interface Modifiable {
 
-	public void setModifier(Modifier modifier);
+	public void setModifiers(List<?> modifiers);
 }

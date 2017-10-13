@@ -2,8 +2,6 @@ package dev.javacity.core.models;
 
 import java.util.List;
 
-import org.eclipse.jdt.core.dom.Modifier;
-
 public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 
 	private String name;
@@ -14,7 +12,7 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 	}
 
 	@Override
-	public void setModifier(Modifier modifier) {
+	public void setModifiers(List<?> modifiers) {
 
 
 	}
