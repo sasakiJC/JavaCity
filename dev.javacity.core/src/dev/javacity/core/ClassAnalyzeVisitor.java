@@ -9,9 +9,11 @@ import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetClass.ClassType;
+import dev.javacity.core.models.TargetField;
 
 public class ClassAnalyzeVisitor extends ASTVisitor {
 
@@ -51,7 +53,16 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(FieldDeclaration node) {
-//		System.out.println("FieldDeclaration");
+		for(Object obj : node.fragments()) {
+			VariableDeclarationFragment fragment = (VariableDeclarationFragment)obj;
+			fragment.getClass();
+
+			// Object obj[][] のときfragment.getExtraDimensions()==2
+			// if(fragment.getExtraDimensions() > 0) TargetField field = new TargetField(fragment.getName().getIndentifier(), node.getType().toString()+fragment.extraDimensions().sum
+			TargetField field = new TargetField(fragment.getName().getIdentifier(),  node.getType().toString());
+			field.setModifiers(node.modifiers());
+			this.clazz.addChild(field);
+		}
 		return super.visit(node);
 	}
 
