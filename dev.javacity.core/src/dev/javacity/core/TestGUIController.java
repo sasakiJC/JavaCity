@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
 import dev.javacity.core.importer.Importer;
+import dev.javacity.core.models.CityScene;
 import dev.javacity.core.models.CityView;
 import dev.javacity.core.models.TestDataModel;
 import javafx.fxml.FXML;
@@ -40,18 +41,11 @@ public class TestGUIController implements Initializable{
     	this.analyzer = new ProjectAnalyzer();
     }
 
-    public void importData(IProject project) {
-    	try {
-			this.analyzer.analyzeFrom(project);
-		} catch (CoreException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-//    	this.testDataModel = this.importer.importFromFile(null);
-//    	this.cityView = this.visualizeMapper.map(this.testDataModel);
-//
-//    	CityScene scene = new CityScene(this.cityView, 640, 320);
-//    	this.pane1.getChildren().add(scene);
+    public void importData(IProject project) throws CoreException {
+		this.testDataModel = this.analyzer.analyzeFrom(project);
+    	this.cityView = this.visualizeMapper.map(this.testDataModel);
+    	CityScene scene = new CityScene(this.cityView, 640, 320);
+    	this.pane1.getChildren().add(scene);
 
 
 

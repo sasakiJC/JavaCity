@@ -36,6 +36,9 @@ public class ProjectAccessCommandHandler extends AbstractHandler {
 			view.getController().importData(selectedProject.getProject());
 		} catch (PartInitException e) {
 			/* IViewPart view = */ page.findView(ID);
+		} catch (CoreException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
 
 		return null;

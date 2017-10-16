@@ -59,7 +59,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 		method.setModifiers(node.modifiers());
 		this.clazz.addChild(method);
 //		System.out.println("MethodDeclaration");
-		return super.visit(node);
+		return true;
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 			field.setModifiers(node.modifiers());
 			this.clazz.addChild(field);
 		}
-		return super.visit(node);
+		return true;
 	}
 
 	@Override
@@ -85,7 +85,6 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(Block node) {
-		// TODO 自動生成されたメソッド・スタブ
 		return super.visit(node);
 	}
 

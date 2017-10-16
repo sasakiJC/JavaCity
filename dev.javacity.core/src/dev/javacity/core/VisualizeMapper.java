@@ -8,6 +8,7 @@ public class VisualizeMapper {
 	private LayoutMapper layoutMapper;
 
 	public CityView map(TestDataModel dataModel) {
+		CityView view = new CityView();
 		return null;
 	}
 
