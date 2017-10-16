@@ -14,6 +14,7 @@ import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetClass.ClassType;
 import dev.javacity.core.models.TargetField;
+import dev.javacity.core.models.TargetMethod;
 
 public class ClassAnalyzeVisitor extends ASTVisitor {
 
@@ -47,6 +48,16 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
+		TargetMethod method = new TargetMethod(node.getName().getIdentifier(), node.isConstructor());
+		method.setBody(node.getBody());
+		method.setReturnType(node.getReturnType2());
+		method.setTypeParameters(node.typeParameters());
+//		node.thrownExceptionTypes();
+		method.setParameters(node.parameters());
+//		可変長引数かどうか
+//		node.isVarargs();
+		method.setModifiers(node.modifiers());
+		this.clazz.addChild(method);
 //		System.out.println("MethodDeclaration");
 		return super.visit(node);
 	}
