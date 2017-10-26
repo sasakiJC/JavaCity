@@ -1,4 +1,4 @@
-package dev.javacity.core;
+package dev.javacity.core.infra;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +15,8 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import dev.javacity.core.models.DefaultEntityIdentifier;
+import dev.javacity.core.models.Repository;
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetPackage;
 import dev.javacity.core.models.TestDataModel;
@@ -22,11 +24,23 @@ import dev.javacity.core.models.TestDataModel;
 public class ProjectAnalyzer {
 
 	private ASTParser parser;
+	private Repository<DefaultEntityIdentifier, TargetPackage> packageRepository;
+	private Repository<DefaultEntityIdentifier, TargetClass> classRepository;
 
-	public ProjectAnalyzer() {
+//	public ProjectAnalyzer() {
+//		this.parser = ASTParser.newParser(AST.JLS8);
+//        parser.setKind(ASTParser.K_COMPILATION_UNIT);
+//        parser.setResolveBindings(true);
+//	}
+
+	public ProjectAnalyzer(Repository<DefaultEntityIdentifier, TargetPackage> packageRepository,
+			Repository<DefaultEntityIdentifier, TargetClass> classRepository) {
 		this.parser = ASTParser.newParser(AST.JLS8);
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
         parser.setResolveBindings(true);
+        this.packageRepository = packageRepository;
+        this.classRepository = classRepository;
+
 	}
 
 	public TestDataModel analyzeFrom(IProject project) throws CoreException {
@@ -67,13 +81,11 @@ public class ProjectAnalyzer {
 	}
 
 	private TargetPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
-//		System.out.println(packageFragment.getElementName());
-
-		TargetPackage targetPack = new TargetPackage(packageFragment.getElementName());
+		TargetPackage targetPack = new TargetPackage(this.packageRepository.nextIndentifier(), packageFragment.getElementName());
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
 			TargetClass clazz = this.analyzeClass(unit);
 		}
-
+		this.packageRepository.store(targetPack);
 		return targetPack;
 	}
 

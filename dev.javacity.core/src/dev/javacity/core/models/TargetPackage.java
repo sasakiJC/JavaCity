@@ -6,7 +6,10 @@ public class TargetPackage implements TargetEntity {
 
 	private String name;
 	private String parentPackageName;
-	public TargetPackage(String fullName) {
+	private final EntityIdentifier identifier;
+
+	public TargetPackage(EntityIdentifier identifier, String fullName) {
+		this.identifier = identifier;
 		if(fullName.contains(".")) {
 			this.name = fullName.substring(fullName.lastIndexOf(".")+1, fullName.length());
 			this.parentPackageName = fullName.substring(0,fullName.lastIndexOf("."));
@@ -53,6 +56,38 @@ public class TargetPackage implements TargetEntity {
 		else
 			return this.parentPackageName+"."+this.name;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EntityIdentifier getIdentifier() {
+		return this.identifier;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>この実装では識別子のハッシュ・コード値を返す。
+	 */
+    @Override
+    public final int hashCode() {
+        return identifier.hashCode();
+    }
+
+	/**
+	 * {@inheritDoc}
+	 */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj instanceof TargetEntity == false) {
+            return false;
+        }
+        return identifier.equals(((TargetEntity) obj).getIdentifier());
+    }
 
 
 }

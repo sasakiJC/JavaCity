@@ -16,5 +16,6 @@ Bundle-ClassPath: lib/commons-lang3-3.1.jar,
  lib/log4j-1.2.16.jar,
  lib/org.eclipse.emf.common_2.12.0.v20160420-0247.jar,
  lib/org.eclipse.emf.ecore_2.12.0.v20160420-0247.jar
-Export-Package: dev.javacity.core
+Export-Package: dev.javacity.core,
+ dev.javacity.core.infra
 Bundle-Activator: dev.javacity.core.Activator

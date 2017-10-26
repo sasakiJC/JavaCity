@@ -1,4 +1,4 @@
-package dev.javacity.core;
+package dev.javacity.core.infra;
 
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.dom.ASTVisitor;

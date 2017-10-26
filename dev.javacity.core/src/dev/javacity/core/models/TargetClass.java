@@ -6,10 +6,9 @@ public class TargetClass extends AbstractCodeElement {
 		INTERFACE, ABSTRACT, CONCRETE, ENUM
 	}
 
-	private String name;
 	private ClassType type;
-	public TargetClass(String name, ClassType type) {
-		super(name);
+	public TargetClass(EntityIdentifier identifier, String name, ClassType type) {
+		super(identifier, name);
 		this.type = type;
 	}
 }

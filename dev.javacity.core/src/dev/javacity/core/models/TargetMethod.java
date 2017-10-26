@@ -14,12 +14,12 @@ public class TargetMethod extends AbstractCodeElement {
 	private List<?> typeParameters;
 	private List<?> parameters;
 
-	public TargetMethod(String name) {
-		super(name);
+	public TargetMethod(EntityIdentifier identifier, String name) {
+		this(identifier, name, false);
 	}
 
-	public TargetMethod(String name, boolean isConstructor) {
-		super(name);
+	public TargetMethod(EntityIdentifier identifier, String name, boolean isConstructor) {
+		super(identifier, name);
 		this.isConstructor = isConstructor;
 	}
 
