@@ -4,19 +4,14 @@ import java.util.List;
 
 public class TargetPackage implements TargetEntity {
 
-	private String name;
-	private String parentPackageName;
+	private String fullName;
+	private String[] names;
 	private final EntityIdentifier identifier;
 
 	public TargetPackage(EntityIdentifier identifier, String fullName) {
 		this.identifier = identifier;
-		if(fullName.contains(".")) {
-			this.name = fullName.substring(fullName.lastIndexOf(".")+1, fullName.length());
-			this.parentPackageName = fullName.substring(0,fullName.lastIndexOf("."));
-		} else {
-			this.name = fullName;
-			this.parentPackageName = "";
-		}
+		this.fullName = fullName;
+		this.names = fullName.split(".");
 	}
 
 	@Override
@@ -43,18 +38,20 @@ public class TargetPackage implements TargetEntity {
 
 	}
 
-	public boolean isParentPackage(TargetPackage pack) {
-		if(this.parentPackageName.equals(this.name))
+	public boolean isParentPackage(String packName) {
+		String[] tmp = packName.split(".");
+		if(this.names.length-1 != tmp.length)
 			return false;
-		else
-			return this.parentPackageName.equals(pack.fullName());
+
+		for(int i=0;i<tmp.length;i++) {
+			if(this.names[i].equals(tmp[i]))
+				return false;
+		}
+		return true;
 	}
 
-	public String fullName() {
-		if(this.parentPackageName.equals("") || this.name.equals(""))
-			return this.name;
-		else
-			return this.parentPackageName+"."+this.name;
+	public String getName() {
+		return this.fullName;
 	}
 
 	/**

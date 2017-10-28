@@ -15,7 +15,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import dev.javacity.core.CodeInfoImporter;
-import dev.javacity.core.infra.JDTCodeInfoImporter;
+import dev.javacity.core.infra.ProjectAnalyzer;
 import javacity.views.MyViewPart;
 
 public class ProjectAccessCommandHandler extends AbstractHandler {
@@ -34,14 +34,13 @@ public class ProjectAccessCommandHandler extends AbstractHandler {
         IWorkbenchWindow activeWindow = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		IWorkbenchPage page = activeWindow.getActivePage();
 
-		this.importer = new JDTCodeInfoImporter(selectedProject.getProject());
-		this.importer.importInfo();
-
 		try {
 			MyViewPart view =  (MyViewPart)page.showView(ID, null, IWorkbenchPage.VIEW_VISIBLE);
-			view.getController().importData(selectedProject.getProject());
-		} catch (PartInitException e) {
-			/* IViewPart view = */ page.findView(ID);
+			ProjectAnalyzer analyzer = new ProjectAnalyzer(view.getController().getService());
+			analyzer.analyzeFrom(selectedProject.getProject());
+		} catch (PartInitException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
 		} catch (CoreException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

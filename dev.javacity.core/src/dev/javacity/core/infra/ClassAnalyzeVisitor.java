@@ -11,6 +11,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
+import dev.javacity.core.CodeElementApplicationService;
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetClass.ClassType;
 import dev.javacity.core.models.TargetField;
@@ -19,20 +20,21 @@ import dev.javacity.core.models.TargetMethod;
 public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	private TargetClass clazz;
+	private CodeElementApplicationService codeElementAppService;
 
-	public ClassAnalyzeVisitor() {
-//		this.clazz = new TargetClass();
+	public ClassAnalyzeVisitor(CodeElementApplicationService codeElementAppService) {
+		this.codeElementAppService = codeElementAppService;
 	}
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
 		if(node.isInterface()) {
-			this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.INTERFACE);
+			this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.INTERFACE);
 		}else{
 			if(Flags.isAbstract(node.getModifiers())) {
-				this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.ABSTRACT);
+				this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.ABSTRACT);
 			}else{
-				this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.CONCRETE);
+				this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.CONCRETE);
 			}
 		}
 		this.clazz.setModifiers(node.modifiers());
@@ -41,14 +43,14 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(EnumDeclaration node) {
-		this.clazz = new TargetClass(node.getName().getIdentifier(), ClassType.ENUM);
+		this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.ENUM);
 		this.clazz.setModifiers(node.modifiers());
 		return true;
 	}
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		TargetMethod method = new TargetMethod(node.getName().getIdentifier(), node.isConstructor());
+		TargetMethod method = this.codeElementAppService.newMethod(node.getName().getIdentifier(), node.isConstructor());
 		method.setBody(node.getBody());
 		method.setReturnType(node.getReturnType2());
 		method.setTypeParameters(node.typeParameters());
@@ -70,7 +72,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 			// Object obj[][] のときfragment.getExtraDimensions()==2
 			// if(fragment.getExtraDimensions() > 0) TargetField field = new TargetField(fragment.getName().getIndentifier(), node.getType().toString()+fragment.extraDimensions().sum
-			TargetField field = new TargetField(fragment.getName().getIdentifier(),  node.getType().toString());
+			TargetField field = this.codeElementAppService.newField(fragment.getName().getIdentifier(), node.getType().toString());
 			field.setModifiers(node.modifiers());
 			this.clazz.addChild(field);
 		}

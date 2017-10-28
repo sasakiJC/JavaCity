@@ -3,7 +3,7 @@ package dev.javacity.core.models;
 public class TargetField extends AbstractCodeElement {
 
 	private String className;
-	protected TargetField(EntityIdentifier identifier, String name) {
+	public TargetField(EntityIdentifier identifier, String name) {
 		this(identifier, name, "");
 	}
 

@@ -6,6 +6,11 @@ import dev.javacity.core.models.TestDataModel;
 public class VisualizeMapper {
 
 	private LayoutMapper layoutMapper;
+	private CodeElementApplicationService service;
+
+	public VisualizeMapper(CodeElementApplicationService service) {
+		this.service = service;
+	}
 
 	public CityView map(TestDataModel dataModel) {
 		CityView view = new CityView();

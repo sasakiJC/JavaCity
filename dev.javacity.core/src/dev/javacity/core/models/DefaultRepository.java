@@ -1,34 +1,33 @@
 package dev.javacity.core.models;
 
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DefaultRepository<ID extends EntityIdentifier, T extends TargetEntity> implements Repository<ID, T> {
+public class DefaultRepository<T extends TargetEntity> implements Repository<T> {
 
-	private List<T> entities;
+	private Map<EntityIdentifier, T> entities;
 	private int lastId;
 
 	public DefaultRepository() {
-		this.entities = new LinkedList<>();
+		this.entities = new HashMap<>();
 		this.lastId = 0;
 	}
 
 	@Override
 	public Collection<T> findAll() {
-		return null;
+		return this.entities.values();
 
 	}
 
 	@Override
-	public T findById(ID identifier) {
-		return null;
-
+	public T findById(EntityIdentifier identifier) {
+		return this.entities.get(identifier);
 	}
 
 	@Override
 	public void store(T entity) {
-		this.entities.add(entity);
+		this.entities.put(entity.getIdentifier(), entity);
 	}
 
 	@Override
@@ -37,9 +36,8 @@ public class DefaultRepository<ID extends EntityIdentifier, T extends TargetEnti
 	}
 
 	@Override
-	public List<EntityIdentifier> getAllTrackingIds() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public Collection<EntityIdentifier> getAllIds() {
+		return this.entities.keySet();
 	}
 
 }

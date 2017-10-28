@@ -1,7 +1,6 @@
 package dev.javacity.core.models;
 
 import java.util.Collection;
-import java.util.List;
 
 
 
@@ -11,7 +10,7 @@ import java.util.List;
  * @param <ID> EntityIdentifierの型
  * @param <T> Entityの型
  */
-public interface Repository<ID extends EntityIdentifier, T extends TargetEntity> {
+public interface Repository<T extends TargetEntity> {
 
 	/**
 	 * このリポジトリに格納されている全てのエンティティを返します。
@@ -29,7 +28,7 @@ public interface Repository<ID extends EntityIdentifier, T extends TargetEntity>
 	 * @throws EntityNotFoundException エンティティが見つからなかった場合
 	 * @throws PersistentException 永続化技術で何か問題があった場合
 	 */
-	public T findById(ID identifier);
+	public T findById(EntityIdentifier identifier);
 	/**
 	 * 指定されたエンティティを永続化します。
 	 * @param entity 永続化するエンティティ
@@ -40,6 +39,6 @@ public interface Repository<ID extends EntityIdentifier, T extends TargetEntity>
 
 	public EntityIdentifier nextIndentifier();
 
-	public List<EntityIdentifier> getAllTrackingIds();
+	public Collection<EntityIdentifier> getAllIds();
 
 }
