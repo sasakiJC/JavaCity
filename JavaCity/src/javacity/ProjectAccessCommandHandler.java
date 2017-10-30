@@ -14,15 +14,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import dev.javacity.core.CodeInfoImporter;
 import dev.javacity.core.infra.ProjectAnalyzer;
 import javacity.views.MyViewPart;
 
 public class ProjectAccessCommandHandler extends AbstractHandler {
 
 	final static String ID = "javacity.views.MyViewPart";
-	private CodeInfoImporter importer;
-
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -38,6 +35,7 @@ public class ProjectAccessCommandHandler extends AbstractHandler {
 			MyViewPart view =  (MyViewPart)page.showView(ID, null, IWorkbenchPage.VIEW_VISIBLE);
 			ProjectAnalyzer analyzer = new ProjectAnalyzer(view.getController().getService());
 			analyzer.analyzeFrom(selectedProject.getProject());
+			System.out.println("解析終了");
 		} catch (PartInitException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();

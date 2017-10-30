@@ -10,12 +10,6 @@ public class District implements VisualizedComposite {
 	}
 
 	@Override
-	public void draw() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
 	public boolean isVisible() {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
@@ -37,6 +31,12 @@ public class District implements VisualizedComposite {
 	public TargetEntity getEntity() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
+	}
+
+	@Override
+	public void layout() {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }

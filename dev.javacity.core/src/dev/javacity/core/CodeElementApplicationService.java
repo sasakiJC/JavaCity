@@ -1,6 +1,8 @@
 package dev.javacity.core;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import dev.javacity.core.models.DefaultRepository;
 import dev.javacity.core.models.Repository;
@@ -9,6 +11,8 @@ import dev.javacity.core.models.TargetClass.ClassType;
 import dev.javacity.core.models.TargetField;
 import dev.javacity.core.models.TargetMethod;
 import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.visual.ViewMapper;
+import dev.javacity.core.visual.VisualizedComponent;
 
 public class CodeElementApplicationService {
 
@@ -45,12 +49,17 @@ public class CodeElementApplicationService {
 		return pack;
 	}
 
-	public TargetClass newClass(String className, ClassType type) {
+
+	public TargetClass newClass(String className, ClassType type, int loc, int nom, int noa) {
+
 		TargetClass clazz =
 				new TargetClass(
 						this.classRepository.nextIndentifier(),
 						className,
-						type);
+						type,
+						loc,
+						nom,
+						noa);
 
 		this.classRepository.store(clazz);
 		return clazz;
@@ -92,8 +101,12 @@ public class CodeElementApplicationService {
 	}
 
 
-	public void visualizePackage() {
-
+	public Collection<VisualizedComponent> visualizePackages() {
+		List<VisualizedComponent> list = new LinkedList<>();
+		for(TargetPackage pack : this.packageRepository.findAll()) {
+			list.add(this.mapper.mapPackage(pack));
+		}
+		return list;
 	}
 //
 //	public Collection<TargetClass> classes() {
@@ -107,5 +120,7 @@ public class CodeElementApplicationService {
 //	public Collection<TargetMethod> methods() {
 //		return this.methodRepository.findAll();
 //	}
+
+
 
 }

@@ -1,5 +1,6 @@
 package dev.javacity.core.models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
@@ -23,6 +24,7 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;
 		this.name = name;
+		this.children = new LinkedList<>();
 	}
 
 	/**

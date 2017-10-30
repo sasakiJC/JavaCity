@@ -2,6 +2,10 @@ package dev.javacity.core.models;
 
 import java.util.Collection;
 
+import dev.javacity.core.models.exception.EntityNotFoundException;
+import dev.javacity.core.models.exception.PersistentException;
+import dev.javacity.core.models.exception.StoreFailedException;
+
 
 
 /**

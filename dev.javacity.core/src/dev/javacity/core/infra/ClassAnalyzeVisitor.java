@@ -4,6 +4,7 @@ import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnonymousClassDeclaration;
 import org.eclipse.jdt.core.dom.Block;
+import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
@@ -21,30 +22,47 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	private TargetClass clazz;
 	private CodeElementApplicationService codeElementAppService;
+	private CompilationUnit compilationUnit;
+	private MetricsMeasure metricsMeasure;
 
-	public ClassAnalyzeVisitor(CodeElementApplicationService codeElementAppService) {
+	public ClassAnalyzeVisitor(CodeElementApplicationService codeElementAppService, CompilationUnit compilationUnit) {
 		this.codeElementAppService = codeElementAppService;
+		this.compilationUnit = compilationUnit;
+		this.metricsMeasure = new MetricsMeasure(this.compilationUnit);
 	}
 
 	@Override
 	public boolean visit(TypeDeclaration node) {
-		if(node.isInterface()) {
-			this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.INTERFACE);
-		}else{
-			if(Flags.isAbstract(node.getModifiers())) {
-				this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.ABSTRACT);
-			}else{
-				this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.CONCRETE);
-			}
-		}
+		ClassType type;
+		if(node.isInterface()) type = ClassType.INTERFACE;
+		else if(Flags.isAbstract(node.getModifiers())) type = ClassType.ABSTRACT;
+		else type = ClassType.CONCRETE;
+
+		int loc = this.metricsMeasure.classLineOfCode(node);
+		int nom = this.metricsMeasure.numberOfMethods(node);
+		int noa = this.metricsMeasure.numberOfAttributes(node);
+
+		this.clazz = this.codeElementAppService.newClass(
+				node.getName().getIdentifier(),
+				type,
+				loc,
+				nom,
+				noa);
 		this.clazz.setModifiers(node.modifiers());
+
 		return true;
 	}
 
 	@Override
 	public boolean visit(EnumDeclaration node) {
-		this.clazz = this.codeElementAppService.newClass(node.getName().getIdentifier(), ClassType.ENUM);
+		this.clazz = this.codeElementAppService.newClass(
+				node.getName().getIdentifier(),
+				ClassType.ENUM,
+				this.metricsMeasure.enumLineOfCode(node),
+				this.metricsMeasure.numberOfMethods(node),
+				this.metricsMeasure.numberOfAttributes(node));
 		this.clazz.setModifiers(node.modifiers());
+
 		return true;
 	}
 

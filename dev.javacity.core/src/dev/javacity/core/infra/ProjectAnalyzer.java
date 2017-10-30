@@ -31,6 +31,7 @@ public class ProjectAnalyzer {
 		this.parser = ASTParser.newParser(AST.JLS8);
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
         parser.setResolveBindings(true);
+        this.codeElementAppService = codeElementAppService;
 	}
 
 	public void analyzeFrom(IProject project) throws CoreException {
@@ -76,7 +77,7 @@ public class ProjectAnalyzer {
 	private TargetClass analyzeClass(ICompilationUnit unit) {
 //		System.out.println(" " + unit.getElementName());
 		CompilationUnit parse = parse(unit);
-		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.codeElementAppService);
+		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.codeElementAppService, parse);
 		parse.accept(visitor);
 		return visitor.getTargetClass();
 	}

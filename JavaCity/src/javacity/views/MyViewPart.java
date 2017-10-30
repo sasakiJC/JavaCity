@@ -5,8 +5,7 @@ import java.net.URL;
 
 import org.eclipse.fx.ui.workbench3.FXViewPart;
 
-import dev.javacity.core.Activator;
-import dev.javacity.core.TestGUIController;
+import javacity.Activator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
