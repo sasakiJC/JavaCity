@@ -14,7 +14,7 @@ import dev.javacity.core.models.exception.StoreFailedException;
  * @param <ID> EntityIdentifierの型
  * @param <T> Entityの型
  */
-public interface Repository<T extends TargetEntity> {
+public interface Repository<T extends TargetEntity<T>> {
 
 	/**
 	 * このリポジトリに格納されている全てのエンティティを返します。
@@ -32,7 +32,7 @@ public interface Repository<T extends TargetEntity> {
 	 * @throws EntityNotFoundException エンティティが見つからなかった場合
 	 * @throws PersistentException 永続化技術で何か問題があった場合
 	 */
-	public T findById(EntityIdentifier identifier);
+	public T findById(EntityIdentifier<T> identifier);
 	/**
 	 * 指定されたエンティティを永続化します。
 	 * @param entity 永続化するエンティティ
@@ -41,8 +41,8 @@ public interface Repository<T extends TargetEntity> {
 	 */
 	public void store(T entity);
 
-	public EntityIdentifier nextIndentifier();
+	public EntityIdentifier<T> nextIndentifier();
 
-	public Collection<EntityIdentifier> getAllIds();
+	public Collection<EntityIdentifier<T>> getAllIds();
 
 }

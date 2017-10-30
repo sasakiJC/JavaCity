@@ -1,14 +1,8 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetEntity;
+import dev.javacity.core.models.TargetPackage;
 
-public class PackageDecorator implements VisualizedComposite {
-
-	@Override
-	public void draw() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
+public class PackageDecorator implements VisualizedComposite<TargetPackage> {
 
 	@Override
 	public boolean isVisible() {
@@ -29,9 +23,15 @@ public class PackageDecorator implements VisualizedComposite {
 	}
 
 	@Override
-	public TargetEntity getEntity() {
+	public TargetPackage getEntity() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
+	}
+
+	@Override
+	public void layout() {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }

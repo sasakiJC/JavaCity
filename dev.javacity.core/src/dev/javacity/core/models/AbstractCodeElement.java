@@ -3,23 +3,23 @@ package dev.javacity.core.models;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
+public abstract class AbstractCodeElement<T  extends TargetEntity<T>> implements TargetEntity<T>, Modifiable {
 
 	protected String name;
-	private TargetEntity parent;
-	private List<TargetEntity> children;
+	private EntityIdentifier<T> parent;
+	private List<EntityIdentifier<T>> children;
 
 	/**
 	 * このエンティティの識別子
 	 */
-	protected final EntityIdentifier identifier;
+	protected final EntityIdentifier<T> identifier;
 
 	/**
 	 * 指定された識別子を使用してエンティティを作成します。
 	 * @param identifier エンティティの識別子
 	 * @throws NullPointerException 引数に{@code null}を与えた場合
 	 */
-	protected AbstractCodeElement(EntityIdentifier identifier, String name) {
+	protected AbstractCodeElement(EntityIdentifier<T> identifier, String name) {
 		if(identifier==null)
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;
@@ -31,7 +31,7 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final EntityIdentifier getIdentifier() {
+	public final EntityIdentifier<T> getIdentifier() {
 		return this.identifier;
 	}
 
@@ -66,24 +66,24 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 	}
 
 	@Override
-	public void addChild(TargetEntity child) {
+	public void addChild(EntityIdentifier<T> child) {
 		this.children.add(child);
 	}
 
 	@Override
-	public List<TargetEntity> getChildren() {
+	public List<EntityIdentifier<T>> getChildren() {
 		return this.children;
 	}
 
 	@Override
-	public void removeChild(TargetEntity child) {
+	public void removeChild(EntityIdentifier<T> child) {
 		if(this.children.contains(child)) {
 			this.children.remove(child);
 		}
 	}
 
 	@Override
-	public void setParent(TargetEntity parent) {
+	public void setParent(EntityIdentifier<T> parent) {
 		this.parent = parent;
 	}
 

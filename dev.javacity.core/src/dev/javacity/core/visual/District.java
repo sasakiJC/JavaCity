@@ -1,12 +1,11 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetEntity;
 import dev.javacity.core.models.TargetPackage;
 
-public class District implements VisualizedComposite {
+public class District implements VisualizedComposite<TargetPackage> {
 
 	public District(TargetPackage pack) {
-		// TODO 自動生成されたコンストラクター・スタブ
+
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class District implements VisualizedComposite {
 	}
 
 	@Override
-	public TargetEntity getEntity() {
+	public TargetPackage getEntity() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

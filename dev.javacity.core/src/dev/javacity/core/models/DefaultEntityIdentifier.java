@@ -4,7 +4,7 @@ package dev.javacity.core.models;
  * このクラスは、EntityIdentifierインタフェースの整数識別子の実装です。
  * 整数値が識別子の本体です。
  */
-public class DefaultEntityIdentifier implements EntityIdentifier {
+public class DefaultEntityIdentifier<T> implements EntityIdentifier<T> {
 	private int id;
 
 	/**
