@@ -4,14 +4,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultRepository<T extends TargetEntity<T>> implements Repository<T> {
+public class DefaultRepository<T extends TargetEntity> implements Repository<T> {
 
-	private Map<EntityIdentifier<T>, T> entities;
+	private Map<EntityIdentifier, T> entities;
 	private int lastId;
+	private Class<T> clazz;
 
-	public DefaultRepository() {
+	public DefaultRepository(Class<T> clazz) {
 		this.entities = new HashMap<>();
 		this.lastId = 0;
+		this.clazz = clazz;
 	}
 
 	@Override
@@ -21,7 +23,7 @@ public class DefaultRepository<T extends TargetEntity<T>> implements Repository<
 	}
 
 	@Override
-	public T findById(EntityIdentifier<T> identifier) {
+	public T findById(EntityIdentifier identifier) {
 		return this.entities.get(identifier);
 	}
 
@@ -31,13 +33,13 @@ public class DefaultRepository<T extends TargetEntity<T>> implements Repository<
 	}
 
 	@Override
-	public EntityIdentifier<T> nextIndentifier() {
-		return new DefaultEntityIdentifier<T>(++this.lastId);
+	public Collection<EntityIdentifier> getAllIds() {
+		return this.entities.keySet();
 	}
 
 	@Override
-	public Collection<EntityIdentifier<T>> getAllIds() {
-		return this.entities.keySet();
+	public EntityIdentifier nextIndentifier() {
+		return new DefaultEntityIdentifier(++this.lastId, this.clazz.getName());
 	}
 
 }

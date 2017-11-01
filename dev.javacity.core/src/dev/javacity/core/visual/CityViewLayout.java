@@ -7,7 +7,7 @@ public class CityViewLayout implements VisLayout {
 		if(!component.hasChild()) {
 
 		}
-		component.getChildren()
+
 	}
 
 	@Override

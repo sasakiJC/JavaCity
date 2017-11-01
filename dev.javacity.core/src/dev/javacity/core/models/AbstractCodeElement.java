@@ -3,23 +3,23 @@ package dev.javacity.core.models;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractCodeElement<T  extends TargetEntity<T>> implements TargetEntity<T>, Modifiable {
+public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 
 	protected String name;
-	private EntityIdentifier<T> parent;
-	private List<EntityIdentifier<T>> children;
+	private EntityIdentifier parent;
+	private List<EntityIdentifier> children;
 
 	/**
 	 * このエンティティの識別子
 	 */
-	protected final EntityIdentifier<T> identifier;
+	protected final EntityIdentifier identifier;
 
 	/**
 	 * 指定された識別子を使用してエンティティを作成します。
 	 * @param identifier エンティティの識別子
 	 * @throws NullPointerException 引数に{@code null}を与えた場合
 	 */
-	protected AbstractCodeElement(EntityIdentifier<T> identifier, String name) {
+	protected AbstractCodeElement(EntityIdentifier identifier, String name) {
 		if(identifier==null)
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;
@@ -31,7 +31,7 @@ public abstract class AbstractCodeElement<T  extends TargetEntity<T>> implements
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final EntityIdentifier<T> getIdentifier() {
+	public final EntityIdentifier getIdentifier() {
 		return this.identifier;
 	}
 
@@ -66,24 +66,24 @@ public abstract class AbstractCodeElement<T  extends TargetEntity<T>> implements
 	}
 
 	@Override
-	public void addChild(EntityIdentifier<T> child) {
+	public void addChild(EntityIdentifier child) {
 		this.children.add(child);
 	}
 
 	@Override
-	public List<EntityIdentifier<T>> getChildren() {
+	public List<EntityIdentifier> getChildren() {
 		return this.children;
 	}
 
 	@Override
-	public void removeChild(EntityIdentifier<T> child) {
+	public void removeChild(EntityIdentifier child) {
 		if(this.children.contains(child)) {
 			this.children.remove(child);
 		}
 	}
 
 	@Override
-	public void setParent(EntityIdentifier<T> parent) {
+	public void setParent(EntityIdentifier parent) {
 		this.parent = parent;
 	}
 

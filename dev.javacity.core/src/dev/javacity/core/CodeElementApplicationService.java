@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import dev.javacity.core.models.DefaultRepository;
+import dev.javacity.core.models.EntityIdentifier;
 import dev.javacity.core.models.Repository;
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetClass.ClassType;
+import dev.javacity.core.models.TargetEntity;
 import dev.javacity.core.models.TargetField;
 import dev.javacity.core.models.TargetMethod;
 import dev.javacity.core.models.TargetPackage;
@@ -34,10 +36,10 @@ public class CodeElementApplicationService {
 //	}
 
 	public CodeElementApplicationService() {
-		this.packageRepository = new DefaultRepository<>();
-		this.classRepository = new DefaultRepository<>();
-		this.fieldRepository = new DefaultRepository<>();
-		this.methodRepository = new DefaultRepository<>();
+		this.packageRepository = new DefaultRepository<TargetPackage>(TargetPackage.class);
+		this.classRepository = new DefaultRepository<TargetClass>(TargetClass.class);
+		this.fieldRepository = new DefaultRepository<TargetField>(TargetField.class);
+		this.methodRepository = new DefaultRepository<TargetMethod>(TargetMethod.class);
 	}
 
 	public TargetPackage newPackage(String packName) {
@@ -100,6 +102,19 @@ public class CodeElementApplicationService {
 		return this.methodRepository.findAll();
 	}
 
+
+	public TargetEntity findById(EntityIdentifier identifier) {
+		if(identifier.toKind().equals(TargetPackage.class.getName()))
+			return this.packageRepository.findById(identifier);
+		else if(identifier.toKind().equals(TargetClass.class.getName()))
+			return this.classRepository.findById(identifier);
+		else if(identifier.toKind().equals(TargetField.class.getName()))
+			return this.fieldRepository.findById(identifier);
+		else if(identifier.toKind().equals(TargetMethod.class.getName()))
+			return this.methodRepository.findById(identifier);
+		else
+			return null;
+	}
 
 	public Collection<VisualizedComponent> visualizePackages() {
 		List<VisualizedComponent> list = new LinkedList<>();

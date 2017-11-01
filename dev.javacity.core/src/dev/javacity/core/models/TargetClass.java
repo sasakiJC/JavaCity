@@ -1,6 +1,6 @@
 package dev.javacity.core.models;
 
-public class TargetClass extends AbstractCodeElement<TargetClass> {
+public class TargetClass extends AbstractCodeElement {
 
 	public enum ClassType {
 		INTERFACE, ABSTRACT, CONCRETE, ENUM
@@ -16,7 +16,7 @@ public class TargetClass extends AbstractCodeElement<TargetClass> {
 //		this.type = type;
 //	}
 
-	public TargetClass(EntityIdentifier<TargetClass> identifier, String name, ClassType type, int loc, int nom, int noa) {
+	public TargetClass(EntityIdentifier identifier, String name, ClassType type, int loc, int nom, int noa) {
 		super(identifier, name);
 		this.type = type;
 		this.loc = loc;

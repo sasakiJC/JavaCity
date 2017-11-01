@@ -6,26 +6,26 @@ import java.util.List;
  * このインターフェースを実装するオブジェクトは{@link EntityIdentifier}を用いて同一性を判断します。
  * また、このインターフェースを実装するクラスはコピーコンストラクタを提供しなければいけません。
  */
-public interface TargetEntity<T extends TargetEntity<T>> {
-	public default void addChild(EntityIdentifier<T> child) {
+public interface TargetEntity {
+	public default void addChild(EntityIdentifier child) {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
-	public default List<EntityIdentifier<T>> getChildren() {
+	public default List<EntityIdentifier> getChildren() {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
 	public default boolean hasChild() {
 		return false;
 	}
-	public default void removeChild(EntityIdentifier<T> child) {
+	public default void removeChild(EntityIdentifier child) {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
-	public void setParent(EntityIdentifier<T> parent);
+	public void setParent(EntityIdentifier parent);
 
 	/**
 	 * このエンティティの識別子を返します。
 	 * @return {@link EntityIdentifier}
 	 */
-	public EntityIdentifier<T> getIdentifier();
+	public EntityIdentifier getIdentifier();
 
 	/**
 	 * 識別子を用いて指定されたオブジェクトとこのエンティティが等しいかどうか比較します。

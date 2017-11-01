@@ -1,37 +1,11 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.models.TargetEntity;
 
-public class PackageDecorator implements VisualizedComposite<TargetPackage> {
+public class PackageDecorator extends VisualizedComposite {
 
-	@Override
-	public boolean isVisible() {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+	public PackageDecorator(TargetEntity entity, VisLayout layout) {
+		super(entity, layout);
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
-
-	@Override
-	public void isSelected() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
-	public void add() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
-	@Override
-	public TargetPackage getEntity() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	@Override
-	public void layout() {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
 }

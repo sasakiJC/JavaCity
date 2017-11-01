@@ -77,7 +77,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 //		可変長引数かどうか
 //		node.isVarargs();
 		method.setModifiers(node.modifiers());
-		this.clazz.addChild(method);
+		this.clazz.addChild(method.getIdentifier());
 //		System.out.println("MethodDeclaration");
 		return true;
 	}
@@ -92,7 +92,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 			// if(fragment.getExtraDimensions() > 0) TargetField field = new TargetField(fragment.getName().getIndentifier(), node.getType().toString()+fragment.extraDimensions().sum
 			TargetField field = this.codeElementAppService.newField(fragment.getName().getIdentifier(), node.getType().toString());
 			field.setModifiers(node.modifiers());
-			this.clazz.addChild(field);
+			this.clazz.addChild(field.getIdentifier());
 		}
 		return true;
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Type;
 
-public class TargetMethod extends AbstractCodeElement<TargetMethod> {
+public class TargetMethod extends AbstractCodeElement {
 
 //	private String signature;
 	private boolean isConstructor;
@@ -14,11 +14,11 @@ public class TargetMethod extends AbstractCodeElement<TargetMethod> {
 	private List<?> typeParameters;
 	private List<?> parameters;
 
-	public TargetMethod(EntityIdentifier<TargetMethod> identifier, String name) {
+	public TargetMethod(EntityIdentifier identifier, String name) {
 		this(identifier, name, false);
 	}
 
-	public TargetMethod(EntityIdentifier<TargetMethod> identifier, String name, boolean isConstructor) {
+	public TargetMethod(EntityIdentifier identifier, String name, boolean isConstructor) {
 		super(identifier, name);
 		this.isConstructor = isConstructor;
 	}

@@ -2,38 +2,38 @@ package dev.javacity.core.models;
 
 import java.util.List;
 
-public class TargetPackage implements TargetEntity<TargetPackage> {
+public class TargetPackage implements TargetEntity {
 
 	private String fullName;
 	private String[] names;
-	private final EntityIdentifier<TargetPackage> identifier;
+	private final EntityIdentifier identifier;
 
-	public TargetPackage(EntityIdentifier<TargetPackage> identifier, String fullName) {
+	public TargetPackage(EntityIdentifier identifier, String fullName) {
 		this.identifier = identifier;
 		this.fullName = fullName;
 		this.names = fullName.split(".");
 	}
 
 	@Override
-	public void addChild(EntityIdentifier<TargetPackage> child) {
+	public void addChild(EntityIdentifier child) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
-	public List<EntityIdentifier<TargetPackage>> getChildren() {
+	public List<EntityIdentifier> getChildren() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public void removeChild(EntityIdentifier<TargetPackage> child) {
+	public void removeChild(EntityIdentifier child) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
-	public void setParent(EntityIdentifier<TargetPackage> parent) {
+	public void setParent(EntityIdentifier parent) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
@@ -58,7 +58,7 @@ public class TargetPackage implements TargetEntity<TargetPackage> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public EntityIdentifier<TargetPackage> getIdentifier() {
+	public EntityIdentifier getIdentifier() {
 		return this.identifier;
 	}
 
