@@ -7,19 +7,19 @@ import java.util.List;
  * また、このインターフェースを実装するクラスはコピーコンストラクタを提供しなければいけません。
  */
 public interface TargetEntity {
-	public default void addChild(EntityIdentifier child) {
+	public default void addChild(TargetEntity child) {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
-	public default List<EntityIdentifier> getChildren() {
+	public default List<TargetEntity> getChildren() {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
 	public default boolean hasChild() {
 		return false;
 	}
-	public default void removeChild(EntityIdentifier child) {
+	public default void removeChild(TargetEntity child) {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
-	public void setParent(EntityIdentifier parent);
+	public void setParent(TargetEntity parent);
 
 	/**
 	 * このエンティティの識別子を返します。

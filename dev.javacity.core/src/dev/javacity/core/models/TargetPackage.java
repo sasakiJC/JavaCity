@@ -7,6 +7,7 @@ public class TargetPackage implements TargetEntity {
 	private String fullName;
 	private String[] names;
 	private final EntityIdentifier identifier;
+	private List<TargetEntity> classes;
 
 	public TargetPackage(EntityIdentifier identifier, String fullName) {
 		this.identifier = identifier;
@@ -15,25 +16,24 @@ public class TargetPackage implements TargetEntity {
 	}
 
 	@Override
-	public void addChild(EntityIdentifier child) {
-		// TODO 自動生成されたメソッド・スタブ
-
+	public void addChild(TargetEntity child) {
+		this.classes.add(child);
 	}
 
 	@Override
-	public List<EntityIdentifier> getChildren() {
+	public List<TargetEntity> getChildren() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public void removeChild(EntityIdentifier child) {
+	public void removeChild(TargetEntity child) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
-	public void setParent(EntityIdentifier parent) {
+	public void setParent(TargetEntity parent) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}

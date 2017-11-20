@@ -6,8 +6,8 @@ import java.util.List;
 public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 
 	protected String name;
-	private EntityIdentifier parent;
-	private List<EntityIdentifier> children;
+	private TargetEntity parent;
+	private List<TargetEntity> children;
 
 	/**
 	 * このエンティティの識別子
@@ -66,24 +66,24 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 	}
 
 	@Override
-	public void addChild(EntityIdentifier child) {
+	public void addChild(TargetEntity child) {
 		this.children.add(child);
 	}
 
 	@Override
-	public List<EntityIdentifier> getChildren() {
+	public List<TargetEntity> getChildren() {
 		return this.children;
 	}
 
 	@Override
-	public void removeChild(EntityIdentifier child) {
+	public void removeChild(TargetEntity child) {
 		if(this.children.contains(child)) {
 			this.children.remove(child);
 		}
 	}
 
 	@Override
-	public void setParent(EntityIdentifier parent) {
+	public void setParent(TargetEntity parent) {
 		this.parent = parent;
 	}
 

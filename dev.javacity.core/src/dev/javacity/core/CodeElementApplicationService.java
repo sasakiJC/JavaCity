@@ -86,6 +86,18 @@ public class CodeElementApplicationService {
 		return method;
 	}
 
+
+	public void solvePackageRelation() {
+		for(TargetPackage child : this.packageRepository.findAll()) {
+			for(TargetPackage parent : this.packageRepository.findAll()) {
+				if(child.isParentPackage(parent.getName())) {
+					child.setParent(parent);
+					parent.addChild(child);
+				}
+			}
+		}
+	}
+
 	public Collection<TargetPackage> packages() {
 		return this.packageRepository.findAll();
 	}

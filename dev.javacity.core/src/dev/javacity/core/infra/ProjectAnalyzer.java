@@ -55,16 +55,6 @@ public class ProjectAnalyzer {
 //		this.solvePackageRelation(list);
 	}
 
-//	private void solvePackageRelation(List<TargetPackage> packageList) {
-//		for(TargetPackage child : packageList) {
-//			for(TargetPackage parent : packageList) {
-//				if(child.isParentPackage(parent)) {
-//					child.setParent(parent);
-//					parent.addChild(child);
-//				}
-//			}
-//		}
-//	}
 
 	private TargetPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
 		TargetPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
