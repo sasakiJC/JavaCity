@@ -10,12 +10,12 @@ public class CityViewMapper implements ViewMapper{
 	public VisualizedComponent mapPackage(TargetPackage pack) {
 //		(x,y,z) = layout.layout(pack.children);
 //		District district = new District(pack, layout);
-		District district = new District(pack);
+		District district = new District(pack, new CityViewLayout());
 		return null;
 	}
 
 	public VisualizedComponent mapClass(TargetClass clazz) {
-		Building building = new Building(clazz);
+		Building building = new Building(clazz, new CityViewLayout());
 		return null;
 	}
 

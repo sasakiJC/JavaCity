@@ -36,7 +36,7 @@ public class TestGUIController implements Initializable{
    }
 
     public void importData(IProject project) throws CoreException {
-//    	this.cityView = this.visualizeMapper.map(this.testDataModel);
+    	this.cityView = this.visualizeMapper.map();
     	CityScene scene = new CityScene(this.cityView, 640, 320);
     	this.pane1.getChildren().add(scene);
     }

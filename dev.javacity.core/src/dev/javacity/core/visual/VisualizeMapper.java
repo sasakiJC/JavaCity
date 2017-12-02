@@ -1,29 +1,39 @@
 package dev.javacity.core.visual;
 
 import dev.javacity.core.CodeElementApplicationService;
-import dev.javacity.core.LayoutMapper;
-import dev.javacity.core.models.TestDataModel;
+import dev.javacity.core.models.TargetClass;
+import dev.javacity.core.models.TargetEntity;
+import dev.javacity.core.models.TargetPackage;
 
 public class VisualizeMapper {
 
-	private LayoutMapper layoutMapper;
 	private CodeElementApplicationService service;
 
 	public VisualizeMapper(CodeElementApplicationService service) {
 		this.service = service;
 	}
 
-	public CityView map(TestDataModel dataModel) {
+	public CityView map() {
 		CityView view = new CityView();
+		for(TargetPackage pack : this.service.packages()) {
+			view.addNode(this.map(pack).fxView());
+		}
 		return null;
 	}
 
-	private void mapToArrow() {
-
+	private District map(TargetPackage pack) {
+		for(TargetEntity entity : pack.getChildren()) {
+			map(entity);
+		}
+		return null;
 	}
 
-	private void mapToBuilding() {
+	private Building map(TargetClass clazz) {
+		return null;
+	}
 
+	private VisualizedComposite map(TargetEntity entity) {
+		return null;
 	}
 
 	private void mapToDistrict() {
