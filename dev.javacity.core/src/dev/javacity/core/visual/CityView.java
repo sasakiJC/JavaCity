@@ -1,21 +1,25 @@
 package dev.javacity.core.visual;
 
-import java.awt.Composite;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 import dev.javacity.core.models.TargetClass;
+import dev.javacity.core.models.TargetEntity;
 import dev.javacity.core.models.TestDataModel;
-import javafx.scene.Group;
 import javafx.scene.Node;
 
-public class CityView extends Group implements Observer, Composite {
+public class CityView extends VisualizedComposite implements Observer {
+
+	public CityView(TargetEntity entity, VisLayout layout) {
+		super(entity, layout);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 
 	private TestDataModel testDataModel;
 
 	private Map<TargetClass, Building> classMap;
-	private Layout layout;
+	private VisLayout layout;
 
 	/**
 	 * Removes all objects from this view, i.e. clears the entire visualization.

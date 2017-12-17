@@ -28,6 +28,8 @@ public interface VisualizedComponent {
 
 	public void layout();
 
+	public ViewSize computeSize();
+
 	public Group fxView();
 
 }

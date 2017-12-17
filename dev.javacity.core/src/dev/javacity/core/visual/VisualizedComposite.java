@@ -8,10 +8,10 @@ import javafx.scene.Group;
 
 public abstract class VisualizedComposite implements VisualizedComponent {
 
-	private TargetEntity entity;
-	private Group fxView;
-	private List<VisualizedComponent> children;
-	private VisLayout layout;
+	protected TargetEntity entity;
+	protected Group fxView;
+	protected List<VisualizedComponent> children;
+	protected VisLayout layout;
 
 	public VisualizedComposite(TargetEntity entity, VisLayout layout) {
 		this.entity = entity;
@@ -47,8 +47,14 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 	@Override
 	public void layout() {
 		for(VisualizedComponent child : this.children) {
+			this.layout.layout(child);
 			child.layout();
 		}
+	}
+
+	@Override
+	public ViewSize computeSize() {
+		return null;
 	}
 
 	@Override

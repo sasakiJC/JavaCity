@@ -7,6 +7,10 @@ import dev.javacity.core.models.TargetPackage;
 
 public class CityViewMapper implements ViewMapper{
 
+	private ColorMapper colorMapper;
+	private DimensionMapper dimensionMapper;
+	private LayoutMapper layoutMapper;
+
 	public VisualizedComponent mapPackage(TargetPackage pack) {
 //		(x,y,z) = layout.layout(pack.children);
 //		District district = new District(pack, layout);
