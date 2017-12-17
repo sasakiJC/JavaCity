@@ -6,7 +6,7 @@ import java.util.Observer;
 
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetEntity;
-import dev.javacity.core.models.TestDataModel;
+import dev.javacity.core.models.DataModel;
 import javafx.scene.Node;
 
 public class CityView extends VisualizedComposite implements Observer {
@@ -16,7 +16,7 @@ public class CityView extends VisualizedComposite implements Observer {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	private TestDataModel testDataModel;
+	private DataModel testDataModel;
 
 	private Map<TargetClass, Building> classMap;
 	private VisLayout layout;

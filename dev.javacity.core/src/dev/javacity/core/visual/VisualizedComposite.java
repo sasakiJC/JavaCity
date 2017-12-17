@@ -53,13 +53,16 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 	}
 
 	@Override
-	public ViewSize computeSize() {
-		return null;
+	public Group fxView() {
+		return this.fxView;
 	}
 
 	@Override
-	public Group fxView() {
-		return this.fxView;
+	public ViewBounds coputeSize() {
+		for(VisualizedComponent child : this.children) {
+			this.layout.computeSize(child);
+		}
+		return null;
 	}
 
 }

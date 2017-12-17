@@ -3,11 +3,11 @@ package dev.javacity.core.visual;
 public class CityViewLayout implements VisLayout {
 
 	@Override
-	public void computeSize(VisualizedComponent component) {
+	public ViewBounds computeSize(VisualizedComponent component) {
 		if(!component.hasChild()) {
 
 		}
-
+		return null;
 	}
 
 	@Override

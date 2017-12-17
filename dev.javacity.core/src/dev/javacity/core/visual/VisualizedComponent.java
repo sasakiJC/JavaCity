@@ -28,7 +28,7 @@ public interface VisualizedComponent {
 
 	public void layout();
 
-	public ViewSize computeSize();
+	public ViewBounds coputeSize();
 
 	public Group fxView();
 

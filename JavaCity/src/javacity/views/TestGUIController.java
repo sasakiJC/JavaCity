@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
 import dev.javacity.core.CodeElementApplicationService;
@@ -35,7 +34,7 @@ public class TestGUIController implements Initializable{
     	this.visualizeMapper = new VisualizeMapper(this.service);
    }
 
-    public void importData(IProject project) throws CoreException {
+    public void showCityView() throws CoreException {
     	this.cityView = this.visualizeMapper.map();
     	CityScene scene = new CityScene(this.cityView, 640, 320);
     	this.pane1.getChildren().add(scene);
