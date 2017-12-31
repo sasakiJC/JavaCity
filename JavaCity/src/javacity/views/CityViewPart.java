@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-public class MyViewPart extends FXViewPart {
+public class CityViewPart extends FXViewPart {
 
 	private Parent root = new Group();
 	private TestGUIController controller;

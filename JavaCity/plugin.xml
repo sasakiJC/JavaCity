@@ -33,9 +33,9 @@
       <view
             name="City View"
             icon="icons/sample.gif"
-            class="javacity.views.MyViewPart"
-            id="javacity.views.MyViewPart">
+            class="javacity.views.CityViewPart"
+            id="javacity.views.CityViewPart"
+            allowMultiple="true">
       </view>
    </extension>
-
 </plugin>
