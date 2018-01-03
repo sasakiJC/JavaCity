@@ -4,9 +4,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 public class ConfigGlyph {
 	@XmlAttribute
-	private String name;
+	String name;
 	@XmlAttribute
-	private String[] attributes;
+	String[] attributes;
+
+	private ConfigGlyph() {
+
+	}
 
 	public ConfigGlyph(String name, String[] attributes) {
 		this.name = name;

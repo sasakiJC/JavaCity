@@ -4,15 +4,19 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 public class ConfigInnerLayout {
 	@XmlAttribute
-	private String layoutId;
+	String layoutId;
 	@XmlAttribute
-	private float horizontalMargin = 0.5f;
+	float horizontalMargin;
 	@XmlAttribute
-	private float horizontalGap = 1;
+	float horizontalGap;
 	@XmlAttribute
-	private float verticalMargin = 0.2f;
+	float verticalMargin;
 	@XmlAttribute
-	private float verticalGap = 1;
+	float verticalGap;
+
+	public ConfigInnerLayout() {
+
+	}
 
 	public ConfigInnerLayout(String layoutId) {
 		this.layoutId = layoutId;

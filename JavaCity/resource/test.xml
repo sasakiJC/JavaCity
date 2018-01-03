@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<viewConfig>
+    <elements>
+        <item key="invocation">
+            <value name="invocation" isVisible="false">
+                <array>
+                    <value>line</value>
+                    <value>arch</value>
+                </array>
+                <configGlyph name="line"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>gray</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="0.0" horizontalGap="0.0" verticalMargin="0.0" verticalGap="0.0"/>
+            </value>
+        </item>
+        <item key="system">
+            <value name="system" isVisible="true">
+                <array>
+                    <value>terrain</value>
+                    <value>well</value>
+                    <value>cuboid</value>
+                    <value>rooftop</value>
+                </array>
+                <configGlyph name="terrain"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>gray</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>0</modelProperties>
+                </configMappings>
+                <configMappings name="width">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="height">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallHeight">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configMappings name="roofTopThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="terrainThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.RectanglePackingLayout" horizontalMargin="8.0" horizontalGap="8.0" verticalMargin="0.2" verticalGap="1.0"/>
+            </value>
+        </item>
+        <item key="package">
+            <value name="package" isVisible="true">
+                <array>
+                    <value>terrain</value>
+                    <value>well</value>
+                    <value>cuboid</value>
+                    <value>rooftop</value>
+                </array>
+                <configGlyph name="terrain"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
+                    <modelProperties>#DIH</modelProperties>
+                    <modelProperties>gray,white</modelProperties>
+                    <modelProperties>linear</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="width">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>15</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>15</modelProperties>
+                </configMappings>
+                <configMappings name="height">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallHeight">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configMappings name="roofTopThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="terrainThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.RectanglePackingLayout" horizontalMargin="8.0" horizontalGap="8.0" verticalMargin="0.2" verticalGap="1.0"/>
+            </value>
+        </item>
+        <item key="access">
+            <value name="access" isVisible="false">
+                <array>
+                    <value>line</value>
+                    <value>arch</value>
+                </array>
+                <configGlyph name="line"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>gray</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="0.0" horizontalGap="0.0" verticalMargin="0.0" verticalGap="0.0"/>
+            </value>
+        </item>
+        <item key="method">
+            <value name="method" isVisible="false">
+                <array>
+                    <value>terrain</value>
+                    <value>well</value>
+                    <value>cuboid</value>
+                    <value>rooftop</value>
+                </array>
+                <configGlyph name="cuboid"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
+                    <modelProperties>#LOC</modelProperties>
+                    <modelProperties>gray,blue</modelProperties>
+                    <modelProperties>linear</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="width">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOA</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOA</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOM</modelProperties>
+                </configMappings>
+                <configMappings name="wallThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallHeight">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configMappings name="roofTopThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="terrainThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="0.0" horizontalGap="0.0" verticalMargin="0.0" verticalGap="0.0"/>
+            </value>
+        </item>
+        <item key="inheritance">
+            <value name="inheritance" isVisible="false">
+                <array>
+                    <value>line</value>
+                    <value>arch</value>
+                </array>
+                <configGlyph name="line"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>gray</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="0.0" horizontalGap="0.0" verticalMargin="0.0" verticalGap="0.0"/>
+            </value>
+        </item>
+        <item key="attributes">
+            <value name="attributes" isVisible="false">
+                <array>
+                    <value>terrain</value>
+                    <value>well</value>
+                    <value>cuboid</value>
+                    <value>rooftop</value>
+                </array>
+                <configGlyph name="cuboid"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>gray</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="width">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="height">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallHeight">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configMappings name="roofTopThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="terrainThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="0.0" horizontalGap="0.0" verticalMargin="0.0" verticalGap="0.0"/>
+            </value>
+        </item>
+        <item key="class">
+            <value name="class" isVisible="true">
+                <array>
+                    <value>terrain</value>
+                    <value>well</value>
+                    <value>cuboid</value>
+                    <value>rooftop</value>
+                </array>
+                <configGlyph name="cuboid"/>
+                <configMappings name="color">
+                    <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
+                    <modelProperties>#LOC</modelProperties>
+                    <modelProperties>gray,blue</modelProperties>
+                    <modelProperties>linear</modelProperties>
+                </configMappings>
+                <configMappings name="alpha">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="width">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOA</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOA</modelProperties>
+                </configMappings>
+                <configMappings name="length">
+                    <mapperClassId>dev.javacity.core.visual.mapper.IdentityMapper</mapperClassId>
+                    <modelProperties>#NOM</modelProperties>
+                </configMappings>
+                <configMappings name="wallThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="wallHeight">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configMappings name="roofTopThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>1</modelProperties>
+                </configMappings>
+                <configMappings name="terrainThickness">
+                    <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                    <modelProperties>2</modelProperties>
+                </configMappings>
+                <configInnerLayout layoutId="dev.javacity.core.visual.layout.ChessboardLayout" horizontalMargin="4.0" horizontalGap="8.0" verticalMargin="0.2" verticalGap="1.0"/>
+            </value>
+        </item>
+    </elements>
+    <default_alpha_mapper name="alpha">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_alpha_mapper>
+    <default_color_mapper name="color">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>gray</modelProperties>
+    </default_color_mapper>
+    <default_height_mapper name="height">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_height_mapper>
+    <default_inner_layout layoutId="chessboard" horizontalMargin="0.5" horizontalGap="1.0" verticalMargin="0.2" verticalGap="1.0"/>
+    <default_length_mapper name="length">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_length_mapper>
+    <default_rooftop_thickness_mapper name="roofTopThickness">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_rooftop_thickness_mapper>
+    <default_terrain_thickness_mapper name="terrainThickness">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>2</modelProperties>
+    </default_terrain_thickness_mapper>
+    <default_wall_height_mapper name="wallHeight">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>2</modelProperties>
+    </default_wall_height_mapper>
+    <default_wall_thickness_mapper name="wallThickness">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_wall_thickness_mapper>
+    <default_width_mapper name="width">
+        <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+        <modelProperties>1</modelProperties>
+    </default_width_mapper>
+</viewConfig>

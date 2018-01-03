@@ -2,22 +2,35 @@ package javacity.config;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 
-class ConfigModelElement {
+public class ConfigModelElement {
 	@XmlAttribute
-	private String name;
+	String name;
 	@XmlAttribute
-	private boolean isVisible;
-	@XmlElement
-	private ConfigGlyph configGlyph;
-	@XmlElement
-	private ConfigMapping[] configMappings;
-	@XmlElement
-	private ConfigInnerLayout configInnerLayout;
+	boolean isVisible;
 
-	ConfigModelElement(String name, boolean isVisible, ConfigGlyph configGlyph, ConfigMapping[] configMappings, ConfigInnerLayout configInnerLayout) {
+	@XmlElementWrapper(name="array")
+	@XmlElement(name="value")
+	String[] glyphs;
+	@XmlElement
+	ConfigGlyph configGlyph;
+	@XmlElement
+	ConfigMapping[] configMappings;
+	@XmlElement
+	ConfigInnerLayout configInnerLayout;
+
+	public final static String[] GLYPHS = new String[]{"terrain", "well", "cuboid", "rooftop"};
+	public final static String[] ARCH_GLYPHS = new String[]{"line", "arch"};
+
+	ConfigModelElement() {
+
+	}
+
+	ConfigModelElement(String name, boolean isVisible, String[] glyphs, ConfigGlyph configGlyph, ConfigMapping[] configMappings, ConfigInnerLayout configInnerLayout) {
 		this.name = name;
 		this.isVisible = isVisible;
+		this.glyphs = glyphs;
 		this.configGlyph = configGlyph;
 		this.configMappings = configMappings;
 		this.configInnerLayout = configInnerLayout;
@@ -25,6 +38,10 @@ class ConfigModelElement {
 
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 }
