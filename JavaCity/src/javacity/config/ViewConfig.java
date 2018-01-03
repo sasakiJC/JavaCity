@@ -1,10 +1,13 @@
 package javacity.config;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import dev.javacity.core.visual.Mappings;
+import dev.javacity.core.visual.mapper.Mapper;
 import javacity.config.jaxb.MapAdapter;
 
 public class ViewConfig {
@@ -37,6 +40,18 @@ public class ViewConfig {
 	@Override
 	public String toString() {
 		return DEFAULT_COLOR_MAPPER.toString();
+	}
+
+	public Mappings toMappings() {
+		for(Map.Entry<String, ConfigModelElement> entry : this.elements.entrySet()) {
+
+		}
+		Map<String, Mapper> map = new HashMap<>();
+
+
+
+
+		return null;
 	}
 
 //	Glyph

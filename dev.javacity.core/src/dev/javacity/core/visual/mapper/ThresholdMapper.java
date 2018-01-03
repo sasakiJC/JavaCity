@@ -1,5 +1,5 @@
 package dev.javacity.core.visual.mapper;
 
-public class ThresholdMapper {
+public class ThresholdMapper implements Mapper {
 
 }

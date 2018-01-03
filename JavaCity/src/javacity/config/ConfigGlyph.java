@@ -14,5 +14,6 @@ public class ConfigGlyph {
 
 	public ConfigGlyph(String name, String[] attributes) {
 		this.name = name;
+		this.attributes = attributes;
 	}
 }

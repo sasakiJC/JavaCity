@@ -13,11 +13,19 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 	protected List<VisualizedComponent> children;
 	protected VisLayout layout;
 
+	protected Mappings mappings;
+
 	public VisualizedComposite(TargetEntity entity, VisLayout layout) {
 		this.entity = entity;
 		this.layout = layout;
 		this.children = new LinkedList<VisualizedComponent>();
 	}
+
+	public VisualizedComposite(TargetEntity entity, Mappings mappings) {
+		this.entity = entity;
+		this.mappings = mappings;
+	}
+
 
 	@Override
 	public TargetEntity getEntity() {

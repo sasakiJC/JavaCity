@@ -1,5 +1,5 @@
 package dev.javacity.core.visual.mapper;
 
-public class NumericalLinearMapper {
+public class NumericalLinearMapper implements Mapper {
 
 }

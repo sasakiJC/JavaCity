@@ -1,5 +1,5 @@
 package dev.javacity.core.visual.mapper;
 
-public class BlockMapper implements Mapper {
+public interface Mapper {
 
 }

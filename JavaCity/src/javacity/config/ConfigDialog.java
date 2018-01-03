@@ -1,9 +1,5 @@
 package javacity.config;
 
-import java.net.URL;
-
-import javax.xml.bind.JAXB;
-
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -12,63 +8,39 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-
-import javacity.Activator;
 
 public class ConfigDialog extends Dialog {
 
-	public ConfigDialog(Shell parent) {
+	private ViewConfig conf;
+
+	public ConfigDialog(Shell parent, ViewConfig conf) {
 		super(parent);
-		// TODO 自動生成されたコンストラクター・スタブ
+		this.conf = conf;
 	}
-
-
-//	public String[] getModelElements() {
-//		return new String[]{"system", "package", "class", "method", "attribute", "inheritance", "invocation", "access"};
-//	}
-//
-//
-	public String[] getTerrainMappings() {
-		return new String[]{"color", "alpha", "width", "length", "terrainThickness"};
-	}
-//
-//	public String[] getCuboidMappings() {
-//		return new String[]{"color", "alpha", "width", "length", "height"};
-//	}
-//
-//	public String[] getLineMappings() {
-//		return new String[] {"color", "alpha"};
-//	}
-//
-	public String[] getInnerLayout() {
-		return new String[]{"chessboard", "circle", "rectangle packing", "concentrical", "quadratic", "line", "spiral", "progressive bricks", "bricks"};
-	}
-
-
 
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
         Composite container = (Composite) super.createDialogArea(parent);
 
-		URL entry = Activator.getDefault().getBundle().getEntry("/resource/test.xml");
-		ViewConfig conf = JAXB.unmarshal(entry, ViewConfig.class);
-
 //		Stream<ConfigModelElement> test = Arrays.stream(modelElementList);
 //		String[] str = test.map(item->item.getName()).toArray(size->new String[size]);
 //		JAXB.marshal(conf, System.out);
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 2;
+		gridLayout.numColumns = 3;
 		container.setLayout(gridLayout);
 
 		this.createModelListGroup(container, conf);
 		this.createGlyphGroup(container, conf);
 		this.createInnerLayoutGroup(container, conf);
+
 
 //        Button button = new Button(modelListGroup, SWT.PUSH);
 //        button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
@@ -97,6 +69,7 @@ public class ConfigDialog extends Dialog {
 
 
 	private void createGlyphGroup(Composite container, ViewConfig conf) {
+
 		Group glyphGroup = new Group(container, SWT.NONE);
 		glyphGroup.setText("Glyph");
 		glyphGroup.setLayout(new GridLayout());
@@ -105,16 +78,33 @@ public class ConfigDialog extends Dialog {
 		ConfigGlyph confGlyph = modelElm.configGlyph;
 
 		Combo glyphCombo = new Combo (glyphGroup, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.SIMPLE);
-		glyphCombo.setItems (modelElm.glyphs);
+		glyphCombo.setItems(modelElm.glyphs);
 		glyphCombo.setText(confGlyph.name);
 
 
 		Label label = new Label (glyphGroup, SWT.LEFT);
 		label.setText("Mappings");
 		List mappingList = new List(glyphGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
-//		mappingList.setItems(confGlyph.attributes);
-		mappingList.setItems(getTerrainMappings());
+		mappingList.setItems(confGlyph.attributes);
 	}
+
+// 	private void createGlyphGroup(Composite container, ViewConfig conf) {
+//		GlyphGroup glyphGroup = new GlyphGroup(container, SWT.NONE);
+//
+//		ConfigModelElement modelElm = conf.getDefaultModelElement();
+//		ConfigGlyph confGlyph = modelElm.configGlyph;
+//
+//		glyphGroup.addModelElements(modelElm);
+//
+//		glyphCombo.setItems(modelElm.glyphs);
+//		glyphCombo.setText(confGlyph.name);
+//
+//		label.setText("Mappings");
+//		List mappingList = new List(glyphGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
+//		mappingList.setItems(confGlyph.attributes);
+////		mappingList.setItems(getTerrainMappings());
+//
+// 	}
 
 
 	private void createModelListGroup(Composite parent, ViewConfig conf) {
@@ -127,9 +117,22 @@ public class ConfigDialog extends Dialog {
 
 		List list = new List(modelListGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
 		list.setItems(conf.getElementNames());
+		ConfigModelElement defaultElm = conf.getDefaultModelElement();
+
+		list.setSelection(list.indexOf(defaultElm.name));
+
+		list.addListener(SWT.Selection, new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				// TODO 自動生成されたメソッド・スタブ
+				System.out.println(event);
+			}
+		});
+
 
 		Button checkButton = new Button(modelListGroup, SWT.CHECK);
 		checkButton.setText("Visib");
+		checkButton.setSelection(defaultElm.isVisible);
 //		checkButton.addSelectionListener (new SelectionAdapter () {
 //			public void widgetSelected (SelectionEvent event) {
 //				setExampleWidgetVisibility ();
@@ -148,6 +151,27 @@ public class ConfigDialog extends Dialog {
     protected Point getInitialSize() {
         return new Point(450, 300);
     }
+
+//	public String[] getModelElements() {
+//	return new String[]{"system", "package", "class", "method", "attribute", "inheritance", "invocation", "access"};
+//}
+//
+//
+public String[] getTerrainMappings() {
+	return new String[]{"color", "alpha", "width", "length", "terrainThickness"};
+}
+//
+//public String[] getCuboidMappings() {
+//	return new String[]{"color", "alpha", "width", "length", "height"};
+//}
+//
+//public String[] getLineMappings() {
+//	return new String[] {"color", "alpha"};
+//}
+//
+public String[] getInnerLayout() {
+	return new String[]{"chessboard", "circle", "rectangle packing", "concentrical", "quadratic", "line", "spiral", "progressive bricks", "bricks"};
+}
 
 //    private void createTemp() {
 //		ConfigModelElement systemElm = new ConfigModelElement("system", true, ConfigModelElement.GLYPHS,

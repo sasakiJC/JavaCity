@@ -1,11 +1,11 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetClass;
+import dev.javacity.core.models.TargetEntity;
 
 public class Building extends VisualizedComposite {
 
-	public Building(TargetClass clazz, VisLayout layout) {
-		super(clazz, layout);
+	public Building(TargetEntity entity, VisLayout layout) {
+		super(entity, layout);
 	}
 
 }

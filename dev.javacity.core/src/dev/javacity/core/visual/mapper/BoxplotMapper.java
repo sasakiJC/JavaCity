@@ -1,5 +1,5 @@
 package dev.javacity.core.visual.mapper;
 
-public class BoxplotMapper {
+public class BoxplotMapper implements Mapper {
 
 }

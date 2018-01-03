@@ -1,5 +1,5 @@
 package dev.javacity.core.visual.mapper;
 
-public class ConstantMapper {
+public class ConstantMapper implements Mapper {
 
 }

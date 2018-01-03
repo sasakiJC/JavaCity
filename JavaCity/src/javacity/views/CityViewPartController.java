@@ -1,8 +1,13 @@
 package javacity.views;
 
+import java.net.URL;
+
+import javax.xml.bind.JAXB;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.swt.SWT;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -10,7 +15,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import dev.javacity.core.infra.ProjectAnalyzer;
+import javacity.Activator;
 import javacity.config.ConfigDialog;
+import javacity.config.ViewConfig;
 
 public class CityViewPartController {
 
@@ -27,8 +34,22 @@ public class CityViewPartController {
 	public void showConfigViewPart() {
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchWindow activeWindow = workbench.getActiveWorkbenchWindow();
-        Dialog dialog = new ConfigDialog(activeWindow.getShell());
-        dialog.open();
+
+		URL entry = Activator.getDefault().getBundle().getEntry("/resource/config.xml");
+		ViewConfig conf = JAXB.unmarshal(entry, ViewConfig.class);
+
+        Dialog dialog = new ConfigDialog(activeWindow.getShell(), conf);
+        int result = dialog.open();
+
+        if(result == SWT.OK) {
+
+//        	SystemMapper systemMapper = new SystemMapper();
+//        	PackageMapper packageMapper = new PackageMapper();
+//        	ClassMapper classMapper = new ClassMapper();
+
+        }else{
+
+        }
 	}
 
 

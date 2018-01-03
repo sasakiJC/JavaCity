@@ -7,7 +7,7 @@
                     <value>line</value>
                     <value>arch</value>
                 </array>
-                <configGlyph name="line"/>
+                <configGlyph name="line" attributes="color alpha"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
                     <modelProperties>gray</modelProperties>
@@ -23,11 +23,11 @@
             <value name="system" isVisible="true">
                 <array>
                     <value>terrain</value>
-                    <value>well</value>
+                    <value>wall</value>
                     <value>cuboid</value>
                     <value>rooftop</value>
                 </array>
-                <configGlyph name="terrain"/>
+                <configGlyph name="terrain" attributes="color alpha width length terrainThickness"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
                     <modelProperties>gray</modelProperties>
@@ -71,11 +71,11 @@
             <value name="package" isVisible="true">
                 <array>
                     <value>terrain</value>
-                    <value>well</value>
+                    <value>wall</value>
                     <value>cuboid</value>
                     <value>rooftop</value>
                 </array>
-                <configGlyph name="terrain"/>
+                <configGlyph name="terrain" attributes="color alpha width length terrainThickness"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
                     <modelProperties>#DIH</modelProperties>
@@ -123,7 +123,7 @@
                     <value>line</value>
                     <value>arch</value>
                 </array>
-                <configGlyph name="line"/>
+                <configGlyph name="line" attributes="color alpha"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
                     <modelProperties>gray</modelProperties>
@@ -139,11 +139,11 @@
             <value name="method" isVisible="false">
                 <array>
                     <value>terrain</value>
-                    <value>well</value>
+                    <value>wall</value>
                     <value>cuboid</value>
                     <value>rooftop</value>
                 </array>
-                <configGlyph name="cuboid"/>
+                <configGlyph name="cuboid" attributes="color alpha width length height"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
                     <modelProperties>#LOC</modelProperties>
@@ -191,7 +191,7 @@
                     <value>line</value>
                     <value>arch</value>
                 </array>
-                <configGlyph name="line"/>
+                <configGlyph name="line" attributes="color alpha"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
                     <modelProperties>gray</modelProperties>
@@ -207,11 +207,11 @@
             <value name="attributes" isVisible="false">
                 <array>
                     <value>terrain</value>
-                    <value>well</value>
+                    <value>wall</value>
                     <value>cuboid</value>
                     <value>rooftop</value>
                 </array>
-                <configGlyph name="cuboid"/>
+                <configGlyph name="cuboid" attributes="color alpha width length height"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
                     <modelProperties>gray</modelProperties>
@@ -255,11 +255,11 @@
             <value name="class" isVisible="true">
                 <array>
                     <value>terrain</value>
-                    <value>well</value>
+                    <value>wall</value>
                     <value>cuboid</value>
                     <value>rooftop</value>
                 </array>
-                <configGlyph name="cuboid"/>
+                <configGlyph name="cuboid" attributes="color alpha width length height"/>
                 <configMappings name="color">
                     <mapperClassId>dev.javacity.core.visual.mapper.CcolorLinearMapper</mapperClassId>
                     <modelProperties>#LOC</modelProperties>

@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
+import dev.javacity.core.visual.Mappings;
+
 public class ConfigModelElement {
 	@XmlAttribute
 	String name;
@@ -20,7 +22,7 @@ public class ConfigModelElement {
 	@XmlElement
 	ConfigInnerLayout configInnerLayout;
 
-	public final static String[] GLYPHS = new String[]{"terrain", "well", "cuboid", "rooftop"};
+	public final static String[] GLYPHS = new String[]{"terrain", "wall", "cuboid", "rooftop"};
 	public final static String[] ARCH_GLYPHS = new String[]{"line", "arch"};
 
 	ConfigModelElement() {
@@ -42,6 +44,11 @@ public class ConfigModelElement {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public Mappings toMappings() {
+
+		return null;
 	}
 
 }
