@@ -14,6 +14,7 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 	protected VisLayout layout;
 
 	protected Mappings mappings;
+	protected boolean needsRecreate = false;
 
 	public VisualizedComposite(TargetEntity entity, VisLayout layout) {
 		this.entity = entity;
@@ -62,6 +63,10 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 
 	@Override
 	public Group fxView() {
+		if(this.fxView == null || this.needsRecreate) {
+			this.fxView = this.createFxView();
+			this.needsRecreate = false;
+		}
 		return this.fxView;
 	}
 
@@ -72,5 +77,7 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 		}
 		return null;
 	}
+
+	abstract Group createFxView();
 
 }

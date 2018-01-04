@@ -98,7 +98,7 @@ public class BorderedBox extends Group {
 	 * @throws IllegalArgumentException
 	 *             If the color passed in is {@code null} or if either the given width, height, or length is negative.
 	 */
-	public BorderedBox(final float length, final float height, final float width, final Color color) throws IllegalArgumentException {
+	public BorderedBox(final double length, final double height, final double width, final Color color) throws IllegalArgumentException {
 
 		this(length, height, width);
 		this.setColor(color);
