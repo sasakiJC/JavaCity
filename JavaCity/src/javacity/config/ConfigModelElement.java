@@ -1,10 +1,15 @@
 package javacity.config;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
-import dev.javacity.core.visual.Mappings;
+import dev.javacity.core.visual.VisLayout;
+import dev.javacity.core.visual.mapper.Mapper;
 
 public class ConfigModelElement {
 	@XmlAttribute
@@ -46,8 +51,63 @@ public class ConfigModelElement {
 		return this.name;
 	}
 
-	public Mappings toMappings() {
+	public String glyphName() {
+		return this.configGlyph.name;
+	}
 
+	public Map<String, Mapper<?>> toMappings() {
+		Map<String, Mapper<?>> map = new HashMap<>();
+
+		try {
+			for(ConfigMapping confMapping: configMappings) {
+				Class<?> clazz = Class.forName(confMapping.mapperClassId);
+				Class<?>[] types = {String[].class};
+				Object[] args = {confMapping.modelProperties};
+				Mapper<?> mapper = (Mapper<?>) clazz.getConstructor(types).newInstance(args);
+				map.put(confMapping.name, mapper);
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+
+		return map;
+	}
+
+	public VisLayout layout() {
+		try {
+			Class<?> clazz = Class.forName(this.configInnerLayout.layoutId);
+			VisLayout layout = (VisLayout) clazz.newInstance();
+			return layout;
+		} catch (ClassNotFoundException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		return null;
 	}
 

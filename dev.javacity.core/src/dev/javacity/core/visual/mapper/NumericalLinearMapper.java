@@ -1,5 +1,13 @@
 package dev.javacity.core.visual.mapper;
 
-public class NumericalLinearMapper implements Mapper {
+import dev.javacity.core.models.TargetEntity;
+
+public class NumericalLinearMapper<T> implements Mapper<T> {
+
+	@Override
+	public T toAttribute(TargetEntity entity) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 
 }

@@ -4,9 +4,10 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import dev.javacity.core.models.DataModel;
 import dev.javacity.core.models.TargetClass;
 import dev.javacity.core.models.TargetEntity;
-import dev.javacity.core.models.DataModel;
+import javafx.scene.Group;
 import javafx.scene.Node;
 
 public class CityView extends VisualizedComposite implements Observer {
@@ -17,7 +18,6 @@ public class CityView extends VisualizedComposite implements Observer {
 	}
 
 	private DataModel testDataModel;
-
 	private Map<TargetClass, Building> classMap;
 	private VisLayout layout;
 
@@ -71,6 +71,12 @@ public class CityView extends VisualizedComposite implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO 自動生成されたメソッド・スタブ
 
+	}
+
+	@Override
+	Group createFxView() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 

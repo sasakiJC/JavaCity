@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class ConfigMapping {
 	@XmlAttribute
-	private String name;
+	String name;
 	@XmlElement
-	private String mapperClassId;
+	String mapperClassId;
 	@XmlElement
-	private String[] modelProperties;
+	String[] modelProperties;
 
 //	public static final ConfigMapping DEFAULT_COLOR_MAPPING = new ConfigMapping("color", "dev.javacity.core.visual.mapper.ConstantMapper", new String[]{"gray"});
 //	public static final ConfigMapping DEFAULT_ALPHA_MAPPING = new ConfigMapping("alpha", "dev.javacity.core.visual.mapper.ConstantMapper", new String[]{"1"});

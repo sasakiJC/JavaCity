@@ -1,6 +1,8 @@
 package javacity.views;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.bind.JAXB;
 
@@ -14,7 +16,9 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
+import dev.javacity.core.CodeElementApplicationService;
 import dev.javacity.core.infra.ProjectAnalyzer;
+import dev.javacity.core.visual.MVConverter;
 import javacity.Activator;
 import javacity.config.ConfigDialog;
 import javacity.config.ViewConfig;
@@ -25,13 +29,25 @@ public class CityViewPartController {
 	private int i=0;
 	private IJavaProject selectedProject;
 
+	private CodeElementApplicationService service;
+
 
 	public CityViewPartController(IJavaProject selectedProject) {
 		this.selectedProject = selectedProject;
+		this.service = new CodeElementApplicationService();
+	}
+
+	public void execute() {
+		this.analyzeProject();
+		Map<String, MVConverter> map = this.showConfigViewPart();
+//		CityView cityView = new CityView();
+
+//		map.get("package").createVisualizedComponent(entity)
+		this.showCityViewPart();
 	}
 
 
-	public void showConfigViewPart() {
+	public Map<String, MVConverter> showConfigViewPart() {
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchWindow activeWindow = workbench.getActiveWorkbenchWindow();
 
@@ -42,16 +58,20 @@ public class CityViewPartController {
         int result = dialog.open();
 
         if(result == SWT.OK) {
+        	MVConverter systemConverter = conf.toConverter("system");
+        	MVConverter packageConverter = conf.toConverter("package");
+        	MVConverter classConverter = conf.toConverter("class");
 
-//        	SystemMapper systemMapper = new SystemMapper();
-//        	PackageMapper packageMapper = new PackageMapper();
-//        	ClassMapper classMapper = new ClassMapper();
+        	Map<String, MVConverter> map = new HashMap<String, MVConverter>();
+        	map.put("system", systemConverter);
+        	map.put("package", packageConverter);
+        	map.put("class", classConverter);
 
+        	return map;
         }else{
-
+        	return null;
         }
 	}
-
 
 	public void showCityViewPart() {
         IWorkbench workbench = PlatformUI.getWorkbench();
@@ -60,16 +80,22 @@ public class CityViewPartController {
 		IWorkbenchPage page = activeWindow.getActivePage();
 		try {
 			CityViewPart view =  (CityViewPart)page.showView(ID, "secondID"+i++, IWorkbenchPage.VIEW_VISIBLE);
-			ProjectAnalyzer analyzer = new ProjectAnalyzer(view.getController().getService());
-			analyzer.analyzeFrom(selectedProject.getProject());
+//			view.getController().showCityView(cityView);
 			System.out.println("解析終了");
 		} catch (PartInitException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
+		}
+
+	}
+
+	public void analyzeProject() {
+		ProjectAnalyzer analyzer = new ProjectAnalyzer(this.service);
+		try {
+			analyzer.analyzeFrom(selectedProject.getProject());
 		} catch (CoreException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
 	}
 }

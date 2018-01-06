@@ -19,7 +19,7 @@ public class ProjectAccessCommandHandler extends AbstractHandler {
 		IJavaProject selectedProject = (IJavaProject)treeSelection.getFirstElement();
 
 		CityViewPartController controller = new CityViewPartController(selectedProject);
-		controller.showConfigViewPart();
+		controller.execute();
 
 		return null;
 	}
