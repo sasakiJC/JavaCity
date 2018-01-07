@@ -1,5 +1,7 @@
 package dev.javacity.core.infra;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -12,33 +14,28 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import dev.javacity.core.CodeElementApplicationService;
+import dev.javacity.core.DataModel;
 import dev.javacity.core.models.TClass;
 import dev.javacity.core.models.TPackage;
 
 public class ProjectAnalyzer {
 
 	private ASTParser parser;
-	private CodeElementApplicationService codeElementAppService;
+//	private CodeElementApplicationService codeElementAppService;
+	private DataModel dataModel;
 
-//	public ProjectAnalyzer() {
-//		this.parser = ASTParser.newParser(AST.JLS8);
-//        parser.setKind(ASTParser.K_COMPILATION_UNIT);
-//        parser.setResolveBindings(true);
-//	}
-
-	public ProjectAnalyzer(CodeElementApplicationService codeElementAppService) {
+	public ProjectAnalyzer() {
 		this.parser = ASTParser.newParser(AST.JLS8);
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
         parser.setResolveBindings(true);
-        this.codeElementAppService = codeElementAppService;
+        this.dataModel = new DataModel();
 	}
 
-	public void analyzeFrom(IProject project) throws CoreException {
-		for (IProject proj : project.getReferencedProjects()) {
-			analyzeProject(proj);
+	public DataModel analyzeFrom(List<IProject> projects) throws CoreException {
+		for(IProject proj : projects) {
+			this.analyzeProject(proj);
 		}
-		analyzeProject(project);
+		return this.dataModel;
 	}
 
 	private void analyzeProject(IProject project) throws JavaModelException {
@@ -57,7 +54,8 @@ public class ProjectAnalyzer {
 
 
 	private TPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
-		TPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
+//		TPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
+		TPackage pack = this.dataModel.newPackage(packageFragment.getElementName());
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
 			TClass clazz = this.analyzeClass(unit);
 		}
@@ -65,9 +63,8 @@ public class ProjectAnalyzer {
 	}
 
 	private TClass analyzeClass(ICompilationUnit unit) {
-//		System.out.println(" " + unit.getElementName());
 		CompilationUnit parse = parse(unit);
-		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.codeElementAppService, parse);
+		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.dataModel, parse);
 		parse.accept(visitor);
 		return visitor.getTargetClass();
 	}

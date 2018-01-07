@@ -6,8 +6,6 @@ import java.util.Map;
 
 import javax.xml.bind.JAXB;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.IWorkbench;
@@ -16,8 +14,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import dev.javacity.core.CodeElementApplicationService;
-import dev.javacity.core.infra.ProjectAnalyzer;
+import dev.javacity.core.DataModel;
 import dev.javacity.core.visual.MVConverter;
 import javacity.Activator;
 import javacity.config.ConfigDialog;
@@ -27,18 +24,15 @@ public class CityViewPartController {
 
 	final static String ID = "javacity.views.CityViewPart";
 	private int i=0;
-	private IJavaProject selectedProject;
 
-	private CodeElementApplicationService service;
+	private DataModel dataModel;
 
 
-	public CityViewPartController(IJavaProject selectedProject) {
-		this.selectedProject = selectedProject;
-		this.service = new CodeElementApplicationService();
+	public CityViewPartController(DataModel dataModel) {
+		this.dataModel = dataModel;
 	}
 
 	public void execute() {
-		this.analyzeProject();
 		Map<String, MVConverter> map = this.showConfigViewPart();
 //		CityView cityView = new CityView();
 
@@ -86,16 +80,6 @@ public class CityViewPartController {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
 		}
-
 	}
 
-	public void analyzeProject() {
-		ProjectAnalyzer analyzer = new ProjectAnalyzer(this.service);
-		try {
-			analyzer.analyzeFrom(selectedProject.getProject());
-		} catch (CoreException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-	}
 }

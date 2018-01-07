@@ -9,6 +9,8 @@ public abstract class AbstractTEntity implements TargetEntity, Modifiable {
 	private TargetEntity parent;
 	private List<TargetEntity> children;
 
+	private CodeMetrics metrics;
+
 	/**
 	 * このエンティティの識別子
 	 */

@@ -1,9 +1,16 @@
-package dev.javacity.core.models;
+package dev.javacity.core;
 
-import java.util.List;
 import java.util.Observable;
 
+import dev.javacity.core.models.Classes;
+import dev.javacity.core.models.Fields;
+import dev.javacity.core.models.Methods;
+import dev.javacity.core.models.Packages;
+import dev.javacity.core.models.TClass;
 import dev.javacity.core.models.TClass.ClassType;
+import dev.javacity.core.models.TField;
+import dev.javacity.core.models.TMethod;
+import dev.javacity.core.models.TPackage;
 
 public class DataModel extends Observable {
 
@@ -32,66 +39,62 @@ public class DataModel extends Observable {
 				this.packages.nextIdentifier(),
 				packName);
 
-
-
-		this.packageRepository.store(pack);
+		this.packages.add(pack);
 		return pack;
 	}
 
 
 	public TClass newClass(String className, ClassType type, int loc, int nom, int noa) {
-
 		TClass clazz =
 				new TClass(
-						this.classRepository.nextIndentifier(),
+						this.classes.nextIdentifier(),
 						className,
 						type,
 						loc,
 						nom,
 						noa);
 
-		this.classRepository.store(clazz);
+		this.classes.add(clazz);
 		return clazz;
 	}
 
 	public TField newField(String fieldName, String className) {
 		TField field = new TField(
-				this.fieldRepository.nextIndentifier(),
+				this.fields.nextIdentifier(),
 				fieldName);
 
-		this.fieldRepository.store(field);
+		this.fields.add(field);
 		return field;
 	}
 
 	public TMethod newMethod(String methodName, boolean isConstructor) {
 		TMethod method = new TMethod(
-				this.methodRepository.nextIndentifier(),
+				this.methods.nextIdentifier(),
 				methodName,
 				isConstructor);
 
-		this.methodRepository.store(method);
+		this.methods.add(method);
 		return method;
 	}
 
-
-	public void solvePackageRelation() {
-		for(TPackage child : this.packageRepository.findAll()) {
-			for(TPackage parent : this.packageRepository.findAll()) {
-				if(child.isParentPackage(parent.getName())) {
-					child.setParent(parent);
-					parent.addChild(child);
-				}
-			}
-		}
-	}
-
-	public void addEntities(List<TPackage> entities) {
-		this.entities.addAll(entities);
-	}
-
-	public void addEntity(TargetEntity Entity, TargetEntity ParentEntity) {
-
-	}
+//	public void solvePackageRelation() {
+//		for(TPackage child : this.packages.findAll()) {
+//			for(TPackage parent : this.packages.findAll()) {
+//				if(child.isParentPackage(parent.getName())) {
+//					child.setParent(parent);
+//					parent.addChild(child);
+//				}
+//			}
+//		}
+//	}
+//
+//	public void addEntities(List<TPackage> entities) {
+//		this.entities.addAll(entities);
+//	}
+//
+//	public void addEntity(TargetEntity Entity, TargetEntity ParentEntity) {
+//
+//	}
 
 
 }

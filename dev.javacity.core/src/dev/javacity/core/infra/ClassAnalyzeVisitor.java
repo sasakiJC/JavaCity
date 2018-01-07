@@ -12,7 +12,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
-import dev.javacity.core.CodeElementApplicationService;
+import dev.javacity.core.DataModel;
 import dev.javacity.core.models.TClass;
 import dev.javacity.core.models.TClass.ClassType;
 import dev.javacity.core.models.TField;
@@ -21,12 +21,12 @@ import dev.javacity.core.models.TMethod;
 public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	private TClass clazz;
-	private CodeElementApplicationService codeElementAppService;
+	private DataModel dataModel;
 	private CompilationUnit compilationUnit;
 	private MetricsMeasure metricsMeasure;
 
-	public ClassAnalyzeVisitor(CodeElementApplicationService codeElementAppService, CompilationUnit compilationUnit) {
-		this.codeElementAppService = codeElementAppService;
+	public ClassAnalyzeVisitor(DataModel dataModel, CompilationUnit compilationUnit) {
+		this.dataModel = dataModel;
 		this.compilationUnit = compilationUnit;
 		this.metricsMeasure = new MetricsMeasure(this.compilationUnit);
 	}
@@ -42,7 +42,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 		int nom = this.metricsMeasure.numberOfMethods(node);
 		int noa = this.metricsMeasure.numberOfAttributes(node);
 
-		this.clazz = this.codeElementAppService.newClass(
+		this.clazz = this.dataModel.newClass(
 				node.getName().getIdentifier(),
 				type,
 				loc,
@@ -55,7 +55,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(EnumDeclaration node) {
-		this.clazz = this.codeElementAppService.newClass(
+		this.clazz = this.dataModel.newClass(
 				node.getName().getIdentifier(),
 				ClassType.ENUM,
 				this.metricsMeasure.enumLineOfCode(node),
@@ -67,7 +67,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		TMethod method = this.codeElementAppService.newMethod(node.getName().getIdentifier(), node.isConstructor());
+		TMethod method = this.dataModel.newMethod(node.getName().getIdentifier(), node.isConstructor());
 		method.setBody(node.getBody());
 		method.setReturnType(node.getReturnType2());
 		method.setTypeParameters(node.typeParameters());
@@ -90,7 +90,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 			// Object obj[][] のときfragment.getExtraDimensions()==2
 			// if(fragment.getExtraDimensions() > 0) TargetField field = new TargetField(fragment.getName().getIndentifier(), node.getType().toString()+fragment.extraDimensions().sum
-			TField field = this.codeElementAppService.newField(fragment.getName().getIdentifier(), node.getType().toString());
+			TField field = this.dataModel.newField(fragment.getName().getIdentifier(), node.getType().toString());
 			field.setModifiers(node.modifiers());
 			this.clazz.addChild(field);
 			field.setParent(this.clazz);		}
