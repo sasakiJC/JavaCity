@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import dev.javacity.core.models.DataModel;
-import dev.javacity.core.models.TargetClass;
+import dev.javacity.core.models.TClass;
 import dev.javacity.core.models.TargetEntity;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -18,7 +18,7 @@ public class CityView extends VisualizedComposite implements Observer {
 	}
 
 	private DataModel testDataModel;
-	private Map<TargetClass, Building> classMap;
+	private Map<TClass, Building> classMap;
 	private VisLayout layout;
 
 	/**

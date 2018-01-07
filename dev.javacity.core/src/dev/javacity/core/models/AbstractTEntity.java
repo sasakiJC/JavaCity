@@ -3,7 +3,7 @@ package dev.javacity.core.models;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
+public abstract class AbstractTEntity implements TargetEntity, Modifiable {
 
 	protected String name;
 	private TargetEntity parent;
@@ -19,7 +19,7 @@ public abstract class AbstractCodeElement implements TargetEntity, Modifiable {
 	 * @param identifier エンティティの識別子
 	 * @throws NullPointerException 引数に{@code null}を与えた場合
 	 */
-	protected AbstractCodeElement(EntityIdentifier identifier, String name) {
+	protected AbstractTEntity(EntityIdentifier identifier, String name) {
 		if(identifier==null)
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;

@@ -2,14 +2,14 @@ package dev.javacity.core.models;
 
 import java.util.List;
 
-public class TargetPackage implements TargetEntity {
+public class TPackage implements TargetEntity {
 
 	private String fullName;
 	private String[] names;
 	private final EntityIdentifier identifier;
 	private List<TargetEntity> classes;
 
-	public TargetPackage(EntityIdentifier identifier, String fullName) {
+	public TPackage(EntityIdentifier identifier, String fullName) {
 		this.identifier = identifier;
 		this.fullName = fullName;
 		this.names = fullName.split(".");

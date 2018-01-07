@@ -1,18 +1,18 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetClass;
-import dev.javacity.core.models.TargetField;
-import dev.javacity.core.models.TargetMethod;
-import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.models.TClass;
+import dev.javacity.core.models.TField;
+import dev.javacity.core.models.TMethod;
+import dev.javacity.core.models.TPackage;
 
 public interface ViewMapper {
-	public VisualizedComponent mapPackage(TargetPackage pack);
+	public VisualizedComponent mapPackage(TPackage pack);
 
-	public VisualizedComponent mapClass(TargetClass clazz);
+	public VisualizedComponent mapClass(TClass clazz);
 
-	public VisualizedComponent mapMethod(TargetMethod method);
+	public VisualizedComponent mapMethod(TMethod method);
 
-	public VisualizedComponent mapField(TargetField field);
+	public VisualizedComponent mapField(TField field);
 
 	public VisualizedComponent mapClassRelation(Object obj);
 }

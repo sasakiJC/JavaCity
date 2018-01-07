@@ -13,8 +13,8 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import dev.javacity.core.CodeElementApplicationService;
-import dev.javacity.core.models.TargetClass;
-import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.models.TClass;
+import dev.javacity.core.models.TPackage;
 
 public class ProjectAnalyzer {
 
@@ -47,7 +47,7 @@ public class ProjectAnalyzer {
 		for(IPackageFragmentRoot packageRoot : packageRoots) {
 			if(packageRoot.getKind() == IPackageFragmentRoot.K_SOURCE) {
 				for(IJavaElement pack : packageRoot.getChildren()) {
-					TargetPackage targetPack = this.analyzePackage((IPackageFragment)pack);
+					TPackage targetPack = this.analyzePackage((IPackageFragment)pack);
 //					list.add(targetPack);
 				}
 			}
@@ -56,15 +56,15 @@ public class ProjectAnalyzer {
 	}
 
 
-	private TargetPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
-		TargetPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
+	private TPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
+		TPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
-			TargetClass clazz = this.analyzeClass(unit);
+			TClass clazz = this.analyzeClass(unit);
 		}
 		return pack;
 	}
 
-	private TargetClass analyzeClass(ICompilationUnit unit) {
+	private TClass analyzeClass(ICompilationUnit unit) {
 //		System.out.println(" " + unit.getElementName());
 		CompilationUnit parse = parse(unit);
 		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.codeElementAppService, parse);

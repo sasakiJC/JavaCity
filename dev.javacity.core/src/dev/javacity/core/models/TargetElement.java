@@ -1,5 +1,5 @@
 package dev.javacity.core.models;
 
-public class TargetProject {
+public interface TargetElement {
 
 }

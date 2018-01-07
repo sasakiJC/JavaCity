@@ -1,13 +1,13 @@
 package dev.javacity.core.models;
 
-public class Methods extends CodeElements<TargetMethod>{
+public class Methods extends SoftwareEntities<TMethod>{
 //	private Map<EntityIdentifier, TargetMethod> methods;
 
 	public Methods() {
-		super(TargetMethod.class);
+		super(TMethod.class);
 	}
 
-	public TargetMethod newMethod() {
+	public TMethod newMethod() {
 		return null;
 	}
 }

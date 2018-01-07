@@ -3,7 +3,7 @@ package dev.javacity.core.models;
 import java.util.List;
 import java.util.Observable;
 
-import dev.javacity.core.models.TargetClass.ClassType;
+import dev.javacity.core.models.TClass.ClassType;
 
 public class DataModel extends Observable {
 
@@ -27,8 +27,8 @@ public class DataModel extends Observable {
 
 	}
 
-	public TargetPackage newPackage(String packName) {
-		TargetPackage pack = new TargetPackage(
+	public TPackage newPackage(String packName) {
+		TPackage pack = new TPackage(
 				this.packages.nextIdentifier(),
 				packName);
 
@@ -39,10 +39,10 @@ public class DataModel extends Observable {
 	}
 
 
-	public TargetClass newClass(String className, ClassType type, int loc, int nom, int noa) {
+	public TClass newClass(String className, ClassType type, int loc, int nom, int noa) {
 
-		TargetClass clazz =
-				new TargetClass(
+		TClass clazz =
+				new TClass(
 						this.classRepository.nextIndentifier(),
 						className,
 						type,
@@ -54,8 +54,8 @@ public class DataModel extends Observable {
 		return clazz;
 	}
 
-	public TargetField newField(String fieldName, String className) {
-		TargetField field = new TargetField(
+	public TField newField(String fieldName, String className) {
+		TField field = new TField(
 				this.fieldRepository.nextIndentifier(),
 				fieldName);
 
@@ -63,8 +63,8 @@ public class DataModel extends Observable {
 		return field;
 	}
 
-	public TargetMethod newMethod(String methodName, boolean isConstructor) {
-		TargetMethod method = new TargetMethod(
+	public TMethod newMethod(String methodName, boolean isConstructor) {
+		TMethod method = new TMethod(
 				this.methodRepository.nextIndentifier(),
 				methodName,
 				isConstructor);
@@ -75,8 +75,8 @@ public class DataModel extends Observable {
 
 
 	public void solvePackageRelation() {
-		for(TargetPackage child : this.packageRepository.findAll()) {
-			for(TargetPackage parent : this.packageRepository.findAll()) {
+		for(TPackage child : this.packageRepository.findAll()) {
+			for(TPackage parent : this.packageRepository.findAll()) {
 				if(child.isParentPackage(parent.getName())) {
 					child.setParent(parent);
 					parent.addChild(child);
@@ -85,7 +85,7 @@ public class DataModel extends Observable {
 		}
 	}
 
-	public void addEntities(List<TargetPackage> entities) {
+	public void addEntities(List<TPackage> entities) {
 		this.entities.addAll(entities);
 	}
 

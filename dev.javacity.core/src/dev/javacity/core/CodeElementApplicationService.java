@@ -7,21 +7,21 @@ import java.util.List;
 import dev.javacity.core.models.DefaultRepository;
 import dev.javacity.core.models.EntityIdentifier;
 import dev.javacity.core.models.Repository;
-import dev.javacity.core.models.TargetClass;
-import dev.javacity.core.models.TargetClass.ClassType;
+import dev.javacity.core.models.TClass;
+import dev.javacity.core.models.TClass.ClassType;
 import dev.javacity.core.models.TargetEntity;
-import dev.javacity.core.models.TargetField;
-import dev.javacity.core.models.TargetMethod;
-import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.models.TField;
+import dev.javacity.core.models.TMethod;
+import dev.javacity.core.models.TPackage;
 import dev.javacity.core.visual.ViewMapper;
 import dev.javacity.core.visual.VisualizedComponent;
 
 public class CodeElementApplicationService {
 
-	private Repository<TargetPackage> packageRepository;
-	private Repository<TargetClass> classRepository;
-	private Repository<TargetField> fieldRepository;
-	private Repository<TargetMethod> methodRepository;
+	private Repository<TPackage> packageRepository;
+	private Repository<TClass> classRepository;
+	private Repository<TField> fieldRepository;
+	private Repository<TMethod> methodRepository;
 
 	private ViewMapper mapper;
 
@@ -36,14 +36,14 @@ public class CodeElementApplicationService {
 //	}
 
 	public CodeElementApplicationService() {
-		this.packageRepository = new DefaultRepository<TargetPackage>(TargetPackage.class);
-		this.classRepository = new DefaultRepository<TargetClass>(TargetClass.class);
-		this.fieldRepository = new DefaultRepository<TargetField>(TargetField.class);
-		this.methodRepository = new DefaultRepository<TargetMethod>(TargetMethod.class);
+		this.packageRepository = new DefaultRepository<TPackage>(TPackage.class);
+		this.classRepository = new DefaultRepository<TClass>(TClass.class);
+		this.fieldRepository = new DefaultRepository<TField>(TField.class);
+		this.methodRepository = new DefaultRepository<TMethod>(TMethod.class);
 	}
 
-	public TargetPackage newPackage(String packName) {
-		TargetPackage pack = new TargetPackage(
+	public TPackage newPackage(String packName) {
+		TPackage pack = new TPackage(
 				this.packageRepository.nextIndentifier(),
 				packName);
 
@@ -52,10 +52,10 @@ public class CodeElementApplicationService {
 	}
 
 
-	public TargetClass newClass(String className, ClassType type, int loc, int nom, int noa) {
+	public TClass newClass(String className, ClassType type, int loc, int nom, int noa) {
 
-		TargetClass clazz =
-				new TargetClass(
+		TClass clazz =
+				new TClass(
 						this.classRepository.nextIndentifier(),
 						className,
 						type,
@@ -67,8 +67,8 @@ public class CodeElementApplicationService {
 		return clazz;
 	}
 
-	public TargetField newField(String fieldName, String className) {
-		TargetField field = new TargetField(
+	public TField newField(String fieldName, String className) {
+		TField field = new TField(
 				this.fieldRepository.nextIndentifier(),
 				fieldName);
 
@@ -76,8 +76,8 @@ public class CodeElementApplicationService {
 		return field;
 	}
 
-	public TargetMethod newMethod(String methodName, boolean isConstructor) {
-		TargetMethod method = new TargetMethod(
+	public TMethod newMethod(String methodName, boolean isConstructor) {
+		TMethod method = new TMethod(
 				this.methodRepository.nextIndentifier(),
 				methodName,
 				isConstructor);
@@ -88,8 +88,8 @@ public class CodeElementApplicationService {
 
 
 	public void solvePackageRelation() {
-		for(TargetPackage child : this.packageRepository.findAll()) {
-			for(TargetPackage parent : this.packageRepository.findAll()) {
+		for(TPackage child : this.packageRepository.findAll()) {
+			for(TPackage parent : this.packageRepository.findAll()) {
 				if(child.isParentPackage(parent.getName())) {
 					child.setParent(parent);
 					parent.addChild(child);
@@ -98,31 +98,31 @@ public class CodeElementApplicationService {
 		}
 	}
 
-	public Collection<TargetPackage> packages() {
+	public Collection<TPackage> packages() {
 		return this.packageRepository.findAll();
 	}
 
-	public Collection<TargetClass> classes() {
+	public Collection<TClass> classes() {
 		return this.classRepository.findAll();
 	}
 
-	public Collection<TargetField> fields() {
+	public Collection<TField> fields() {
 		return this.fieldRepository.findAll();
 	}
 
-	public Collection<TargetMethod> methods() {
+	public Collection<TMethod> methods() {
 		return this.methodRepository.findAll();
 	}
 
 
 	public TargetEntity findById(EntityIdentifier identifier) {
-		if(identifier.toKind().equals(TargetPackage.class.getName()))
+		if(identifier.toKind().equals(TPackage.class.getName()))
 			return this.packageRepository.findById(identifier);
-		else if(identifier.toKind().equals(TargetClass.class.getName()))
+		else if(identifier.toKind().equals(TClass.class.getName()))
 			return this.classRepository.findById(identifier);
-		else if(identifier.toKind().equals(TargetField.class.getName()))
+		else if(identifier.toKind().equals(TField.class.getName()))
 			return this.fieldRepository.findById(identifier);
-		else if(identifier.toKind().equals(TargetMethod.class.getName()))
+		else if(identifier.toKind().equals(TMethod.class.getName()))
 			return this.methodRepository.findById(identifier);
 		else
 			return null;
@@ -130,7 +130,7 @@ public class CodeElementApplicationService {
 
 	public Collection<VisualizedComponent> visualizePackages() {
 		List<VisualizedComponent> list = new LinkedList<>();
-		for(TargetPackage pack : this.packageRepository.findAll()) {
+		for(TPackage pack : this.packageRepository.findAll()) {
 			list.add(this.mapper.mapPackage(pack));
 		}
 		return list;

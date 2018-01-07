@@ -1,5 +1,5 @@
 package dev.javacity.core.models;
 
-public class TargetSystem {
+public interface RelationType {
 
 }

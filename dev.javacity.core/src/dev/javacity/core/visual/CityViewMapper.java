@@ -1,9 +1,9 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetClass;
-import dev.javacity.core.models.TargetField;
-import dev.javacity.core.models.TargetMethod;
-import dev.javacity.core.models.TargetPackage;
+import dev.javacity.core.models.TClass;
+import dev.javacity.core.models.TField;
+import dev.javacity.core.models.TMethod;
+import dev.javacity.core.models.TPackage;
 
 public class CityViewMapper implements ViewMapper{
 
@@ -11,23 +11,23 @@ public class CityViewMapper implements ViewMapper{
 	private DimensionMapper dimensionMapper;
 	private LayoutMapper layoutMapper;
 
-	public VisualizedComponent mapPackage(TargetPackage pack) {
+	public VisualizedComponent mapPackage(TPackage pack) {
 //		(x,y,z) = layout.layout(pack.children);
 //		District district = new District(pack, layout);
 		District district = new District(pack, new CityViewLayout());
 		return null;
 	}
 
-	public VisualizedComponent mapClass(TargetClass clazz) {
+	public VisualizedComponent mapClass(TClass clazz) {
 		Building building = new Building(clazz, new CityViewLayout());
 		return null;
 	}
 
-	public VisualizedComponent mapMethod(TargetMethod method) {
+	public VisualizedComponent mapMethod(TMethod method) {
 		return null;
 	}
 
-	public VisualizedComponent mapField(TargetField field) {
+	public VisualizedComponent mapField(TField field) {
 		return null;
 	}
 
