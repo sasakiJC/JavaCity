@@ -61,6 +61,8 @@ public class CityScene extends SubScene {
         cameraXform.ry.setAngle(CAMERA_INITIAL_Y_ANGLE);
         cameraXform.rx.setAngle(CAMERA_INITIAL_X_ANGLE);
 
+        this.handleMouse();
+        this.handleKeyboard();
         this.setCamera(camera);
     }
 
@@ -120,19 +122,21 @@ public class CityScene extends SubScene {
                         cameraXform.ry.setAngle(CAMERA_INITIAL_Y_ANGLE);
                         cameraXform.rx.setAngle(CAMERA_INITIAL_X_ANGLE);
                         break;
+                    default:
+                    	break;
                 }
             }
         });
     }
 
 
-	/**
-	 * Add all behaviors to this view model. This method will add a {@link MouseRotationBehavior}, {@link MouseSelectionBehavior}, {@link MouseWheelZoomBehavior} and
-	 * {@link KeyboardBehavior} to the specified canvas or the root branch group {@link #root}.
-	 *
-	 * @param cityCanvas
-	 *            The canvas to add the behaviors to.
-	 */
+//	/**
+//	 * Add all behaviors to this view model. This method will add a {@link MouseRotationBehavior}, {@link MouseSelectionBehavior}, {@link MouseWheelZoomBehavior} and
+//	 * {@link KeyboardBehavior} to the specified canvas or the root branch group {@link #root}.
+//	 *
+//	 * @param cityCanvas
+//	 *            The canvas to add the behaviors to.
+//	 */
 //	private void addBehaviors(final CityCanvas cityCanvas) {
 //
 //		final BoundingSphere bounds = new BoundingSphere(new Point3d(), Float.MAX_VALUE);

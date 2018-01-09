@@ -6,20 +6,19 @@ import java.util.Observer;
 
 import dev.javacity.core.DataModel;
 import dev.javacity.core.models.TClass;
-import dev.javacity.core.models.TargetEntity;
 import javafx.scene.Group;
 import javafx.scene.Node;
 
-public class CityView extends VisualizedComposite implements Observer {
-
-	public CityView(TargetEntity entity, VisLayout layout) {
-		super(entity, layout);
-		// TODO 自動生成されたコンストラクター・スタブ
-	}
+public class CityView extends Group implements Observer {
 
 	private DataModel testDataModel;
 	private Map<TClass, Building> classMap;
 	private VisLayout layout;
+
+	public CityView() {
+		super();
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
 
 	/**
 	 * Removes all objects from this view, i.e. clears the entire visualization.
@@ -72,12 +71,5 @@ public class CityView extends VisualizedComposite implements Observer {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
-
-	@Override
-	Group createFxView() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
 
 }

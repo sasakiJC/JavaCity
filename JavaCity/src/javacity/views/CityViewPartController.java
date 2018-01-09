@@ -15,6 +15,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 import dev.javacity.core.DataModel;
+import dev.javacity.core.visual.CityView;
 import dev.javacity.core.visual.MVConverter;
 import javacity.Activator;
 import javacity.config.ConfigDialog;
@@ -26,6 +27,7 @@ public class CityViewPartController {
 	private int i=0;
 
 	private DataModel dataModel;
+	private CityView cityView;
 
 
 	public CityViewPartController(DataModel dataModel) {
@@ -34,7 +36,7 @@ public class CityViewPartController {
 
 	public void execute() {
 		Map<String, MVConverter> map = this.showConfigViewPart();
-//		CityView cityView = new CityView();
+		this.cityView = new CityView();
 
 //		map.get("package").createVisualizedComponent(entity)
 		this.showCityViewPart();
@@ -74,7 +76,7 @@ public class CityViewPartController {
 		IWorkbenchPage page = activeWindow.getActivePage();
 		try {
 			CityViewPart view =  (CityViewPart)page.showView(ID, "secondID"+i++, IWorkbenchPage.VIEW_VISIBLE);
-//			view.getController().showCityView(cityView);
+			view.getController().showCityView(this.cityView);
 			System.out.println("解析終了");
 		} catch (PartInitException e1) {
 			// TODO 自動生成された catch ブロック

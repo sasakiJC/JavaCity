@@ -15,7 +15,7 @@ import javafx.scene.layout.BorderPane;
 public class CityViewPart extends FXViewPart {
 
 	private Parent root = new Group();
-	private TestGUIController controller;
+	private GUIController controller;
 
 	@Override
 	protected Scene createFxScene() {
@@ -40,10 +40,11 @@ public class CityViewPart extends FXViewPart {
 
 	@Override
 	protected void setFxFocus() {
-//		this.root.requestFocus();
+		this.root.requestFocus();
+		System.out.println(this.root.getOnKeyPressed());
 	}
 
-	public TestGUIController getController() {
+	public GUIController getController() {
 		return this.controller;
 	}
 
