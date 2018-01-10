@@ -2,5 +2,28 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="javacity.core.model.entity" name="Entity" schema="schema/javacity.core.model.entity.exsd"/>
+   <extension
+         point="javacity.core.model.entity">
+      <entity
+            class="dev.javacity.core.models.TClass"
+            id="dev.javacity.core.models.TClass"
+            name="class">
+      </entity>
+      <entity
+            class="dev.javacity.core.models.TPackage"
+            id="dev.javacity.core.models.TPackage"
+            name="package">
+      </entity>
+      <entity
+            class="dev.javacity.core.models.TMethod"
+            id="dev.javacity.core.models.TMethod"
+            name="method">
+      </entity>
+      <entity
+            class="dev.javacity.core.models.TField"
+            id="dev.javacity.core.models.TField"
+            name="field">
+      </entity>
+   </extension>
 
 </plugin>
