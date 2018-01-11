@@ -17,7 +17,7 @@ public class ExtensionLoader {
 	private static final String EXAMPLE_EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".model.entity";	//拡張ポイントID
 
 	private List<TargetEntity> list;
-	public List<TargetEntity> getExampleExtensions() {
+	public List<TargetEntity> getEntityExtensions() {
 		if (list != null) {
 			return list;
 		}

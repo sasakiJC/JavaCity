@@ -3,7 +3,7 @@
 <schema targetNamespace="dev.javacity.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="dev.javacity.core" id="javacity.core.model.entity" name="Entity"/>
+         <meta.schema plugin="dev.javacity.core" id="dev.javacity.core.model.entity" name="Entity"/>
       </appinfo>
       <documentation>
          [この拡張ポイントの説明を入力してください。]

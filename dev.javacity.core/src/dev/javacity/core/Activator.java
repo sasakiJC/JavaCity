@@ -29,6 +29,8 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		this.extensionLoader = new ExtensionLoader();
+
 	}
 
 	/*
@@ -61,6 +63,6 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static ExtensionLoader getExtensionLoader() {
-		return getDefault().getExtensionLoader();
+		return getDefault().extensionLoader;
 	}
 }
