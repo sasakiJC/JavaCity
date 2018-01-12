@@ -1,6 +1,6 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetEntity;
+import javacity.model.TargetEntity;
 
 public class MVConverter {
 

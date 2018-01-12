@@ -2,9 +2,11 @@ package dev.javacity.core.models;
 
 import java.util.Collection;
 
-import dev.javacity.core.models.exception.EntityNotFoundException;
-import dev.javacity.core.models.exception.PersistentException;
-import dev.javacity.core.models.exception.StoreFailedException;
+import javacity.model.EntityIdentifier;
+import javacity.model.TargetEntity;
+import javacity.model.exception.EntityNotFoundException;
+import javacity.model.exception.PersistentException;
+import javacity.model.exception.StoreFailedException;
 
 
 

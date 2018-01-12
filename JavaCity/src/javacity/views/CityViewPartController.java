@@ -14,12 +14,12 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import dev.javacity.core.DataModel;
 import dev.javacity.core.visual.CityView;
 import dev.javacity.core.visual.MVConverter;
 import javacity.Activator;
 import javacity.config.ConfigDialog;
 import javacity.config.ViewConfig;
+import javacity.model.DataModel;
 
 public class CityViewPartController {
 

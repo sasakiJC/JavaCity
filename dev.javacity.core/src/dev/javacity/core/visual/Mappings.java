@@ -2,8 +2,8 @@ package dev.javacity.core.visual;
 
 import java.util.Map;
 
-import dev.javacity.core.models.TargetEntity;
 import dev.javacity.core.visual.mapper.Mapper;
+import javacity.model.TargetEntity;
 
 public class Mappings {
 

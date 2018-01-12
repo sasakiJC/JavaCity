@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import dev.javacity.core.DataModel;
-import dev.javacity.core.models.TClass;
+import javacity.model.DataModel;
+import javacity.model.TClass;
 import javafx.scene.Group;
 import javafx.scene.Node;
 

@@ -4,6 +4,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javacity.model.DefaultEntityIdentifier;
+import javacity.model.EntityIdentifier;
+import javacity.model.TargetEntity;
+
 public class DefaultRepository<T extends TargetEntity> implements Repository<T> {
 
 	private Map<EntityIdentifier, T> entities;

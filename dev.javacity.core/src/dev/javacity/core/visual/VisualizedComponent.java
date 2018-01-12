@@ -2,7 +2,7 @@ package dev.javacity.core.visual;
 
 import java.util.List;
 
-import dev.javacity.core.models.TargetEntity;
+import javacity.model.TargetEntity;
 import javafx.scene.Group;
 
 public interface VisualizedComponent {

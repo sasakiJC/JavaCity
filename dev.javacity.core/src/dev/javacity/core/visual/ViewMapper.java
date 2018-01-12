@@ -1,9 +1,9 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TClass;
-import dev.javacity.core.models.TField;
-import dev.javacity.core.models.TMethod;
-import dev.javacity.core.models.TPackage;
+import javacity.model.TClass;
+import javacity.model.TField;
+import javacity.model.TMethod;
+import javacity.model.TPackage;
 
 public interface ViewMapper {
 	public VisualizedComponent mapPackage(TPackage pack);

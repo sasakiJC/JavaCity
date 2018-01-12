@@ -1,7 +1,7 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.models.TargetEntity;
 import dev.javacity.core.visual.metaphor.BorderedBox;
+import javacity.model.TargetEntity;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 

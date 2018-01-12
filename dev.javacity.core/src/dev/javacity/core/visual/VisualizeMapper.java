@@ -1,9 +1,9 @@
 package dev.javacity.core.visual;
 
-import dev.javacity.core.CodeElementApplicationService;
-import dev.javacity.core.models.TClass;
-import dev.javacity.core.models.TargetEntity;
-import dev.javacity.core.models.TPackage;
+import javacity.model.CodeElementApplicationService;
+import javacity.model.TClass;
+import javacity.model.TPackage;
+import javacity.model.TargetEntity;
 
 public class VisualizeMapper {
 
