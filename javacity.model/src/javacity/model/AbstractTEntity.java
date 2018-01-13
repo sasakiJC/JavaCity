@@ -1,0 +1,97 @@
+package javacity.model;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import dev.javacity.core.models.CodeMetrics;
+import dev.javacity.core.models.EntityIdentifier;
+import dev.javacity.core.models.Modifiable;
+import dev.javacity.core.models.TargetEntity;
+
+public abstract class AbstractTEntity implements TargetEntity, Modifiable {
+
+	protected String name;
+	private TargetEntity parent;
+	private List<TargetEntity> children;
+
+	private CodeMetrics metrics;
+
+	/**
+	 * このエンティティの識別子
+	 */
+	protected final EntityIdentifier identifier;
+
+	/**
+	 * 指定された識別子を使用してエンティティを作成します。
+	 * @param identifier エンティティの識別子
+	 * @throws NullPointerException 引数に{@code null}を与えた場合
+	 */
+	protected AbstractTEntity(EntityIdentifier identifier, String name) {
+		if(identifier==null)
+			throw new NullPointerException("Identifier cannot be null");
+		this.identifier = identifier;
+		this.name = name;
+		this.children = new LinkedList<>();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final EntityIdentifier getIdentifier() {
+		return this.identifier;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>この実装では識別子のハッシュ・コード値を返す。
+	 */
+    @Override
+    public final int hashCode() {
+        return identifier.hashCode();
+    }
+
+	/**
+	 * {@inheritDoc}
+	 */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || obj instanceof TargetEntity == false) {
+            return false;
+        }
+        return identifier.equals(((TargetEntity) obj).getIdentifier());
+    }
+
+
+	@Override
+	public void setModifiers(List<?> modifiers) {
+
+	}
+
+	@Override
+	public void addChild(TargetEntity child) {
+		this.children.add(child);
+	}
+
+	@Override
+	public List<TargetEntity> getChildren() {
+		return this.children;
+	}
+
+	@Override
+	public void removeChild(TargetEntity child) {
+		if(this.children.contains(child)) {
+			this.children.remove(child);
+		}
+	}
+
+	@Override
+	public void setParent(TargetEntity parent) {
+		this.parent = parent;
+	}
+
+}
