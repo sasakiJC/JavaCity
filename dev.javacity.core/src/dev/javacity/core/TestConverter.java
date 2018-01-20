@@ -6,9 +6,14 @@ import javacity.model.DataModel;
 
 public class TestConverter {
 
-	MVConverter converter;
+	MVConverter[] converters;
+
+	public TestConverter() {
+
+	}
 
 	public CityView convert(DataModel dataModel) {
+//		dataModel.getEntities(type)
 
 
 

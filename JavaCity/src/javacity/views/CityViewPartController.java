@@ -14,6 +14,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
+import dev.javacity.core.TestConverter;
 import dev.javacity.core.visual.CityView;
 import dev.javacity.core.visual.MVConverter;
 import javacity.Activator;
@@ -35,7 +36,8 @@ public class CityViewPartController {
 	}
 
 	public void execute() {
-		Map<String, MVConverter> map = this.showConfigViewPart();
+//		Map<String, MVConverter> map = this.showConfigViewPart();
+		TestConverter map = this.showConfigViewPart();
 		this.cityView = new CityView();
 
 //		map.get("package").createVisualizedComponent(entity)
@@ -43,14 +45,14 @@ public class CityViewPartController {
 	}
 
 
-	public Map<String, MVConverter> showConfigViewPart() {
+	public TestConverter showConfigViewPart() {
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchWindow activeWindow = workbench.getActiveWorkbenchWindow();
 
 		URL entry = Activator.getDefault().getBundle().getEntry("/resource/config.xml");
 		ViewConfig conf = JAXB.unmarshal(entry, ViewConfig.class);
 
-        Dialog dialog = new ConfigDialog(activeWindow.getShell(), conf);
+        Dialog dialog = new ConfigDialog(activeWindow.getShell());
         int result = dialog.open();
 
         if(result == SWT.OK) {
@@ -63,7 +65,8 @@ public class CityViewPartController {
         	map.put("package", packageConverter);
         	map.put("class", classConverter);
 
-        	return map;
+//        	return map;
+        	return new TestConverter();
         }else{
         	return null;
         }

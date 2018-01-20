@@ -3,41 +3,34 @@ package javacity.model;
 import java.util.LinkedList;
 import java.util.List;
 
-import dev.javacity.core.models.CodeMetrics;
-import dev.javacity.core.models.EntityIdentifier;
-import dev.javacity.core.models.Modifiable;
-import dev.javacity.core.models.TargetEntity;
+public class SoftwareEntity {
 
-public abstract class AbstractTEntity implements TargetEntity, Modifiable {
-
-	protected String name;
-	private TargetEntity parent;
-	private List<TargetEntity> children;
+	private final SoftwareElementType type;
+	private final String name;
 
 	private CodeMetrics metrics;
-
 	/**
 	 * このエンティティの識別子
 	 */
-	protected final EntityIdentifier identifier;
+	private final EntityIdentifier identifier;
+
+	private SoftwareEntity parent;
+	private List<SoftwareEntity> children;
 
 	/**
 	 * 指定された識別子を使用してエンティティを作成します。
 	 * @param identifier エンティティの識別子
 	 * @throws NullPointerException 引数に{@code null}を与えた場合
 	 */
-	protected AbstractTEntity(EntityIdentifier identifier, String name) {
+	public SoftwareEntity(String name, EntityIdentifier identifier, SoftwareElementType type) {
 		if(identifier==null)
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;
 		this.name = name;
+		this.type = type;
 		this.children = new LinkedList<>();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public final EntityIdentifier getIdentifier() {
 		return this.identifier;
 	}
@@ -66,31 +59,21 @@ public abstract class AbstractTEntity implements TargetEntity, Modifiable {
         return identifier.equals(((TargetEntity) obj).getIdentifier());
     }
 
-
-	@Override
-	public void setModifiers(List<?> modifiers) {
-
-	}
-
-	@Override
-	public void addChild(TargetEntity child) {
+	public void addChild(SoftwareEntity child) {
 		this.children.add(child);
 	}
 
-	@Override
-	public List<TargetEntity> getChildren() {
+	public List<SoftwareEntity> getChildren() {
 		return this.children;
 	}
 
-	@Override
-	public void removeChild(TargetEntity child) {
+	public void removeChild(SoftwareEntity child) {
 		if(this.children.contains(child)) {
 			this.children.remove(child);
 		}
 	}
 
-	@Override
-	public void setParent(TargetEntity parent) {
+	public void setParent(SoftwareEntity parent) {
 		this.parent = parent;
 	}
 

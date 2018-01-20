@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import dev.javacity.core.visual.MVConverter;
 import dev.javacity.core.visual.Mappings;
+import javacity.config.jaxb.ConfigDao;
 import javacity.config.jaxb.MapAdapter;
 
 public class ViewConfig {
@@ -17,14 +18,11 @@ public class ViewConfig {
 	@XmlElement
 	Map<String, ConfigModelElement> elements;
 
-
-
 	public ViewConfig() {
-
 	}
 
-	public ConfigModelElement getDefaultModelElement() {
-		return this.elements.get("system");
+	public ViewConfig(ConfigDao tempConf) {
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	public ConfigModelElement getElm(String key) {
@@ -32,6 +30,9 @@ public class ViewConfig {
 	}
 
 	public String[] getElementNames() {
+//		Map<Class<?>, SoftwareElementType> temp = javacity.model.Activator.getExtensionLoader().getElementTypeExtensions();
+//		String[] strTemp = temp.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
+//		list.setItems(strTemp);
 		return this.elements.keySet().toArray(new String[]{});
 	}
 

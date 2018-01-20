@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="dev.javacity.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="javacity.model" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="dev.javacity.core" id="dev.javacity.core.model.entity" name="Entity"/>
+         <meta.schema plugin="javacity.model" id="javacity.model.entity" name="TEntity"/>
       </appinfo>
       <documentation>
          [この拡張ポイントの説明を入力してください。]
@@ -18,8 +18,8 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="entity" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="relationType" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="relation" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="elementType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -48,16 +48,8 @@
       </complexType>
    </element>
 
-   <element name="entity">
-      <annotation>
-         <documentation>
-            可視化対象となるシステム要素です。
-         </documentation>
-      </annotation>
+   <element name="relation">
       <complexType>
-         <sequence>
-            <element ref="entityIdentifier"/>
-         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -78,14 +70,14 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":dev.javacity.core.models.TargetEntity"/>
+                  <meta.attribute kind="java" basedOn=":javacity.model.TargetRelation"/>
                </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <element name="relationType">
+   <element name="elementType">
       <complexType>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -107,36 +99,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":dev.javacity.core.models.RelationType"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="entityIdentifier">
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="class" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":dev.javacity.core.models.EntityIdentifier"/>
+                  <meta.attribute kind="java" basedOn=":javacity.model.SoftwareElementType"/>
                </appinfo>
             </annotation>
          </attribute>

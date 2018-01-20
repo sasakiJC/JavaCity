@@ -1,11 +1,13 @@
 package dev.javacity.core.visual.mapper;
 
-import javacity.model.TargetEntity;
+import dev.javacity.core.visual.MappedValue;
+import dev.javacity.core.visual.Mapper;
+import javacity.model.SoftwareEntity;
 
-public class IdentityMapper<T> implements Mapper<T> {
+public class IdentityMapper extends AbstractMapper implements Mapper {
 
 	@Override
-	public T toAttribute(TargetEntity entity) {
+	public MappedValue toAttribute(SoftwareEntity entity) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

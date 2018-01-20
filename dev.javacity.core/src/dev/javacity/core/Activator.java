@@ -4,8 +4,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import javacity.model.ExtensionLoader;
-
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -17,7 +15,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private ExtensionLoader extensionLoader;
+	private MetaphorExtensionLoader extensionLoader;
 	/**
 	 * The constructor
 	 */
@@ -31,8 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		this.extensionLoader = new ExtensionLoader();
-
+		this.extensionLoader = new MetaphorExtensionLoader();
 	}
 
 	/*
@@ -64,7 +61,7 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
-	public static ExtensionLoader getExtensionLoader() {
+	public static MetaphorExtensionLoader getMetaphorExtensionLoader() {
 		return getDefault().extensionLoader;
 	}
 }

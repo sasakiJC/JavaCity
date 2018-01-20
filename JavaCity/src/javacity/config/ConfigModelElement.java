@@ -8,8 +8,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
+import dev.javacity.core.visual.Mapper;
 import dev.javacity.core.visual.VisLayout;
-import dev.javacity.core.visual.mapper.Mapper;
 
 public class ConfigModelElement {
 	@XmlAttribute
@@ -55,15 +55,15 @@ public class ConfigModelElement {
 		return this.configGlyph.name;
 	}
 
-	public Map<String, Mapper<?>> toMappings() {
-		Map<String, Mapper<?>> map = new HashMap<>();
+	public Map<String, Mapper> toMappings() {
+		Map<String, Mapper> map = new HashMap<>();
 
 		try {
 			for(ConfigMapping confMapping: configMappings) {
 				Class<?> clazz = Class.forName(confMapping.mapperClassId);
 				Class<?>[] types = {String[].class};
 				Object[] args = {confMapping.modelProperties};
-				Mapper<?> mapper = (Mapper<?>) clazz.getConstructor(types).newInstance(args);
+				Mapper mapper = (Mapper) clazz.getConstructor(types).newInstance(args);
 				map.put(confMapping.name, mapper);
 			}
 		} catch (ClassNotFoundException e) {

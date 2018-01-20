@@ -14,7 +14,7 @@ public class CitySceneBuilder {
 	private void light(SubScene subScene) {
 		// add lightning
 		final AmbientLight amblight = new AmbientLight(Color.WHITE);
-		this.addNode(amblight);
+//		this.addNode(amblight);
 	}
 
 	private void camera(SubScene subScene) {

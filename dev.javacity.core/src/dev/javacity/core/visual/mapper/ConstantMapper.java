@@ -1,13 +1,15 @@
 package dev.javacity.core.visual.mapper;
 
-import javacity.model.TargetEntity;
+import dev.javacity.core.visual.MappedValue;
+import dev.javacity.core.visual.Mapper;
+import javacity.model.SoftwareEntity;
 
-public class ConstantMapper<T> implements Mapper<T> {
+public class ConstantMapper extends AbstractMapper implements Mapper {
 
-	private T value;
+	private MappedValue value;
 
 	@Override
-	public T toAttribute(TargetEntity entity) {
+	public MappedValue toAttribute(SoftwareEntity entity) {
 		// TODO 自動生成されたメソッド・スタブ
 		return this.value;
 	}

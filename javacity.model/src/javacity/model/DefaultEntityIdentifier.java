@@ -6,19 +6,19 @@ package javacity.model;
  */
 public class DefaultEntityIdentifier implements EntityIdentifier {
 	private int id;
-	private String kind;
+	private SoftwareElementType type;
 
 	/**
 	 * 指定された整数値を使用して識別子を作成します。
 	 * @param id この識別子の本体
 	 * @throws IllegalArgumentException 引数に正の値以外を与えた場合
 	 */
-	public DefaultEntityIdentifier(int id, String kind) {
+	public DefaultEntityIdentifier(int id, SoftwareElementType type) {
 		if(id <= 0) {
 			 throw new IllegalArgumentException("Identifier must be positive");
 		}
         this.id = id;
-        this.kind = kind;
+        this.type = type;
     }
 
 	public int toValue() {
@@ -32,7 +32,7 @@ public class DefaultEntityIdentifier implements EntityIdentifier {
 	 */
 	@Override
 	public String toString() {
-		return "id: " + this.id + ", className" + this.kind;
+		return "id: " + this.id + ", elementType" + this.type;
 	}
 	/**
 	 * {@inheritDoc}
@@ -41,7 +41,7 @@ public class DefaultEntityIdentifier implements EntityIdentifier {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((kind == null) ? 0 : kind.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + id;
 		return result;
 	}
@@ -57,18 +57,13 @@ public class DefaultEntityIdentifier implements EntityIdentifier {
 		if (getClass() != obj.getClass())
 			return false;
 		DefaultEntityIdentifier other = (DefaultEntityIdentifier) obj;
-		if (kind == null) {
-			if (other.kind != null)
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!kind.equals(other.kind))
+		} else if (!type.equals(other.type))
 			return false;
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toKind() {
-		return this.kind;
 	}
 }

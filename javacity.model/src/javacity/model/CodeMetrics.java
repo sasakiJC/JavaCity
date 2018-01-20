@@ -1,5 +1,5 @@
 package javacity.model;
 
-public interface CodeMetrics {
+public class CodeMetrics {
 
 }

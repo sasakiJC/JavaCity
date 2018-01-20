@@ -1,6 +1,4 @@
-package javacity.model.importer;
-
-import dev.javacity.core.DataModel;
+package javacity.model;
 
 public interface ModelImporter {
 

@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class ChessboardLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class ChessboardLayout implements InnerLayout {
 
 }

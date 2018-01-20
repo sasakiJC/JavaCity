@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class RectanglePackingLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class RectanglePackingLayout implements InnerLayout {
 
 }

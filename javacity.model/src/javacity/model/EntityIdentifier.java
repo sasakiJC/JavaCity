@@ -4,7 +4,6 @@ package javacity.model;
  * エンティティの識別子を表すためのインターフェースです。
  */
 public interface EntityIdentifier {
-	public String toKind();
 
 	/**
 	 * 保持している全ての属性の等価性を用いて指定されたオブジェクトとこのバリューオブジェクトが等しいかどうか比較します。

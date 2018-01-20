@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class SpiralLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class SpiralLayout implements InnerLayout {
 
 }

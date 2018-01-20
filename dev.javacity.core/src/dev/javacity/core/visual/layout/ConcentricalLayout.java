@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class ConcentricalLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class ConcentricalLayout implements InnerLayout {
 
 }

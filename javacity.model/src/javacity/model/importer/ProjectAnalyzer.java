@@ -14,9 +14,11 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import dev.javacity.core.DataModel;
-import javacity.model.TClass;
-import javacity.model.TPackage;
+import javacity.model.Activator;
+import javacity.model.CodeMetrics;
+import javacity.model.DataModel;
+import javacity.model.SoftwareEntity;
+import javacity.model.elementType.PackageElement;
 
 public class ProjectAnalyzer {
 
@@ -44,7 +46,7 @@ public class ProjectAnalyzer {
 		for(IPackageFragmentRoot packageRoot : packageRoots) {
 			if(packageRoot.getKind() == IPackageFragmentRoot.K_SOURCE) {
 				for(IJavaElement pack : packageRoot.getChildren()) {
-					TPackage targetPack = this.analyzePackage((IPackageFragment)pack);
+					SoftwareEntity targetPack = this.analyzePackage((IPackageFragment)pack);
 //					list.add(targetPack);
 				}
 			}
@@ -53,16 +55,17 @@ public class ProjectAnalyzer {
 	}
 
 
-	private TPackage analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
+	private SoftwareEntity analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
 //		TPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
-		TPackage pack = this.dataModel.newPackage(packageFragment.getElementName());
+		CodeMetrics metrics = new CodeMetrics();
+		SoftwareEntity pack = this.dataModel.newEntity(packageFragment.getElementName(), Activator.getExtensionLoader().get(PackageElement.class), metrics);
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
-			TClass clazz = this.analyzeClass(unit);
+			SoftwareEntity clazz = this.analyzeClass(unit);
 		}
 		return pack;
 	}
 
-	private TClass analyzeClass(ICompilationUnit unit) {
+	private SoftwareEntity analyzeClass(ICompilationUnit unit) {
 		CompilationUnit parse = parse(unit);
 		ClassAnalyzeVisitor visitor = new ClassAnalyzeVisitor(this.dataModel, parse);
 		parse.accept(visitor);

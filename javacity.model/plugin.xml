@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="javacity.model.entity" name="TEntity" schema="schema/javacity.model.entity.exsd"/>
+   <extension
+         point="javacity.model.entity">
+      <elementType
+            class="javacity.model.elementType.ClassElement"
+            id="javacity.model.elementType.ClassElement"
+            name="class">
+      </elementType>
+      <elementType
+            class="javacity.model.elementType.MethodElement"
+            id="javacity.model.elementType.MethodElement"
+            name="method">
+      </elementType>
+      <elementType
+            class="javacity.model.elementType.FieldElement"
+            id="javacity.model.elementType.FieldElement"
+            name="field">
+      </elementType>
+      <elementType
+            class="javacity.model.elementType.PackageElement"
+            id="javacity.model.elementType.PackageElement"
+            name="package">
+      </elementType>
+   </extension>
+
+</plugin>

@@ -5,14 +5,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javacity.model.DataModel;
-import javacity.model.TClass;
+import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
 import javafx.scene.Node;
 
 public class CityView extends Group implements Observer {
 
 	private DataModel testDataModel;
-	private Map<TClass, Building> classMap;
+	private Map<SoftwareEntity, Building> classMap;
 	private VisLayout layout;
 
 	public CityView() {

@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class CircleLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class CircleLayout implements InnerLayout {
 
 }

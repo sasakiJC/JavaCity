@@ -1,5 +1,7 @@
 package dev.javacity.core.visual.layout;
 
-public class ProgressiveBricksLayout {
+import dev.javacity.core.visual.InnerLayout;
+
+public class ProgressiveBricksLayout implements InnerLayout {
 
 }
