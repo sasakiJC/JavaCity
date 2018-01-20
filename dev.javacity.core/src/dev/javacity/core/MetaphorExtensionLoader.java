@@ -56,6 +56,67 @@ public class MetaphorExtensionLoader {
 	private Map<Class<?>, InnerLayout> layoutMap;
 
 
+	private Map<Class<?>, String> mapperClassMap;
+	private Map<Class<?>, String> layoutClassMap;
+
+	public Map<Class<?>, String> getMapperExtensionClasses() {
+		if (this.mapperClassMap != null) {
+			return this.mapperClassMap;
+		}
+
+		IExtensionRegistry registory = Platform.getExtensionRegistry();
+		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		if (point == null) {
+			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+		}
+
+		this.mapperClassMap = new HashMap<>();
+		for (IExtension extension : point.getExtensions()) {
+			for (IConfigurationElement element : extension.getConfigurationElements()) {
+				try {
+					Class<?> clazz = Class.forName(element.getAttribute("class"));
+					String name = element.getAttribute("name");
+					this.mapperClassMap.put(clazz, name);
+				} catch (ClassNotFoundException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+			}
+		}
+		return this.mapperClassMap;
+	}
+
+	public Map<Class<?>, String> getLayoutExtensionClasses() {
+	if (this.layoutClassMap != null) {
+		return this.layoutClassMap;
+	}
+
+	IExtensionRegistry registory = Platform.getExtensionRegistry();
+	IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+	if (point == null) {
+		throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+	}
+
+	this.layoutClassMap = new HashMap<Class<?>, String>();
+	for (IExtension extension : point.getExtensions()) {
+		for (IConfigurationElement element : extension.getConfigurationElements()) {
+			try {
+				Class<?> clazz = Class.forName(element.getAttribute("class"));
+				if(InnerLayout.class.isAssignableFrom(clazz)) {
+					String name = element.getAttribute("name");
+					this.layoutClassMap.put(clazz, name);
+				}
+			} catch (ClassNotFoundException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+		}
+	}
+	return this.layoutClassMap;
+}
+
+
+
 
 
 	public Map<Class<?>, Glyph> getGlyphExtensions() {
@@ -94,77 +155,77 @@ public class MetaphorExtensionLoader {
 		return this.glyphMap;
 	}
 
-	public Map<Class<?>, Mapper> getMapperExtensions() {
-		if (this.mapperMap != null) {
-			return this.mapperMap;
-		}
+//	public Map<Class<?>, Mapper> getMapperExtensions() {
+//		if (this.mapperMap != null) {
+//			return this.mapperMap;
+//		}
+//
+//		IExtensionRegistry registory = Platform.getExtensionRegistry();
+//		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+//		if (point == null) {
+//			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+//		}
+//
+//		this.mapperMap = new HashMap<Class<?>, Mapper>();
+//		for (IExtension extension : point.getExtensions()) {
+//			for (IConfigurationElement element : extension.getConfigurationElements()) {
+//				try {
+//					Class<?> clazz = Class.forName(element.getAttribute("class"));
+//					Object obj = element.createExecutableExtension("class");	//class属性
+//					if (obj instanceof Mapper) {
+//						Mapper mapper = (Mapper)obj;
+//						mapper.setName(element.getAttribute("name"));
+//						this.mapperMap.put(clazz, mapper);
+//					}
+//				} catch (CoreException e) {
+//					Activator.getDefault().getLog().log(e.getStatus());
+//				} catch (ClassNotFoundException e) {
+//					// TODO 自動生成された catch ブロック
+//					e.printStackTrace();
+//				} catch (InvalidRegistryObjectException e) {
+//					// TODO 自動生成された catch ブロック
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		return this.mapperMap;
+//	}
 
-		IExtensionRegistry registory = Platform.getExtensionRegistry();
-		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
-		if (point == null) {
-			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
-		}
-
-		this.mapperMap = new HashMap<Class<?>, Mapper>();
-		for (IExtension extension : point.getExtensions()) {
-			for (IConfigurationElement element : extension.getConfigurationElements()) {
-				try {
-					Class<?> clazz = Class.forName(element.getAttribute("class"));
-					Object obj = element.createExecutableExtension("class");	//class属性
-					if (obj instanceof Mapper) {
-						Mapper mapper = (Mapper)obj;
-						mapper.setName(element.getAttribute("name"));
-						this.mapperMap.put(clazz, mapper);
-					}
-				} catch (CoreException e) {
-					Activator.getDefault().getLog().log(e.getStatus());
-				} catch (ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				} catch (InvalidRegistryObjectException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				}
-			}
-		}
-		return this.mapperMap;
-	}
-
-	public Map<Class<?>, InnerLayout> getInnerLayoutExtensions() {
-		if (this.layoutMap != null) {
-			return this.layoutMap;
-		}
-
-		IExtensionRegistry registory = Platform.getExtensionRegistry();
-		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
-		if (point == null) {
-			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
-		}
-
-		this.layoutMap = new HashMap<Class<?>, InnerLayout>();
-		for (IExtension extension : point.getExtensions()) {
-			for (IConfigurationElement element : extension.getConfigurationElements()) {
-				try {
-					Class<?> clazz = Class.forName(element.getAttribute("class"));
-					Object obj = element.createExecutableExtension("class");	//class属性
-					if (obj instanceof InnerLayout) {
-						InnerLayout layout = (InnerLayout)obj;
-						layout.setName(element.getAttribute("name"));
-						this.layoutMap.put(clazz, layout);
-					}
-				} catch (CoreException e) {
-					Activator.getDefault().getLog().log(e.getStatus());
-				} catch (ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				} catch (InvalidRegistryObjectException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				}
-			}
-		}
-		return this.layoutMap;
-	}
+//	public Map<Class<?>, InnerLayout> getInnerLayoutExtensions() {
+//		if (this.layoutMap != null) {
+//			return this.layoutMap;
+//		}
+//
+//		IExtensionRegistry registory = Platform.getExtensionRegistry();
+//		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+//		if (point == null) {
+//			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+//		}
+//
+//		this.layoutMap = new HashMap<Class<?>, InnerLayout>();
+//		for (IExtension extension : point.getExtensions()) {
+//			for (IConfigurationElement element : extension.getConfigurationElements()) {
+//				try {
+//					Class<?> clazz = Class.forName(element.getAttribute("class"));
+//					Object obj = element.createExecutableExtension("class");	//class属性
+//					if (obj instanceof InnerLayout) {
+//						InnerLayout layout = (InnerLayout)obj;
+//						layout.setName(element.getAttribute("name"));
+//						this.layoutMap.put(clazz, layout);
+//					}
+//				} catch (CoreException e) {
+//					Activator.getDefault().getLog().log(e.getStatus());
+//				} catch (ClassNotFoundException e) {
+//					// TODO 自動生成された catch ブロック
+//					e.printStackTrace();
+//				} catch (InvalidRegistryObjectException e) {
+//					// TODO 自動生成された catch ブロック
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		return this.layoutMap;
+//	}
 
 
 	public Glyph getGlyph(Class<?> clazz) {
@@ -245,62 +306,6 @@ public class MetaphorExtensionLoader {
 //	}
 //	return this.glyphClassMap;
 //}
-//
-//public Map<Class<?>, String> getMapperExtensionClasses() {
-//	if (this.mapperClassMap != null) {
-//		return this.mapperClassMap;
-//	}
-//
-//	IExtensionRegistry registory = Platform.getExtensionRegistry();
-//	IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
-//	if (point == null) {
-//		throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
-//	}
-//
-//	this.mapperClassMap = new HashMap<Class<?>, String>();
-//	for (IExtension extension : point.getExtensions()) {
-//		for (IConfigurationElement element : extension.getConfigurationElements()) {
-//			try {
-//				Class<?> clazz = Class.forName(element.getAttribute("class"));
-//				if(Mapper.class.isAssignableFrom(clazz)) {
-//					String name = element.getAttribute("name");
-//					this.mapperClassMap.put(clazz, name);
-//				}
-//			} catch (ClassNotFoundException e) {
-//				// TODO 自動生成された catch ブロック
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-//	return this.mapperClassMap;
-//}
-//
-//public Map<Class<?>, String> getLayoutExtensionClasses() {
-//	if (this.layoutClassMap != null) {
-//		return this.layoutClassMap;
-//	}
-//
-//	IExtensionRegistry registory = Platform.getExtensionRegistry();
-//	IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
-//	if (point == null) {
-//		throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
-//	}
-//
-//	this.layoutClassMap = new HashMap<Class<?>, String>();
-//	for (IExtension extension : point.getExtensions()) {
-//		for (IConfigurationElement element : extension.getConfigurationElements()) {
-//			try {
-//				Class<?> clazz = Class.forName(element.getAttribute("class"));
-//				if(InnerLayout.class.isAssignableFrom(clazz)) {
-//					String name = element.getAttribute("name");
-//					this.layoutClassMap.put(clazz, name);
-//				}
-//			} catch (ClassNotFoundException e) {
-//				// TODO 自動生成された catch ブロック
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-//	return this.layoutClassMap;
-//}
+
+
 }

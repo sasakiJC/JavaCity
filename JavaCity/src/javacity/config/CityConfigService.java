@@ -4,6 +4,7 @@ import java.net.URL;
 
 import javax.xml.bind.JAXB;
 
+import dev.javacity.core.TestConverter;
 import javacity.Activator;
 
 public class CityConfigService {
@@ -28,5 +29,9 @@ public class CityConfigService {
 
 	public void save() {
 
+	}
+
+	public TestConverter getConverter() {
+		return this.conf.converter();
 	}
 }

@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import dev.javacity.core.TestConverter;
+import dev.javacity.core.visual.MVConverter;
 import javacity.config.jaxb.MapAdapter;
 import javacity.model.Activator;
 
@@ -46,6 +48,15 @@ public class CityConfig {
 	private ElementConfig createDefaultElm() {
 		return new ElementConfig();
 	}
+
+	public TestConverter converter() {
+		Map<Class<?>, MVConverter> convertMap = new HashMap<>();
+		for(Map.Entry<Class<?>, String> entry : Activator.getExtensionLoader().getElementExtensionClasses().entrySet()) {
+			convertMap.put(entry.getKey(), this.elements.get(entry.getValue()).createConverter());
+		}
+		return new TestConverter(convertMap);
+	}
+
 
 //	public MVConverter toConverter(String key) {
 //		TestConfigModel confMElm = this.elements.get(key);

@@ -1,25 +1,24 @@
 package dev.javacity.core.visual;
 
+import java.util.Map;
+
+import dev.javacity.core.Glyph;
 import javacity.model.SoftwareEntity;
 
 public class MVConverter {
 
-	private String glyphName;
-	private Mappings mappings;
+	private Glyph glyph;
+	private Map<String, Mapper> mapper;
+	private InnerLayout layout;
 
-	public MVConverter(String glyphName, Mappings mappings) {
-		this.glyphName = glyphName;
-		this.mappings = mappings;
+	public MVConverter(Glyph glyph, Map<String, Mapper> mapper, InnerLayout layout) {
+		this.glyph = glyph;
+		this.mapper = mapper;
+		this.layout = layout;
 	}
 
 	public VisualizedComponent createVisualizedComponent(SoftwareEntity entity) {
-		switch(this.glyphName) {
-			case "cuboid":
-				return new Building(entity, this.mappings);
-			case "terrain":
-				return new District(entity, this.mappings);
-			default:
-				return new District(entity, this.mappings);
-		}
+
+		return null;
 	}
 }

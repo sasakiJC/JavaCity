@@ -10,6 +10,7 @@ import org.eclipse.ui.PlatformUI;
 
 import dev.javacity.core.TestConverter;
 import dev.javacity.core.visual.CityView;
+import javacity.config.CityConfigService;
 import javacity.config.ConfigDialog;
 import javacity.model.DataModel;
 
@@ -28,7 +29,8 @@ public class CityViewPartController {
 
 	public void execute() {
 //		Map<String, MVConverter> map = this.showConfigViewPart();
-		TestConverter map = this.showConfigViewPart();
+		TestConverter conv = this.showConfigViewPart();
+
 		this.cityView = new CityView();
 
 //		map.get("package").createVisualizedComponent(entity)
@@ -42,11 +44,12 @@ public class CityViewPartController {
 
 //		URL entry = Activator.getDefault().getBundle().getEntry("/resource/config.xml");
 //		ViewConfig conf = JAXB.unmarshal(entry, ViewConfig.class);
-
-        Dialog dialog = new ConfigDialog(activeWindow.getShell());
+        CityConfigService service = new CityConfigService();
+        Dialog dialog = new ConfigDialog(activeWindow.getShell(), service);
         int result = dialog.open();
 
         if(result == SWT.OK) {
+
 //        	MVConverter systemConverter = conf.toConverter("system");
 //        	MVConverter packageConverter = conf.toConverter("package");
 //        	MVConverter classConverter = conf.toConverter("class");
@@ -57,7 +60,7 @@ public class CityViewPartController {
 //        	map.put("class", classConverter);
 
 //        	return map;
-        	return new TestConverter();
+        	return service.getConverter();
         }else{
         	return null;
         }

@@ -33,4 +33,16 @@ public class ConfigInnerLayout {
 		this.verticalGap = verticalGap;
 	}
 
+	public InnerLayout createInnerLayout() {
+		Class<?>[] paramTypes = {float.class, float.class, float.class, float.class};
+		InnerLayout layout = null;
+		try {
+			layout = (InnerLayout) this.layoutId.getConstructor(paramTypes).newInstance(this.horizontalMargin, this.horizontalGap, this.verticalMargin, this.verticalGap);
+		} catch (ReflectiveOperationException  e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return layout;
+	}
+
 }

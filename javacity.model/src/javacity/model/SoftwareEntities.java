@@ -1,5 +1,6 @@
 package javacity.model;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,5 +21,13 @@ public class SoftwareEntities {
 
 	public void add(SoftwareEntity entity) {
 		this.elements.put(entity.getIdentifier(), entity);
+	}
+
+	public SoftwareEntity get(EntityIdentifier identifier) {
+		return this.elements.get(identifier);
+	}
+
+	public Collection<SoftwareEntity> getElements() {
+		return this.elements.values();
 	}
 }

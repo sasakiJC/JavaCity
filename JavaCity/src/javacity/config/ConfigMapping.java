@@ -1,5 +1,7 @@
 package javacity.config;
 
+import java.util.Arrays;
+
 import javax.xml.bind.annotation.XmlElement;
 
 import dev.javacity.core.visual.Mapper;
@@ -32,5 +34,18 @@ public class ConfigMapping {
 
 	public String toString() {
 		return "mapperClassId: " + this.mapperClassId + ", modelProp: " + modelProperties.toString();
+	}
+
+	public Mapper createMapper() {
+		Class<?>[] paramTypes = new Class<?>[this.modelProperties.length];
+		Arrays.fill(paramTypes, String.class);
+		Mapper mapper = null;
+		try {
+			mapper = (Mapper) this.mapperClassId.getConstructor(paramTypes).newInstance((Object[])this.modelProperties);
+		} catch (ReflectiveOperationException  e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return mapper;
 	}
 }

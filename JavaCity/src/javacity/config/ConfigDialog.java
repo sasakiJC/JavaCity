@@ -31,9 +31,9 @@ public class ConfigDialog extends Dialog {
 
 	private ElementConfig nowSelectedElementConfig;
 
-	public ConfigDialog(Shell parent) {
+	public ConfigDialog(Shell parent, CityConfigService service) {
 		super(parent);
-		this.service = new CityConfigService();
+		this.service = service;
 		this.conf = this.service.loadDefault();
 	}
 

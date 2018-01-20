@@ -11,8 +11,9 @@ import javax.xml.bind.annotation.XmlElement;
 import dev.javacity.core.Activator;
 import dev.javacity.core.BuildingGlyph;
 import dev.javacity.core.Glyph;
+import dev.javacity.core.visual.InnerLayout;
+import dev.javacity.core.visual.MVConverter;
 import dev.javacity.core.visual.Mapper;
-import dev.javacity.core.visual.mapper.ConstantMapper;
 
 public class ElementConfig {
 
@@ -67,8 +68,15 @@ public class ElementConfig {
 //		this.mappers.forEach((key,value) -> value.normalize());
 	}
 
-	private Mapper createDefaultMapper() {
-		return new ConstantMapper();
+	public MVConverter createConverter() {
+		Glyph glyph = Activator.getMetaphorExtensionLoader().getGlyph(this.glyphClass);
+		Map<String, Mapper> mapper = new HashMap<>();
+		for(String attr : glyph.getAttributes()) {
+			mapper.put(attr, this.mappings.get(attr).createMapper());
+		}
+		InnerLayout layout = this.configInnerLayout.createInnerLayout();
+
+		return new MVConverter(glyph, mapper, layout);
 	}
 
 //	public Map<String, Mapper<?>> toMappings() {

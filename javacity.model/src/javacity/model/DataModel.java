@@ -31,8 +31,12 @@ public class DataModel extends Observable {
 		return entity;
 	}
 
-	public SoftwareEntities getEntities(SoftwareElementType type) {
-		return this.entities.get(type);
+//	public Map<Class<?>, SoftwareEntities> getEntities() {
+//		return this.entities;
+//	}
+
+	public SoftwareEntities getEntities(Class<?> clazz) {
+		return this.entities.get(clazz);
 	}
 
 
