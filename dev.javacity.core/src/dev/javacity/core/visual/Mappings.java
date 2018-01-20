@@ -2,7 +2,7 @@ package dev.javacity.core.visual;
 
 import java.util.Map;
 
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
 public class Mappings {
 
@@ -16,7 +16,7 @@ public class Mappings {
 		this.innerLayout = innerLayout;
 	}
 
-	public Object mapToAttribute(String key, TargetEntity entity) {
+	public Object mapToAttribute(String key, SoftwareEntity entity) {
 		return this.map.get(key).toAttribute(entity);
 	}
 

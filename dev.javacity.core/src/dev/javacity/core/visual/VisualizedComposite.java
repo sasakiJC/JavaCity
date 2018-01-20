@@ -3,12 +3,12 @@ package dev.javacity.core.visual;
 import java.util.LinkedList;
 import java.util.List;
 
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
 
 public abstract class VisualizedComposite implements VisualizedComponent {
 
-	protected TargetEntity entity;
+	protected SoftwareEntity entity;
 	protected Group fxView;
 	protected List<VisualizedComponent> children;
 	protected VisLayout layout;
@@ -16,20 +16,20 @@ public abstract class VisualizedComposite implements VisualizedComponent {
 	protected Mappings mappings;
 	protected boolean needsRecreate = false;
 
-	public VisualizedComposite(TargetEntity entity, VisLayout layout) {
+	public VisualizedComposite(SoftwareEntity entity, VisLayout layout) {
 		this.entity = entity;
 		this.layout = layout;
 		this.children = new LinkedList<VisualizedComponent>();
 	}
 
-	public VisualizedComposite(TargetEntity entity, Mappings mappings) {
+	public VisualizedComposite(SoftwareEntity entity, Mappings mappings) {
 		this.entity = entity;
 		this.mappings = mappings;
 	}
 
 
 	@Override
-	public TargetEntity getEntity() {
+	public SoftwareEntity getEntity() {
 		return this.entity;
 	}
 	@Override

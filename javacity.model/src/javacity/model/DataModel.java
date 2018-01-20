@@ -18,10 +18,10 @@ public class DataModel extends Observable {
 
 	public SoftwareEntity newEntity(String name, Class<?> entityClass, CodeMetrics metrics) {
 		SoftwareEntities softwareEntities = this.entities.get(entityClass);
-		Class<?>[] paramTypes = {String.class, EntityIdentifier.class, CodeMetrics.class};
+		Class<?>[] paramTypes = {EntityIdentifier.class, String.class, CodeMetrics.class};
 		SoftwareEntity entity=null;
 		try {
-			entity = (SoftwareEntity) entityClass.getConstructor(paramTypes).newInstance(name, softwareEntities.nextIdentifier(), metrics);
+			entity = (SoftwareEntity) entityClass.getConstructor(paramTypes).newInstance(softwareEntities.nextIdentifier(), name, metrics);
 		} catch (ReflectiveOperationException  e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

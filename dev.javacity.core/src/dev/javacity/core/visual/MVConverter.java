@@ -1,6 +1,6 @@
 package dev.javacity.core.visual;
 
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
 public class MVConverter {
 
@@ -12,7 +12,7 @@ public class MVConverter {
 		this.mappings = mappings;
 	}
 
-	public VisualizedComponent createVisualizedComponent(TargetEntity entity) {
+	public VisualizedComponent createVisualizedComponent(SoftwareEntity entity) {
 		switch(this.glyphName) {
 			case "cuboid":
 				return new Building(entity, this.mappings);

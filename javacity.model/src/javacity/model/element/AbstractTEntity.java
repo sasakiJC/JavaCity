@@ -5,15 +5,15 @@ import java.util.List;
 
 import javacity.model.CodeMetrics;
 import javacity.model.EntityIdentifier;
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
 
 
-public abstract class AbstractTEntity implements TargetEntity {
+public abstract class AbstractTEntity implements SoftwareEntity {
 
 	protected String name;
-	private TargetEntity parent;
-	private List<TargetEntity> children;
+	private SoftwareEntity parent;
+	private List<SoftwareEntity> children;
 
 	private CodeMetrics metrics;
 
@@ -27,11 +27,12 @@ public abstract class AbstractTEntity implements TargetEntity {
 	 * @param identifier エンティティの識別子
 	 * @throws NullPointerException 引数に{@code null}を与えた場合
 	 */
-	protected AbstractTEntity(EntityIdentifier identifier, String name) {
+	protected AbstractTEntity(EntityIdentifier identifier, String name, CodeMetrics metrics) {
 		if(identifier==null)
 			throw new NullPointerException("Identifier cannot be null");
 		this.identifier = identifier;
 		this.name = name;
+		this.metrics = metrics;
 		this.children = new LinkedList<>();
 	}
 
@@ -61,31 +62,31 @@ public abstract class AbstractTEntity implements TargetEntity {
         if (this == obj) {
             return true;
         }
-        if (obj == null || obj instanceof TargetEntity == false) {
+        if (obj == null || obj instanceof SoftwareEntity == false) {
             return false;
         }
-        return identifier.equals(((TargetEntity) obj).getIdentifier());
+        return identifier.equals(((SoftwareEntity) obj).getIdentifier());
     }
 
 	@Override
-	public void addChild(TargetEntity child) {
+	public void addChild(SoftwareEntity child) {
 		this.children.add(child);
 	}
 
 	@Override
-	public List<TargetEntity> getChildren() {
+	public List<SoftwareEntity> getChildren() {
 		return this.children;
 	}
 
 	@Override
-	public void removeChild(TargetEntity child) {
+	public void removeChild(SoftwareEntity child) {
 		if(this.children.contains(child)) {
 			this.children.remove(child);
 		}
 	}
 
 	@Override
-	public void setParent(TargetEntity parent) {
+	public void setParent(SoftwareEntity parent) {
 		this.parent = parent;
 	}
 

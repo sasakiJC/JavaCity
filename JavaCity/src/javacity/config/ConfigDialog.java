@@ -14,19 +14,22 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import dev.javacity.core.Activator;
 import dev.javacity.core.Glyph;
-import javacity.model.SoftwareElementType;
+import dev.javacity.core.visual.InnerLayout;
 
 public class ConfigDialog extends Dialog {
 
 	private CityConfig conf;
 
 	private CityConfigService service;
+
+	private ElementConfig nowSelectedElementConfig;
 
 	public ConfigDialog(Shell parent) {
 		super(parent);
@@ -46,8 +49,8 @@ public class ConfigDialog extends Dialog {
 //		this.createGlyphGroup(container, conf);
 //		this.createInnerLayoutGroup(container, conf);
 
-		this.createTestM(container, conf);
-		this.createTestG(container, conf);
+		this.createTestM(container);
+		this.createTestG(container);
 		this.createTestI(container, conf);
 
         return container;
@@ -57,14 +60,15 @@ public class ConfigDialog extends Dialog {
 
 	}
 
-	private void createTestM(Composite container, CityConfig conf) {
+	private void createTestM(Composite container) {
 		Group modelListGroup = new Group(container, SWT.NONE);
 		modelListGroup.setText("Model Element");
 		modelListGroup.setLayout(new GridLayout());
 //		modelListGroup.setLayoutData (new GridData (SWT.LEFT, SWT.LEFT, true, true));
 
 		List list = new List(modelListGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
-		list.setItems(conf.getElementNames());
+		list.setItems(this.conf.getElementNames());
+
 
 		list.addSelectionListener(new SelectionAdapter () {
 			@Override
@@ -74,6 +78,7 @@ public class ConfigDialog extends Dialog {
 			}
 		});
 
+		this.nowSelectedElementConfig = this.conf.getElm(list.getItem(0));
 
 		Button checkButton = new Button(modelListGroup, SWT.CHECK);
 		checkButton.setText("Visib");
@@ -85,7 +90,7 @@ public class ConfigDialog extends Dialog {
 //		});
 	}
 
-	private void createTestG(Composite container, CityConfig conf) {
+	private void createTestG(Composite container) {
 		Group glyphGroup = new Group(container, SWT.NONE);
 		glyphGroup.setText("Glyph");
 		glyphGroup.setLayout(new GridLayout());
@@ -97,24 +102,27 @@ public class ConfigDialog extends Dialog {
 		Map<Class<?>, Glyph> glyphMap = Activator.getMetaphorExtensionLoader().getGlyphExtensions();
 		String[] strTemp = glyphMap.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
 		glyphCombo.setItems(strTemp);
-//		glyphCombo.setText(confGlyph.name);
 
-
-//		Label label = new Label (glyphGroup, SWT.LEFT);
-//		label.setText("Mappings");
-//		List mappingList = new List(glyphGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
-//		mappingList.setItems(confGlyph.attributes);
+		glyphCombo.setText(Activator.getMetaphorExtensionLoader().getGlyph(this.nowSelectedElementConfig.glyphClass).getName());
+		Label label = new Label (glyphGroup, SWT.LEFT);
+		label.setText("Mappings");
+		List mappingList = new List(glyphGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
+		mappingList.setItems(Activator.getMetaphorExtensionLoader().getGlyph(this.nowSelectedElementConfig.glyphClass).getAttributes());
 	}
 
 	private void createTestI(Composite container, CityConfig conf) {
-//		Group innerLayoutGroup = new Group(container, SWT.NONE);
-//		innerLayoutGroup.setText("Inner Layout");
-//		innerLayoutGroup.setLayout(new GridLayout());
-//
-//		ConfigInnerLayout layout = conf.getDefaultModelElement().configInnerLayout;
-//
-//		Combo layoutCombo = new Combo(innerLayoutGroup, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.SIMPLE);
-//		layoutCombo.setItems(getInnerLayout());
+		Group innerLayoutGroup = new Group(container, SWT.NONE);
+		innerLayoutGroup.setText("Inner Layout");
+		innerLayoutGroup.setLayout(new GridLayout());
+
+		ConfigInnerLayout layout = this.nowSelectedElementConfig.configInnerLayout;
+
+		Combo layoutCombo = new Combo(innerLayoutGroup, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.SIMPLE);
+		Map<Class<?>, InnerLayout> layoutMap = Activator.getMetaphorExtensionLoader().getInnerLayoutExtensions();
+		String[] strTemp = layoutMap.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
+		layoutCombo.setItems(strTemp);
+
+		layoutCombo.setText(Activator.getMetaphorExtensionLoader().getInnerLayout(layout.layoutId).getName());
 	}
 
 
@@ -178,10 +186,10 @@ public class ConfigDialog extends Dialog {
 
 		List list = new List(modelListGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
 //		list.setItems(conf.getElementNames());
+		Map<Class<?>, String> temp = javacity.model.Activator.getExtensionLoader().getElementExtensionClasses();
+//		Map<Class<?>, SoftwareElementType> temp = javacity.model.Activator.getExtensionLoader().getElementTypeExtensions();
 
-		Map<Class<?>, SoftwareElementType> temp = javacity.model.Activator.getExtensionLoader().getElementTypeExtensions();
-
-		String[] strTemp = temp.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
+		String[] strTemp = temp.values().toArray(new String[]{});
 		list.setItems(strTemp);
 
 		list.addListener(SWT.Selection, new Listener() {

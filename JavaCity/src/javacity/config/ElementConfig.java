@@ -1,5 +1,6 @@
 package javacity.config;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,33 +9,39 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import dev.javacity.core.Activator;
+import dev.javacity.core.BuildingGlyph;
 import dev.javacity.core.Glyph;
 import dev.javacity.core.visual.Mapper;
 import dev.javacity.core.visual.mapper.ConstantMapper;
 
 public class ElementConfig {
-	@XmlAttribute
-	String name;
+
 	@XmlAttribute
 	boolean isVisible;
 
 	@XmlElement
-	Glyph glyph;
+	Class<? extends Glyph> glyphClass;
 	@XmlElement
-	Map<String, Mapper> mappers;
-//	ConfigMapping[] configMappings;
+//	Map<String, Mapper> mappers;
+	Map<String, ConfigMapping> mappings;
 	@XmlElement
 	ConfigInnerLayout configInnerLayout;
 
 	ElementConfig() {
-
+		this.isVisible = false;
+		this.glyphClass = BuildingGlyph.class;
+		this.mappings = new HashMap<>();
+		Glyph glyph = Activator.getMetaphorExtensionLoader().getGlyph(this.glyphClass);
+		for(String str : glyph.getAttributes()) {
+			this.mappings.put(str, new ConfigMapping());
+		}
+		this.configInnerLayout = new ConfigInnerLayout();
 	}
 
-	ElementConfig(String name, boolean isVisible, Glyph glyph, ConfigMapping[] configMappings, ConfigInnerLayout configInnerLayout) {
-		this.name = name;
+	ElementConfig(boolean isVisible, Class<? extends Glyph> glyphClass, Map<String, ConfigMapping> mappings, ConfigInnerLayout configInnerLayout) {
 		this.isVisible = isVisible;
-		this.glyph = glyph;
-//		this.configMappings = configMappings;
+		this.glyphClass = glyphClass;
+		this.mappings = mappings;
 		this.configInnerLayout = configInnerLayout;
 	}
 
@@ -42,23 +49,19 @@ public class ElementConfig {
 		this.isVisible = isVisible;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
 	public void normalize() {
 //		validate this.glyph
 //		validate this.configInnerLayout
 		Set<String> extTemp = Activator.getMetaphorExtensionLoader().allGlyphAttriutes();
 
-		List<String> diffExtConf = ConfigUtils.diff(extTemp, this.mappers.keySet());
-		List<String> diffConfExt = ConfigUtils.diff(this.mappers.keySet(), extTemp);
+		List<String> diffExtConf = ConfigUtils.diff(extTemp, this.mappings.keySet());
+		List<String> diffConfExt = ConfigUtils.diff(this.mappings.keySet(), extTemp);
 
 		if(!diffExtConf.isEmpty()) {
-			diffExtConf.forEach(item -> this.mappers.put(item, this.createDefaultMapper()));
+			diffExtConf.forEach(item -> this.mappings.put(item, new ConfigMapping()));
 		}
 		if(!diffConfExt.isEmpty()) {
-			diffConfExt.forEach(item -> this.mappers.remove(item));
+			diffConfExt.forEach(item -> this.mappings.remove(item));
 		}
 //		validate this.mappers
 //		this.mappers.forEach((key,value) -> value.normalize());

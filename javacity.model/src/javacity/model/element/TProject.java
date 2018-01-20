@@ -1,12 +1,12 @@
 package javacity.model.element;
 
 import javacity.model.EntityIdentifier;
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
-public class TProject implements TargetEntity {
+public class TProject implements SoftwareEntity {
 
 	@Override
-	public void setParent(TargetEntity parent) {
+	public void setParent(SoftwareEntity parent) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}

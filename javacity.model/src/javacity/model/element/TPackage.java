@@ -2,41 +2,44 @@ package javacity.model.element;
 
 import java.util.List;
 
+import javacity.model.CodeMetrics;
 import javacity.model.EntityIdentifier;
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
-public class TPackage implements TargetEntity {
+public class TPackage implements SoftwareEntity {
 
+	private final EntityIdentifier identifier;
 	private String fullName;
 	private String[] names;
-	private final EntityIdentifier identifier;
-	private List<TargetEntity> classes;
+	private CodeMetrics metrics;
+	private List<SoftwareEntity> classes;
 
-	public TPackage(EntityIdentifier identifier, String fullName) {
+	public TPackage(EntityIdentifier identifier, String fullName, CodeMetrics metrics) {
 		this.identifier = identifier;
 		this.fullName = fullName;
 		this.names = fullName.split(".");
+		this.metrics = metrics;
 	}
 
 	@Override
-	public void addChild(TargetEntity child) {
+	public void addChild(SoftwareEntity child) {
 		this.classes.add(child);
 	}
 
 	@Override
-	public List<TargetEntity> getChildren() {
+	public List<SoftwareEntity> getChildren() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
 	@Override
-	public void removeChild(TargetEntity child) {
+	public void removeChild(SoftwareEntity child) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
-	public void setParent(TargetEntity parent) {
+	public void setParent(SoftwareEntity parent) {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
@@ -83,10 +86,10 @@ public class TPackage implements TargetEntity {
         if (this == obj) {
             return true;
         }
-        if (obj == null || obj instanceof TargetEntity == false) {
+        if (obj == null || obj instanceof SoftwareEntity == false) {
             return false;
         }
-        return identifier.equals(((TargetEntity) obj).getIdentifier());
+        return identifier.equals(((SoftwareEntity) obj).getIdentifier());
     }
 
 

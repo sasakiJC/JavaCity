@@ -14,11 +14,10 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import javacity.model.Activator;
 import javacity.model.CodeMetrics;
 import javacity.model.DataModel;
 import javacity.model.SoftwareEntity;
-import javacity.model.elementType.PackageElement;
+import javacity.model.element.TPackage;
 
 public class ProjectAnalyzer {
 
@@ -58,7 +57,7 @@ public class ProjectAnalyzer {
 	private SoftwareEntity analyzePackage(IPackageFragment packageFragment) throws JavaModelException {
 //		TPackage pack = this.codeElementAppService.newPackage(packageFragment.getElementName());
 		CodeMetrics metrics = new CodeMetrics();
-		SoftwareEntity pack = this.dataModel.newEntity(packageFragment.getElementName(), Activator.getExtensionLoader().get(PackageElement.class), metrics);
+		SoftwareEntity pack = this.dataModel.newEntity(packageFragment.getElementName(), TPackage.class, metrics);
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
 			SoftwareEntity clazz = this.analyzeClass(unit);
 		}

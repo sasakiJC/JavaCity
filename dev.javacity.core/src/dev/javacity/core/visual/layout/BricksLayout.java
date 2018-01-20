@@ -1,7 +1,5 @@
 package dev.javacity.core.visual.layout;
 
-import dev.javacity.core.visual.InnerLayout;
-
-public class BricksLayout implements InnerLayout {
+public class BricksLayout extends AbstractLayout {
 
 }

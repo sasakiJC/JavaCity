@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Type;
 
+import javacity.model.CodeMetrics;
 import javacity.model.EntityIdentifier;
 
 public class TMethod extends AbstractTEntity {
@@ -16,13 +17,9 @@ public class TMethod extends AbstractTEntity {
 	private List<?> typeParameters;
 	private List<?> parameters;
 
-	public TMethod(EntityIdentifier identifier, String name) {
-		this(identifier, name, false);
-	}
-
-	public TMethod(EntityIdentifier identifier, String name, boolean isConstructor) {
-		super(identifier, name);
-		this.isConstructor = isConstructor;
+	public TMethod(EntityIdentifier identifier, String name, CodeMetrics metrics) {
+		super(identifier, name, metrics);
+//		this.isConstructor = isConstructor;
 	}
 
 	public void setBody(Block body) {

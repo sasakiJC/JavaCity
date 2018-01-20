@@ -2,14 +2,14 @@ package dev.javacity.core.visual;
 
 import java.util.List;
 
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
 
 public interface VisualizedComponent {
 
 //	public boolean isVisible();
 //	public void isSelected();
-	public TargetEntity getEntity();
+	public SoftwareEntity getEntity();
 	public default void add(VisualizedComponent child) {;
 		throw new UnsupportedOperationException("this component can't have any children");
 	}

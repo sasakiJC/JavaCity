@@ -1,7 +1,7 @@
 package dev.javacity.core.visual;
 
 import dev.javacity.core.visual.metaphor.BorderedBox;
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
@@ -12,11 +12,11 @@ public class Building extends VisualizedComposite {
 	private double width;
 	private double height;
 
-	public Building(TargetEntity entity, VisLayout layout) {
+	public Building(SoftwareEntity entity, VisLayout layout) {
 		super(entity, layout);
 	}
 
-	public Building(TargetEntity entity, Mappings mappings) {
+	public Building(SoftwareEntity entity, Mappings mappings) {
 		super(entity, mappings);
 	}
 

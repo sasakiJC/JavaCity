@@ -1,80 +1,51 @@
 package javacity.model;
 
-import java.util.LinkedList;
 import java.util.List;
 
-public class SoftwareEntity {
-
-	private final SoftwareElementType type;
-	private final String name;
-
-	private CodeMetrics metrics;
-	/**
-	 * このエンティティの識別子
-	 */
-	private final EntityIdentifier identifier;
-
-	private SoftwareEntity parent;
-	private List<SoftwareEntity> children;
-
-	/**
-	 * 指定された識別子を使用してエンティティを作成します。
-	 * @param identifier エンティティの識別子
-	 * @throws NullPointerException 引数に{@code null}を与えた場合
-	 */
-	public SoftwareEntity(String name, EntityIdentifier identifier, SoftwareElementType type) {
-		if(identifier==null)
-			throw new NullPointerException("Identifier cannot be null");
-		this.identifier = identifier;
-		this.name = name;
-		this.type = type;
-		this.children = new LinkedList<>();
+/**
+ * このインターフェースを実装するオブジェクトは{@link EntityIdentifier}を用いて同一性を判断します。
+ * また、このインターフェースを実装するクラスはコピーコンストラクタを提供しなければいけません。
+ */
+public interface SoftwareEntity extends TargetElement {
+	public default void addChild(SoftwareEntity child) {
+		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
-
-	public final EntityIdentifier getIdentifier() {
-		return this.identifier;
+	public default List<SoftwareEntity> getChildren() {
+		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
+	public default boolean hasChild() {
+		return false;
+	}
+	public default void removeChild(SoftwareEntity child) {
+		throw new UnsupportedOperationException(this.toString() + " can't have children");
+	}
+	public void setParent(SoftwareEntity parent);
 
 	/**
-	 * {@inheritDoc}
+	 * このエンティティの識別子を返します。
+	 * @return {@link EntityIdentifier}
+	 */
+	public EntityIdentifier getIdentifier();
+
+	/**
+	 * 識別子を用いて指定されたオブジェクトとこのエンティティが等しいかどうか比較します。
+	 * 識別子以外の属性が一致していなくても同一だと判断されます。
 	 *
-	 * <p>この実装では識別子のハッシュ・コード値を返す。
+	 * @param obj このエンティティと等しいかどうかが比較されるオブジェクト
+	 * @return 識別子が一致する場合に{@code true}
+	 * @see java.lang.Object#equals(Object)
 	 */
-    @Override
-    public final int hashCode() {
-        return identifier.hashCode();
-    }
+
+	public boolean equals(Object obj);
 
 	/**
-	 * {@inheritDoc}
+	 * このエンティティのハッシュ・コード値を返します。
+	 *
+	 * <p>Object.equalsメソッドをオーバーライドするクラスは、Object.hashCodeメソッドの一般規約を満たすために
+	 * Object.hashCodeメソッドもオーバーライドしなければならないことに注意してください。
+	 * @return このエンティティのハッシュ・コード値
+	 * @see java.lang.Object#hashCode()
+	 * @see java.lang.Object#equals(Object)
 	 */
-    @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || obj instanceof TargetEntity == false) {
-            return false;
-        }
-        return identifier.equals(((TargetEntity) obj).getIdentifier());
-    }
-
-	public void addChild(SoftwareEntity child) {
-		this.children.add(child);
-	}
-
-	public List<SoftwareEntity> getChildren() {
-		return this.children;
-	}
-
-	public void removeChild(SoftwareEntity child) {
-		if(this.children.contains(child)) {
-			this.children.remove(child);
-		}
-	}
-
-	public void setParent(SoftwareEntity parent) {
-		this.parent = parent;
-	}
-
+	public int hashCode();
 }

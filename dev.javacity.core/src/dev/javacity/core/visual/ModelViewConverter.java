@@ -1,10 +1,10 @@
 package dev.javacity.core.visual;
 
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 
 public class ModelViewConverter {
 
-	private TargetEntity entity;
+	private SoftwareEntity entity;
 	private String glyph;
 	private VisLayout layout;
 

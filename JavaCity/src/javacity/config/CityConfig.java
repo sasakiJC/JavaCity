@@ -1,8 +1,9 @@
 package javacity.config;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -15,7 +16,9 @@ public class CityConfig {
 	@XmlElement
 	Map<String, ElementConfig> elements;
 
-	public CityConfig() {}
+	public CityConfig() {
+		this.elements = new HashMap<String, ElementConfig>();
+	}
 
 	public ElementConfig getElm(String key) {
 		return this.elements.get(key);
@@ -26,9 +29,7 @@ public class CityConfig {
 	}
 
 	public void normalize() {
-		List<String> extTemp = Activator.getExtensionLoader().getElementTypeExtensions().values().stream()
-				.map(item->item.getName())
-				.collect(Collectors.toList());
+		Collection<String> extTemp = Activator.getExtensionLoader().getElementExtensionClasses().values();
 
 		List<String> diffExtConf = ConfigUtils.diff(extTemp, this.elements.keySet());
 		List<String> diffConfExt = ConfigUtils.diff(this.elements.keySet(), extTemp);
@@ -43,8 +44,7 @@ public class CityConfig {
 	}
 
 	private ElementConfig createDefaultElm() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return new ElementConfig();
 	}
 
 //	public MVConverter toConverter(String key) {

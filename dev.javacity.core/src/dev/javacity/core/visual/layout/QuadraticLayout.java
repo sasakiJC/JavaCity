@@ -1,7 +1,5 @@
 package dev.javacity.core.visual.layout;
 
-import dev.javacity.core.visual.InnerLayout;
-
-public class QuadraticLayout implements InnerLayout {
+public class QuadraticLayout extends AbstractLayout {
 
 }

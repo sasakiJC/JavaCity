@@ -1,7 +1,7 @@
 package dev.javacity.core.visual;
 
 import dev.javacity.core.visual.metaphor.BorderedBox;
-import javacity.model.TargetEntity;
+import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
@@ -12,12 +12,12 @@ public class District extends VisualizedComposite {
 	private double width;
 	private double height;
 
-	public District(TargetEntity entity, VisLayout layout) {
+	public District(SoftwareEntity entity, VisLayout layout) {
 		super(entity, layout);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	public District(TargetEntity entity, Mappings mappings) {
+	public District(SoftwareEntity entity, Mappings mappings) {
 		super(entity, mappings);
 	}
 

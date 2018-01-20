@@ -17,6 +17,7 @@ public class CityConfigService {
 	public CityConfig loadDefault() {
 		URL entry = Activator.getDefault().getBundle().getEntry("/resource/config.xml");
 		this.conf = JAXB.unmarshal(entry, CityConfig.class);
+		this.conf = new CityConfig();
 		this.conf.normalize();
 		return this.conf;
 	}

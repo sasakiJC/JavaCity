@@ -11,13 +11,12 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
-import javacity.model.Activator;
 import javacity.model.CodeMetrics;
 import javacity.model.DataModel;
 import javacity.model.SoftwareEntity;
-import javacity.model.elementType.ClassElement;
-import javacity.model.elementType.FieldElement;
-import javacity.model.elementType.MethodElement;
+import javacity.model.element.TClass;
+import javacity.model.element.TField;
+import javacity.model.element.TMethod;
 
 
 public class ClassAnalyzeVisitor extends ASTVisitor {
@@ -47,7 +46,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 		this.clazz = this.dataModel.newEntity(
 				node.getName().getIdentifier(),
-				Activator.getExtensionLoader().get(ClassElement.class),
+				TClass.class,
 				metrics
 				);
 
@@ -64,7 +63,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 		CodeMetrics metrics = new CodeMetrics();
 		this.clazz = this.dataModel.newEntity(
 				node.getName().getIdentifier(),
-				Activator.getExtensionLoader().get(ClassElement.class),
+				TClass.class,
 				metrics
 				);
 		return true;
@@ -73,7 +72,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(MethodDeclaration node) {
 		CodeMetrics metrics = new CodeMetrics();
-		SoftwareEntity method = this.dataModel.newEntity(node.getName().getIdentifier(), Activator.getExtensionLoader().get(MethodElement.class), metrics);
+		SoftwareEntity method = this.dataModel.newEntity(node.getName().getIdentifier(), TMethod.class, metrics);
 		this.clazz.addChild(method);
 		method.setParent(this.clazz);
 		return true;
@@ -102,7 +101,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 			VariableDeclarationFragment fragment = (VariableDeclarationFragment)obj;
 			CodeMetrics metrics = new CodeMetrics();
 //			field.setModifiers(node.modifiers());
-			SoftwareEntity field = this.dataModel.newEntity(fragment.getName().getIdentifier(), Activator.getExtensionLoader().get(FieldElement.class), metrics);
+			SoftwareEntity field = this.dataModel.newEntity(fragment.getName().getIdentifier(), TField.class, metrics);
 			this.clazz.addChild(field);
 			field.setParent(this.clazz);
 		}
