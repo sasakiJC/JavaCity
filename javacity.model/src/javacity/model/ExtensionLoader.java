@@ -48,6 +48,34 @@ public class ExtensionLoader {
 //	}
 
 	private Map<Class<?>, SoftwareElementType> map;
+	private Map<Class<?>, String> classMap;
+
+	public Map<Class<?>, String> getElementExtensionClasses() {
+		if (this.classMap != null) {
+			return this.classMap;
+		}
+
+		IExtensionRegistry registory = Platform.getExtensionRegistry();
+		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		if (point == null) {
+			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+		}
+
+		this.classMap = new HashMap<Class<?>, String>();
+		for (IExtension extension : point.getExtensions()) {
+			for (IConfigurationElement element : extension.getConfigurationElements()) {
+				try {
+					Class<?> clazz = Class.forName(element.getAttribute("class"));
+					String name = element.getAttribute("name");
+					this.classMap.put(clazz, name);
+				} catch (ClassNotFoundException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+			}
+		}
+		return this.classMap;
+	}
 
 	public Map<Class<?>, SoftwareElementType> getElementTypeExtensions() {
 		if (this.map != null) {

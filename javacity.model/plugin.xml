@@ -4,26 +4,26 @@
    <extension-point id="javacity.model.entity" name="TEntity" schema="schema/javacity.model.entity.exsd"/>
    <extension
          point="javacity.model.entity">
-      <elementType
-            class="javacity.model.elementType.ClassElement"
-            id="javacity.model.elementType.ClassElement"
+      <element
+            class="javacity.model.element.TClass"
+            id="javacity.model.element.TClass"
             name="class">
-      </elementType>
-      <elementType
-            class="javacity.model.elementType.MethodElement"
-            id="javacity.model.elementType.MethodElement"
+      </element>
+      <element
+            class="javacity.model.element.TMethod"
+            id="javacity.model.element.TMethod"
             name="method">
-      </elementType>
-      <elementType
-            class="javacity.model.elementType.FieldElement"
-            id="javacity.model.elementType.FieldElement"
+      </element>
+      <element
+            class="javacity.model.element.TField"
+            id="javacity.model.element.TField"
             name="field">
-      </elementType>
-      <elementType
-            class="javacity.model.elementType.PackageElement"
-            id="javacity.model.elementType.PackageElement"
+      </element>
+      <element
+            class="javacity.model.element.TPackage"
+            id="javacity.model.element.TPackage"
             name="package">
-      </elementType>
+      </element>
    </extension>
 
 </plugin>

@@ -6,18 +6,27 @@ import java.util.Observable;
 
 public class DataModel extends Observable {
 
-	private Map<SoftwareElementType, SoftwareEntities> entities;
+//	private Map<SoftwareElementType, SoftwareEntities> entities;
+	private Map<Class<?>, SoftwareEntities> entities;
 
 	public DataModel() {
 		this.entities = new HashMap<>();
-		for(SoftwareElementType element : Activator.getExtensionLoader().getElementTypeExtensions().values()) {
-			this.entities.put(element, new SoftwareEntities(element));
+		for(Class<?> clazz : Activator.getExtensionLoader().getElementExtensionClasses().keySet()) {
+			this.entities.put(clazz, new SoftwareEntities(clazz));
 		}
 	}
 
-	public SoftwareEntity newEntity(String name, SoftwareElementType type, CodeMetrics metrics) {
-		SoftwareEntities softwareEntities = this.entities.get(type);
-		SoftwareEntity entity = new SoftwareEntity(name, softwareEntities.nextIdentifier(), type);
+	public SoftwareEntity newEntity(String name, Class<?> entityClass, CodeMetrics metrics) {
+		SoftwareEntities softwareEntities = this.entities.get(entityClass);
+		Class<?>[] paramTypes = {String.class, EntityIdentifier.class, CodeMetrics.class};
+		SoftwareEntity entity=null;
+		try {
+			entity = (SoftwareEntity) entityClass.getConstructor(paramTypes).newInstance(name, softwareEntities.nextIdentifier(), metrics);
+		} catch (ReflectiveOperationException  e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+//		SoftwareEntity entity = new SoftwareEntity(name, softwareEntities.nextIdentifier(), type);
 		softwareEntities.add(entity);
 		return entity;
 	}

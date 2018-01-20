@@ -19,7 +19,7 @@
       <complexType>
          <sequence>
             <element ref="relation" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="elementType" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="element" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -77,7 +77,7 @@
       </complexType>
    </element>
 
-   <element name="elementType">
+   <element name="element">
       <complexType>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -99,7 +99,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":javacity.model.SoftwareElementType"/>
+                  <meta.attribute kind="java" basedOn=":javacity.model.TargetEntity"/>
                </appinfo>
             </annotation>
          </attribute>

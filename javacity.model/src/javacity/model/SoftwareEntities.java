@@ -6,16 +6,16 @@ import java.util.Map;
 public class SoftwareEntities {
 	private Map<EntityIdentifier, SoftwareEntity> elements;
 	private int lastId;
-	private SoftwareElementType type;
+	private Class<?> entityClass;
 
-	public SoftwareEntities(SoftwareElementType type) {
+	public SoftwareEntities(Class<?> entityClass) {
 		this.elements = new HashMap<>();
-		this.type = type;
+		this.entityClass = entityClass;
 		this.lastId = 0;
 	}
 
 	public EntityIdentifier nextIdentifier() {
-		return new DefaultEntityIdentifier(++lastId, this.type);
+		return new DefaultEntityIdentifier(++lastId, this.entityClass);
 	}
 
 	public void add(SoftwareEntity entity) {
