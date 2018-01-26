@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Shell;
 
 import dev.javacity.core.Activator;
 import dev.javacity.core.Glyph;
-import dev.javacity.core.visual.InnerLayout;
 
 public class ConfigDialog extends Dialog {
 
@@ -118,15 +117,18 @@ public class ConfigDialog extends Dialog {
 		ConfigInnerLayout layout = this.nowSelectedElementConfig.configInnerLayout;
 
 		Combo layoutCombo = new Combo(innerLayoutGroup, SWT.DROP_DOWN | SWT.READ_ONLY | SWT.SIMPLE);
-		Map<Class<?>, InnerLayout> layoutMap = Activator.getMetaphorExtensionLoader().getInnerLayoutExtensions();
-		String[] strTemp = layoutMap.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
-		layoutCombo.setItems(strTemp);
+
+		Map<Class<?>, String> layoutMap = Activator.getMetaphorExtensionLoader().getLayoutExtensionClasses();
+
+//		Map<Class<?>, InnerLayout> layoutMap = Activator.getMetaphorExtensionLoader().getInnerLayoutExtensions();
+//		String[] strTemp = layoutMap.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
+		layoutCombo.setItems(layoutMap.values().toArray(new String[]{}));
 
 		layoutCombo.setText(Activator.getMetaphorExtensionLoader().getInnerLayout(layout.layoutId).getName());
 	}
 
 
-	private void createInnerLayoutGroup(Composite container, ViewConfig conf) {
+	private void createInnerLayoutGroup(Composite container, CityConfig conf) {
 		Group innerLayoutGroup = new Group(container, SWT.NONE);
 		innerLayoutGroup.setText("Inner Layout");
 		innerLayoutGroup.setLayout(new GridLayout());
@@ -177,7 +179,7 @@ public class ConfigDialog extends Dialog {
 // 	}
 
 
-	private void createModelListGroup(Composite parent, ViewConfig conf) {
+	private void createModelListGroup(Composite parent, CityConfig conf) {
 
 		Group modelListGroup = new Group(parent, SWT.NONE);
 		modelListGroup.setText("Model Element");

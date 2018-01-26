@@ -1,9 +1,9 @@
 package javacity.model.relation;
 
 import javacity.model.EntityIdentifier;
-import javacity.model.TargetRelation;
+import javacity.model.SoftwareRelation;
 
-public abstract class AbstractRelation implements TargetRelation {
+public abstract class AbstractRelation implements SoftwareRelation {
 
 	protected final EntityIdentifier depart;
 	protected EntityIdentifier dest;

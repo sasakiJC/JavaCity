@@ -70,7 +70,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":javacity.model.TargetRelation"/>
+                  <meta.attribute kind="java" basedOn=":javacity.model.SoftwareRelation"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -99,7 +99,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":javacity.model.TargetEntity"/>
+                  <meta.attribute kind="java" basedOn=":javacity.model.SoftwareEntity"/>
                </appinfo>
             </annotation>
          </attribute>

@@ -6,7 +6,7 @@ import java.util.List;
  * このインターフェースを実装するオブジェクトは{@link EntityIdentifier}を用いて同一性を判断します。
  * また、このインターフェースを実装するクラスはコピーコンストラクタを提供しなければいけません。
  */
-public interface SoftwareEntity extends TargetElement {
+public interface SoftwareEntity extends SoftwareElement {
 	public default void addChild(SoftwareEntity child) {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}

@@ -75,8 +75,10 @@ public class MetaphorExtensionLoader {
 			for (IConfigurationElement element : extension.getConfigurationElements()) {
 				try {
 					Class<?> clazz = Class.forName(element.getAttribute("class"));
-					String name = element.getAttribute("name");
-					this.mapperClassMap.put(clazz, name);
+					if(Mapper.class.isAssignableFrom(clazz)) {
+						String name = element.getAttribute("name");
+						this.mapperClassMap.put(clazz, name);
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();

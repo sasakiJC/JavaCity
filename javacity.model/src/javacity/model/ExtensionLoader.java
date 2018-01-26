@@ -48,11 +48,12 @@ public class ExtensionLoader {
 //	}
 
 	private Map<Class<?>, SoftwareElementType> map;
-	private Map<Class<?>, String> classMap;
+	private Map<Class<?>, String> entityClassMap;
+	private Map<Class<?>, String> relationClassMap;
 
-	public Map<Class<?>, String> getElementExtensionClasses() {
-		if (this.classMap != null) {
-			return this.classMap;
+	public Map<Class<?>, String> getRelationExtensionClasses() {
+		if (this.relationClassMap != null) {
+			return this.relationClassMap;
 		}
 
 		IExtensionRegistry registory = Platform.getExtensionRegistry();
@@ -61,20 +62,53 @@ public class ExtensionLoader {
 			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
 		}
 
-		this.classMap = new HashMap<Class<?>, String>();
+		this.relationClassMap = new HashMap<>();
 		for (IExtension extension : point.getExtensions()) {
 			for (IConfigurationElement element : extension.getConfigurationElements()) {
 				try {
 					Class<?> clazz = Class.forName(element.getAttribute("class"));
-					String name = element.getAttribute("name");
-					this.classMap.put(clazz, name);
+					if(SoftwareRelation.class.isAssignableFrom(clazz)) {
+						String name = element.getAttribute("name");
+						this.relationClassMap.put(clazz, name);
+					}
 				} catch (ClassNotFoundException e) {
 					// TODO 自動生成された catch ブロック
 					e.printStackTrace();
 				}
 			}
 		}
-		return this.classMap;
+		return this.relationClassMap;
+	}
+
+
+
+	public Map<Class<?>, String> getElementExtensionClasses() {
+		if (this.entityClassMap != null) {
+			return this.entityClassMap;
+		}
+
+		IExtensionRegistry registory = Platform.getExtensionRegistry();
+		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		if (point == null) {
+			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+		}
+
+		this.entityClassMap = new HashMap<Class<?>, String>();
+		for (IExtension extension : point.getExtensions()) {
+			for (IConfigurationElement element : extension.getConfigurationElements()) {
+				try {
+					Class<?> clazz = Class.forName(element.getAttribute("class"));
+					if(SoftwareEntity.class.isAssignableFrom(clazz)) {
+						String name = element.getAttribute("name");
+						this.entityClassMap.put(clazz, name);
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+			}
+		}
+		return this.entityClassMap;
 	}
 
 	public Map<Class<?>, SoftwareElementType> getElementTypeExtensions() {

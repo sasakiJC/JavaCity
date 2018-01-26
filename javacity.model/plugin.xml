@@ -24,6 +24,21 @@
             id="javacity.model.element.TPackage"
             name="package">
       </element>
+      <relation
+            class="javacity.model.relation.Access"
+            id="javacity.model.relation.Access"
+            name="access">
+      </relation>
+      <relation
+            class="javacity.model.relation.Invocation"
+            id="javacity.model.relation.Invocation"
+            name="invocation">
+      </relation>
+      <relation
+            class="javacity.model.relation.Inheritance"
+            id="javacity.model.relation.Inheritance"
+            name="inheritance">
+      </relation>
    </extension>
 
 </plugin>
