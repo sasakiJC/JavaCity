@@ -42,8 +42,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 //		int nom = this.metricsMeasure.numberOfMethods(node);
 //		int noa = this.metricsMeasure.numberOfAttributes(node);
 //		this.clazz.setModifiers(node.modifiers());
-		CodeMetrics metrics = new CodeMetrics();
-
+		CodeMetrics metrics = this.metricsMeasure.mesure(node, TClass.class);
 		this.clazz = this.dataModel.newEntity(
 				node.getName().getIdentifier(),
 				TClass.class,
@@ -60,7 +59,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 //		this.metricsMeasure.numberOfMethods(node),
 //		this.metricsMeasure.numberOfAttributes(node)
 //		this.clazz.setModifiers(node.modifiers());
-		CodeMetrics metrics = new CodeMetrics();
+		CodeMetrics metrics = this.metricsMeasure.mesure(node, TClass.class);
 		this.clazz = this.dataModel.newEntity(
 				node.getName().getIdentifier(),
 				TClass.class,
@@ -71,7 +70,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		CodeMetrics metrics = new CodeMetrics();
+		CodeMetrics metrics = this.metricsMeasure.mesure(node, TMethod.class);
 		SoftwareEntity method = this.dataModel.newEntity(node.getName().getIdentifier(), TMethod.class, metrics);
 		this.clazz.addChild(method);
 		method.setParent(this.clazz);
@@ -99,7 +98,7 @@ public class ClassAnalyzeVisitor extends ASTVisitor {
 	public boolean visit(FieldDeclaration node) {
 		for(Object obj : node.fragments()) {
 			VariableDeclarationFragment fragment = (VariableDeclarationFragment)obj;
-			CodeMetrics metrics = new CodeMetrics();
+			CodeMetrics metrics = this.metricsMeasure.mesure(node, TField.class);
 //			field.setModifiers(node.modifiers());
 			SoftwareEntity field = this.dataModel.newEntity(fragment.getName().getIdentifier(), TField.class, metrics);
 			this.clazz.addChild(field);

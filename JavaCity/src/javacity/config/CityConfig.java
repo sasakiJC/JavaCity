@@ -31,7 +31,7 @@ public class CityConfig {
 	}
 
 	public void normalize() {
-		Collection<String> extTemp = Activator.getExtensionLoader().getElementExtensionClasses().values();
+		Collection<String> extTemp = Activator.getExtensionLoader().getElementExtensionClassNames().values();
 
 		List<String> diffExtConf = ConfigUtils.diff(extTemp, this.elements.keySet());
 		List<String> diffConfExt = ConfigUtils.diff(this.elements.keySet(), extTemp);
@@ -51,7 +51,7 @@ public class CityConfig {
 
 	public TestConverter converter() {
 		Map<Class<?>, MVConverter> convertMap = new HashMap<>();
-		for(Map.Entry<Class<?>, String> entry : Activator.getExtensionLoader().getElementExtensionClasses().entrySet()) {
+		for(Map.Entry<Class<?>, String> entry : Activator.getExtensionLoader().getElementExtensionClassNames().entrySet()) {
 			convertMap.put(entry.getKey(), this.elements.get(entry.getValue()).createConverter());
 		}
 		return new TestConverter(convertMap);

@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="javacity.model.entity" name="TEntity" schema="schema/javacity.model.entity.exsd"/>
+   <extension-point id="javacity.model.metrics" name="metric" schema="schema/javacity.model.metrics.exsd"/>
    <extension
          point="javacity.model.entity">
       <element
@@ -39,6 +40,27 @@
             id="javacity.model.relation.Inheritance"
             name="inheritance">
       </relation>
+   </extension>
+   <extension
+         point="javacity.model.metrics">
+      <codeMetric
+            class="javacity.model.metrics.NOA"
+            elementId="javacity.model.element.TClass"
+            id="javacity.model.metrics.NOA"
+            name="NOA">
+      </codeMetric>
+      <codeMetric
+            class="javacity.model.metrics.NOM"
+            elementId="javacity.model.element.TClass"
+            id="javacity.model.metrics.NOM"
+            name="NOM">
+      </codeMetric>
+      <codeMetric
+            class="javacity.model.metrics.LOC"
+            elementId="javacity.model.element.TClass"
+            id="javacity.model.metrics.LOC"
+            name="LOC">
+      </codeMetric>
    </extension>
 
 </plugin>

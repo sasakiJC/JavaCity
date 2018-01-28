@@ -2,6 +2,7 @@ package javacity.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -15,51 +16,66 @@ import javacity.model.exception.ElementTypeNotFoundException;
 
 public class ExtensionLoader {
 
-	private static final String EXAMPLE_EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".entity";	//拡張ポイントID
+	private static final String ENTITY_EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".entity";	//拡張ポイントID
+	private static final String METRIC_EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".metrics";
 
-//	private List<SoftwareElementType> list;
-//
-//	public List<SoftwareElementType> getElementTypeExtensions() {
-//		if (this.list != null) {
-//			return this.list;
-//		}
-//
-//		IExtensionRegistry registory = Platform.getExtensionRegistry();
-//		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
-//		if (point == null) {
-//			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
-//		}
-//
-//		this.list = new ArrayList<SoftwareElementType>();
-//		for (IExtension extension : point.getExtensions()) {
-//			for (IConfigurationElement element : extension.getConfigurationElements()) {
-//				try {
-////					element.getAttribute("class");
-//					Object obj = element.createExecutableExtension("class");	//class属性
-//					if (obj instanceof SoftwareElementType) {
-//						this.list.add((SoftwareElementType) obj);
-//					}
-//				} catch (CoreException e) {
-//					Activator.getDefault().getLog().log(e.getStatus());
-//				}
-//			}
-//		}
-//		return this.list;
-//	}
+	private Map<Class<?>, Map<Class<?>, IConfigurationElement>> entityMetricClassMap;
+
 
 	private Map<Class<?>, SoftwareElementType> map;
-	private Map<Class<?>, String> entityClassMap;
-	private Map<Class<?>, String> relationClassMap;
+	private Map<Class<?>, IConfigurationElement> entityClassMap;
+	private Map<Class<?>, IConfigurationElement> relationClassMap;
 
-	public Map<Class<?>, String> getRelationExtensionClasses() {
+	public ExtensionLoader() {
+		this.entityMetricClassMap = new HashMap<>();
+	}
+
+	public Map<Class<?>, IConfigurationElement> getMetricsExtensionClasses(Class<?> entityClazz) {
+		if (this.entityMetricClassMap.get(entityClazz) != null) {
+			return this.entityMetricClassMap.get(entityClazz);
+		}
+
+		IExtensionRegistry registory = Platform.getExtensionRegistry();
+		IExtensionPoint point = registory.getExtensionPoint(METRIC_EXTENSION_POINT_ID);
+		if (point == null) {
+			throw new IllegalStateException(METRIC_EXTENSION_POINT_ID);
+		}
+
+		IConfigurationElement entityElemnt = this.getElementExtensionClasses().get(entityClazz);
+		Map<Class<?>, IConfigurationElement> metricClassMap = new HashMap<>();
+		this.entityMetricClassMap.put(entityClazz, metricClassMap);
+		for (IExtension extension : point.getExtensions()) {
+			for (IConfigurationElement element : extension.getConfigurationElements()) {
+				try {
+					if(element.getAttribute("elementId").equals(entityElemnt.getAttribute("id"))) {
+						Class<?> clazz = Class.forName(element.getAttribute("class"));
+						if(CodeMetric.class.isAssignableFrom(clazz)) {
+							metricClassMap.put(clazz, element);
+						}
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+			}
+		}
+		return metricClassMap;
+	}
+
+	public Map<Class<?>, String> getMetricsExtensionClassNames(Class<?> entityClazz) {
+		return this.getMetricsExtensionClasses(entityClazz).entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue().getAttribute("name")));
+	}
+
+
+	public Map<Class<?>, IConfigurationElement> getRelationExtensionClasses() {
 		if (this.relationClassMap != null) {
 			return this.relationClassMap;
 		}
 
 		IExtensionRegistry registory = Platform.getExtensionRegistry();
-		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		IExtensionPoint point = registory.getExtensionPoint(ENTITY_EXTENSION_POINT_ID);
 		if (point == null) {
-			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+			throw new IllegalStateException(ENTITY_EXTENSION_POINT_ID);
 		}
 
 		this.relationClassMap = new HashMap<>();
@@ -68,8 +84,8 @@ public class ExtensionLoader {
 				try {
 					Class<?> clazz = Class.forName(element.getAttribute("class"));
 					if(SoftwareRelation.class.isAssignableFrom(clazz)) {
-						String name = element.getAttribute("name");
-						this.relationClassMap.put(clazz, name);
+//						String name = element.getAttribute("name");
+						this.relationClassMap.put(clazz, element);
 					}
 				} catch (ClassNotFoundException e) {
 					// TODO 自動生成された catch ブロック
@@ -82,25 +98,25 @@ public class ExtensionLoader {
 
 
 
-	public Map<Class<?>, String> getElementExtensionClasses() {
+	public Map<Class<?>, IConfigurationElement> getElementExtensionClasses() {
 		if (this.entityClassMap != null) {
 			return this.entityClassMap;
 		}
 
 		IExtensionRegistry registory = Platform.getExtensionRegistry();
-		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		IExtensionPoint point = registory.getExtensionPoint(ENTITY_EXTENSION_POINT_ID);
 		if (point == null) {
-			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+			throw new IllegalStateException(ENTITY_EXTENSION_POINT_ID);
 		}
 
-		this.entityClassMap = new HashMap<Class<?>, String>();
+		this.entityClassMap = new HashMap<>();
 		for (IExtension extension : point.getExtensions()) {
 			for (IConfigurationElement element : extension.getConfigurationElements()) {
 				try {
 					Class<?> clazz = Class.forName(element.getAttribute("class"));
 					if(SoftwareEntity.class.isAssignableFrom(clazz)) {
-						String name = element.getAttribute("name");
-						this.entityClassMap.put(clazz, name);
+//						String name = element.getAttribute("name");
+						this.entityClassMap.put(clazz, element);
 					}
 				} catch (ClassNotFoundException e) {
 					// TODO 自動生成された catch ブロック
@@ -111,15 +127,23 @@ public class ExtensionLoader {
 		return this.entityClassMap;
 	}
 
+	public String[] getElementExtensionNames() {
+		return this.getElementExtensionClasses().values().stream().map(item -> item.getAttribute("name")).toArray(String[]::new);
+	}
+
+	public Map<Class<?>, String> getElementExtensionClassNames() {
+		return this.getElementExtensionClasses().entrySet().stream().collect(Collectors.toMap(e->e.getKey(), e->e.getValue().getAttribute("name")));
+	}
+
 	public Map<Class<?>, SoftwareElementType> getElementTypeExtensions() {
 		if (this.map != null) {
 			return this.map;
 		}
 
 		IExtensionRegistry registory = Platform.getExtensionRegistry();
-		IExtensionPoint point = registory.getExtensionPoint(EXAMPLE_EXTENSION_POINT_ID);
+		IExtensionPoint point = registory.getExtensionPoint(ENTITY_EXTENSION_POINT_ID);
 		if (point == null) {
-			throw new IllegalStateException(EXAMPLE_EXTENSION_POINT_ID);
+			throw new IllegalStateException(ENTITY_EXTENSION_POINT_ID);
 		}
 
 		this.map = new HashMap<Class<?>, SoftwareElementType>();

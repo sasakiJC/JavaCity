@@ -1,15 +1,39 @@
 package javacity.model.importer;
 
+import java.util.Map;
+
+import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import javacity.model.Activator;
+import javacity.model.CodeMetric;
+import javacity.model.CodeMetrics;
+import javacity.model.EntityIdentifier;
+
 public class MetricsMeasure {
 	private CompilationUnit compilationUnit;
+	private Class<?>[] paramTypes = {EntityIdentifier.class, String.class, CodeMetrics.class};
 	public MetricsMeasure(CompilationUnit compilationUnit) {
 		this.compilationUnit = compilationUnit;
+	}
+
+	public CodeMetrics mesure(BodyDeclaration body, Class<?> entityClass) {
+		CodeMetrics metrics = new CodeMetrics();
+		for(Map.Entry<Class<?>, String> entry : Activator.getExtensionLoader().getMetricsExtensionClassNames(entityClass).entrySet()){
+			try {
+				CodeMetric metric = (CodeMetric) entry.getKey().newInstance();
+				metric.compute(body, compilationUnit);
+				metrics.put(entry.getValue(), metric);
+			} catch (ReflectiveOperationException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+		}
+		return metrics;
 	}
 
 	public int classLineOfCode(TypeDeclaration node) {

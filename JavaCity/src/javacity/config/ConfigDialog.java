@@ -188,10 +188,10 @@ public class ConfigDialog extends Dialog {
 
 		List list = new List(modelListGroup, SWT.SINGLE | SWT.V_SCROLL | SWT.BORDER);
 //		list.setItems(conf.getElementNames());
-		Map<Class<?>, String> temp = javacity.model.Activator.getExtensionLoader().getElementExtensionClasses();
-//		Map<Class<?>, SoftwareElementType> temp = javacity.model.Activator.getExtensionLoader().getElementTypeExtensions();
 
-		String[] strTemp = temp.values().toArray(new String[]{});
+		String[] strTemp = javacity.model.Activator.getExtensionLoader().getElementExtensionClassNames().values().toArray(new String[]{});
+
+//		String[] strTemp = javacity.model.Activator.getExtensionLoader().getElementExtensionNames();
 		list.setItems(strTemp);
 
 		list.addListener(SWT.Selection, new Listener() {
