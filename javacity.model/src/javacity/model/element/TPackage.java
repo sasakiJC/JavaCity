@@ -1,5 +1,6 @@
 package javacity.model.element;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javacity.model.CodeMetrics;
@@ -12,37 +13,44 @@ public class TPackage implements SoftwareEntity {
 	private String fullName;
 	private String[] names;
 	private CodeMetrics metrics;
-	private List<SoftwareEntity> classes;
+	private List<SoftwareEntity> children;
+	private SoftwareEntity parent;
 
 	public TPackage(EntityIdentifier identifier, String fullName, CodeMetrics metrics) {
 		this.identifier = identifier;
 		this.fullName = fullName;
 		this.names = fullName.split(".");
 		this.metrics = metrics;
+		this.children = new LinkedList<SoftwareEntity>();
 	}
 
 	@Override
 	public void addChild(SoftwareEntity child) {
-		this.classes.add(child);
+		this.children.add(child);
 	}
 
 	@Override
 	public List<SoftwareEntity> getChildren() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return this.children;
 	}
 
 	@Override
 	public void removeChild(SoftwareEntity child) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		if(this.children.contains(child)) {
+			this.children.remove(child);
+		}
 	}
 
 	@Override
 	public void setParent(SoftwareEntity parent) {
-		// TODO 自動生成されたメソッド・スタブ
-
+		this.parent = parent;
 	}
+
+	@Override
+	public SoftwareEntity getParent() {
+		return this.parent;
+	}
+
 
 	public boolean isParentPackage(String packName) {
 		String[] tmp = packName.split(".");
@@ -50,7 +58,7 @@ public class TPackage implements SoftwareEntity {
 			return false;
 
 		for(int i=0;i<tmp.length;i++) {
-			if(this.names[i].equals(tmp[i]))
+			if(!this.names[i].equals(tmp[i]))
 				return false;
 		}
 		return true;
@@ -91,6 +99,12 @@ public class TPackage implements SoftwareEntity {
         }
         return identifier.equals(((SoftwareEntity) obj).getIdentifier());
     }
+
+	@Override
+	public boolean hasParent() {
+		return this.parent != null;
+	}
+
 
 
 }

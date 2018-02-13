@@ -1,15 +1,16 @@
 package javacity.config;
 
-import java.util.Arrays;
-
 import javax.xml.bind.annotation.XmlElement;
 
 import dev.javacity.core.visual.Mapper;
 import dev.javacity.core.visual.mapper.ConstantMapper;
+import javafx.scene.paint.Color;
 
 public class ConfigMapping {
 	@XmlElement
 	Class<? extends Mapper> mapperClassId;
+	@XmlElement
+	Class<?> valueClass;
 	@XmlElement
 	String[] modelProperties;
 
@@ -24,24 +25,39 @@ public class ConfigMapping {
 
 	public ConfigMapping() {
 		this.mapperClassId = ConstantMapper.class;
+		this.valueClass = Double.class;
 		this.modelProperties = new String[]{"1"};
 	}
 
-	public ConfigMapping(Class<? extends Mapper> mapperClassId, String[] modelProperties) {
+	public ConfigMapping(String name) {
+		this.mapperClassId = ConstantMapper.class;
+		if(name.equals("color")) {
+			this.valueClass = Color.class;
+			this.modelProperties = new String[]{"gray"};
+		}else{
+		this.valueClass = Double.class;
+		this.modelProperties = new String[]{"1"};
+		}
+	}
+
+	public ConfigMapping(Class<? extends Mapper> mapperClassId, Class<?> valueClass, String[] modelProperties) {
 		this.mapperClassId = mapperClassId;
+		this.valueClass = valueClass;
 		this.modelProperties = modelProperties;
 	}
 
 	public String toString() {
-		return "mapperClassId: " + this.mapperClassId + ", modelProp: " + modelProperties.toString();
+		return "mapperClassId: " + this.mapperClassId + ", valueClass: " + this.valueClass + ", modelProp: " + modelProperties.toString();
 	}
 
 	public Mapper createMapper() {
-		Class<?>[] paramTypes = new Class<?>[this.modelProperties.length];
-		Arrays.fill(paramTypes, String.class);
+		Class<?>[] paramTypes = new Class<?>[]{this.valueClass.getClass(), String[].class};
+//		paramTypes[0] = this.valueClass.getClass();
 		Mapper mapper = null;
+		Object[] args = new Object[]{this.valueClass, this.modelProperties};
+
 		try {
-			mapper = (Mapper) this.mapperClassId.getConstructor(paramTypes).newInstance((Object[])this.modelProperties);
+			mapper = (Mapper) this.mapperClassId.getConstructor(paramTypes).newInstance(args);
 		} catch (ReflectiveOperationException  e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

@@ -17,8 +17,7 @@ public class MVConverter {
 		this.layout = layout;
 	}
 
-	public VisualizedComponent createVisualizedComponent(SoftwareEntity entity) {
-
-		return null;
+	public VisualizedComposite createVisualizedComponent(SoftwareEntity entity) {
+		return this.glyph.createViewNode(entity, this.mapper, this.layout);
 	}
 }

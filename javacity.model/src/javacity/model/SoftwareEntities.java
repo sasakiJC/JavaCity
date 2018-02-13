@@ -2,7 +2,9 @@ package javacity.model;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SoftwareEntities {
 	private Map<EntityIdentifier, SoftwareEntity> elements;
@@ -29,5 +31,9 @@ public class SoftwareEntities {
 
 	public Collection<SoftwareEntity> getElements() {
 		return this.elements.values();
+	}
+
+	public List<SoftwareEntity> getRootEntities() {
+		return this.elements.values().stream().filter(entity->!entity.hasParent()).collect(Collectors.toList());
 	}
 }

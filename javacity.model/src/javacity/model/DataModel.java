@@ -1,14 +1,16 @@
 package javacity.model;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
-public class DataModel extends Observable {
+public class DataModel implements SoftwareEntity {
 
 //	private Map<SoftwareElementType, SoftwareEntities> entities;
 	private Map<Class<?>, SoftwareEntities> entities;
 	private Class<?>[] paramTypes = {EntityIdentifier.class, String.class, CodeMetrics.class};
+	private List<SoftwareEntity> rootEntities;
 
 	public DataModel() {
 		this.entities = new HashMap<>();
@@ -37,6 +39,36 @@ public class DataModel extends Observable {
 
 	public SoftwareEntities getEntities(Class<?> clazz) {
 		return this.entities.get(clazz);
+	}
+
+	public List<SoftwareEntity> getRootEntities() {
+		if(this.rootEntities != null) {
+			return this.rootEntities;
+		}
+		this.rootEntities = new LinkedList<>();
+		this.entities.values().forEach(entities->this.rootEntities.addAll(entities.getRootEntities()));
+
+		return this.rootEntities;
+	}
+
+	@Override
+	public void setParent(SoftwareEntity parent) {
+
+	}
+
+	@Override
+	public SoftwareEntity getParent() {
+		return null;
+	}
+
+	@Override
+	public boolean hasParent() {
+		return false;
+	}
+
+	@Override
+	public EntityIdentifier getIdentifier() {
+		return null;
 	}
 
 

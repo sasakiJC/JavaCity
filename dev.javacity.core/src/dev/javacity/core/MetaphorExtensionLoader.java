@@ -137,8 +137,8 @@ public class MetaphorExtensionLoader {
 			for (IConfigurationElement element : extension.getConfigurationElements()) {
 				try {
 					Class<?> clazz = Class.forName(element.getAttribute("class"));
-					Object obj = element.createExecutableExtension("class");	//class属性
-					if (obj instanceof Glyph) {
+					if(Glyph.class.isAssignableFrom(clazz)) {
+						Object obj = element.createExecutableExtension("class");	//class属性
 						Glyph glyph = (Glyph)obj;
 						glyph.setName(element.getAttribute("name"));
 						this.glyphMap.put(clazz, glyph);
@@ -250,6 +250,10 @@ public class MetaphorExtensionLoader {
 
 	public InnerLayout getInnerLayout(Class<? extends InnerLayout> layoutId) {
 		return this.layoutMap.get(layoutId);
+	}
+
+	public String getInnerLayoutName(Class<?> layoutId) {
+		return this.layoutClassMap.get(layoutId);
 	}
 
 

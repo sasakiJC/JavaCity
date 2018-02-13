@@ -9,6 +9,7 @@ public interface InnerLayout {
 	public void setHorizontalGap(float horizontalGap);
 	public void setVerticalMargin(float verticalMargin);
 	public void setVerticalGap(float verticalGap);
+	public void layout(VisualizedComposite comp);
 
 
 }

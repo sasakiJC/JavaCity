@@ -37,7 +37,7 @@ public class CityConfig {
 		List<String> diffConfExt = ConfigUtils.diff(this.elements.keySet(), extTemp);
 
 		if(!diffExtConf.isEmpty()) {
-			diffExtConf.forEach(item -> this.elements.put(item, this.createDefaultElm()));
+			diffExtConf.forEach(item -> this.elements.put(item, this.createDefaultElm(item)));
 		}
 		if(!diffConfExt.isEmpty()) {
 			diffConfExt.forEach(item -> this.elements.remove(item));
@@ -45,14 +45,19 @@ public class CityConfig {
 		this.elements.forEach((key,value) -> value.normalize());
 	}
 
-	private ElementConfig createDefaultElm() {
-		return new ElementConfig();
+	private ElementConfig createDefaultElm(String name) {
+		if(name.equals("package") || name.equals("class"))
+			return new ElementConfig(true);
+		else
+			return new ElementConfig();
 	}
 
 	public TestConverter converter() {
 		Map<Class<?>, MVConverter> convertMap = new HashMap<>();
 		for(Map.Entry<Class<?>, String> entry : Activator.getExtensionLoader().getElementExtensionClassNames().entrySet()) {
-			convertMap.put(entry.getKey(), this.elements.get(entry.getValue()).createConverter());
+			MVConverter converter = this.elements.get(entry.getValue()).createConverter();
+			if(converter == null) continue;
+			convertMap.put(entry.getKey(), converter);
 		}
 		return new TestConverter(convertMap);
 	}

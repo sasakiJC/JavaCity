@@ -1,5 +1,5 @@
 package dev.javacity.core.visual;
 
-public interface MappedValue {
-
+public interface MappedValue<T> {
+	public T toRawValue();
 }

@@ -9,7 +9,7 @@ public class ModelViewConverter {
 	private VisLayout layout;
 
 
-	public VisualizedComponent toView() {
+	public VisualizedComposite toView() {
 		switch(this.glyph) {
 			case "cuboid":
 				return new Building(this.entity, this.layout);

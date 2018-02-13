@@ -1,18 +1,18 @@
 package dev.javacity.core.visual;
 
-import javacity.model.TClass;
-import javacity.model.TField;
-import javacity.model.TMethod;
-import javacity.model.TPackage;
+import javacity.model.element.TClass;
+import javacity.model.element.TField;
+import javacity.model.element.TMethod;
+import javacity.model.element.TPackage;
 
 public interface ViewMapper {
-	public VisualizedComponent mapPackage(TPackage pack);
+	public VisualizedComposite mapPackage(TPackage pack);
 
-	public VisualizedComponent mapClass(TClass clazz);
+	public VisualizedComposite mapClass(TClass clazz);
 
-	public VisualizedComponent mapMethod(TMethod method);
+	public VisualizedComposite mapMethod(TMethod method);
 
-	public VisualizedComponent mapField(TField field);
+	public VisualizedComposite mapField(TField field);
 
-	public VisualizedComponent mapClassRelation(Object obj);
+	public VisualizedComposite mapClassRelation(Object obj);
 }

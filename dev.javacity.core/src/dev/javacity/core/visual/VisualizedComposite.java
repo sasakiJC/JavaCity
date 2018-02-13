@@ -1,83 +1,61 @@
 package dev.javacity.core.visual;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javacity.model.SoftwareEntity;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.shape.Shape3D;
 
-public abstract class VisualizedComposite implements VisualizedComponent {
+public class VisualizedComposite extends Group {
 
-	protected SoftwareEntity entity;
-	protected Group fxView;
-	protected List<VisualizedComponent> children;
-	protected VisLayout layout;
+	private SoftwareEntity entity;
+	private InnerLayout layout;
+//	private Shape3D shape;
 
-	protected Mappings mappings;
-	protected boolean needsRecreate = false;
 
-	public VisualizedComposite(SoftwareEntity entity, VisLayout layout) {
+	public VisualizedComposite(SoftwareEntity entity, InnerLayout layout, Shape3D shape) {
 		this.entity = entity;
 		this.layout = layout;
-		this.children = new LinkedList<VisualizedComponent>();
+//		this.shape = shape;
+		this.getChildren().add(shape);
 	}
 
-	public VisualizedComposite(SoftwareEntity entity, Mappings mappings) {
-		this.entity = entity;
-		this.mappings = mappings;
+	public void add(VisualizedComposite compoite) {
+		this.getChildren().add(compoite);
 	}
 
-
-	@Override
 	public SoftwareEntity getEntity() {
 		return this.entity;
 	}
-	@Override
-	public void add(VisualizedComponent child) {;
-		this.children.add(child);
-	}
 
-	@Override
+
 	public boolean hasChild() {
-		return this.children.size() > 0;
+		return this.getChildren().size() > 0;
 	}
 
-	@Override
-	public List<VisualizedComponent> getChildren() {
-		return this.children;
+	public void remove(VisualizedComposite child) {
+		if(this.getChildren().contains(child))
+			this.getChildren().remove(child);
 	}
 
-	@Override
-	public void remove(VisualizedComponent child) {
-		if(this.children.contains(child))
-			this.children.remove(child);
-	}
-
-	@Override
-	public void layout() {
-		for(VisualizedComponent child : this.children) {
-			this.layout.layout(child);
-			child.layout();
+	public void innerLayout() {
+		for(Node child : this.getChildren()) {
+			VisualizedComposite comp = (VisualizedComposite)child;
+			this.layout.layout(comp);
+			comp.innerLayout();
 		}
 	}
 
-	@Override
-	public Group fxView() {
-		if(this.fxView == null || this.needsRecreate) {
-			this.fxView = this.createFxView();
-			this.needsRecreate = false;
-		}
-		return this.fxView;
-	}
+//	public ViewBounds coputeSize() {
+//		for(Node child : this.getChildren()) {
+//			VisualizedComposite comp = (VisualizedComposite)child;
+//			this.layout.computeSize(child);
+//		}
+//		return null;
+//	}
 
-	@Override
-	public ViewBounds coputeSize() {
-		for(VisualizedComponent child : this.children) {
-			this.layout.computeSize(child);
-		}
+	public Group createFxView() {
+//		return this.glyph
 		return null;
 	}
-
-	abstract Group createFxView();
 
 }

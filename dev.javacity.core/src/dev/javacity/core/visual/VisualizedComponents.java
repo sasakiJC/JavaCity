@@ -5,16 +5,16 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-public class VisualizedComponents implements Iterable<VisualizedComponent> {
+public class VisualizedComponents implements Iterable<VisualizedComposite> {
 
-	private List<VisualizedComponent> list;
+	private List<VisualizedComposite> list;
 
-	public void sortedBy(Comparator<VisualizedComponent> comparator) {
+	public void sortedBy(Comparator<VisualizedComposite> comparator) {
 		Collections.sort(list, comparator);
 	}
 
 	@Override
-	public Iterator<VisualizedComponent> iterator() {
+	public Iterator<VisualizedComposite> iterator() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}

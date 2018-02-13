@@ -1,7 +1,6 @@
 package javacity.views;
 
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.swt.SWT;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -31,7 +30,7 @@ public class CityViewPartController {
 //		Map<String, MVConverter> map = this.showConfigViewPart();
 		TestConverter conv = this.showConfigViewPart();
 
-		this.cityView = new CityView();
+		this.cityView = conv.convert(this.dataModel);
 
 //		map.get("package").createVisualizedComponent(entity)
 		this.showCityViewPart();
@@ -48,7 +47,7 @@ public class CityViewPartController {
         Dialog dialog = new ConfigDialog(activeWindow.getShell(), service);
         int result = dialog.open();
 
-        if(result == SWT.OK) {
+        if(result == 0) {
 
 //        	MVConverter systemConverter = conf.toConverter("system");
 //        	MVConverter packageConverter = conf.toConverter("package");

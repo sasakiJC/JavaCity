@@ -124,7 +124,7 @@ public class ConfigDialog extends Dialog {
 //		String[] strTemp = layoutMap.values().stream().map(item -> {return item.getName();}).toArray(String[]::new);
 		layoutCombo.setItems(layoutMap.values().toArray(new String[]{}));
 
-		layoutCombo.setText(Activator.getMetaphorExtensionLoader().getInnerLayout(layout.layoutId).getName());
+		layoutCombo.setText(Activator.getMetaphorExtensionLoader().getInnerLayoutName(layout.layoutId));
 	}
 
 

@@ -1,5 +1,6 @@
 package dev.javacity.core.visual;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,12 +13,17 @@ import javafx.scene.Node;
 public class CityView extends Group implements Observer {
 
 	private DataModel testDataModel;
-	private Map<SoftwareEntity, Building> classMap;
-	private VisLayout layout;
+	private Map<SoftwareEntity, VisualizedComposite> allmap = new HashMap<>();
 
 	public CityView() {
 		super();
 		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	public void innerLayout() {
+		this.getChildren().forEach(child -> {
+			((VisualizedComposite)child).innerLayout();
+		});
 	}
 
 	/**
@@ -30,18 +36,18 @@ public class CityView extends Group implements Observer {
 	/**
 	 * Adds the the given {@link Node} instance to the visualization, i.e. attaches it to the scene graph.
 	 *
-	 * @param node
+	 * @param visualizedComponent
 	 *            The node to add to the visualization.
 	 * @throws IllegalArgumentException
 	 *             If the node passed in is {@code null}.
 	 */
-	public void addNode(final Node node) throws IllegalArgumentException {
+	public void addNode(final VisualizedComposite visualizedComponent) throws IllegalArgumentException {
 
-		if (node == null) {
+		if (visualizedComponent == null) {
 			throw new IllegalArgumentException("You cannot add a null node.");
 		}
 
-		this.getChildren().add(node);
+		this.getChildren().add(visualizedComponent);
 
 	}
 

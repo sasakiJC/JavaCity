@@ -9,6 +9,7 @@
                         <key>depth</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -16,13 +17,15 @@
                         <key>color</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
-                            <modelProperties>1</modelProperties>
+                            <valueClass>javafx.scene.paint.Color</valueClass>
+                            <modelProperties>gray</modelProperties>
                         </value>
                     </entry>
                     <entry>
                         <key>alpha</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -30,6 +33,7 @@
                         <key>width</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -37,6 +41,7 @@
                         <key>terrainThickness</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -44,6 +49,7 @@
                         <key>height</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -59,6 +65,7 @@
                         <key>depth</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -66,13 +73,15 @@
                         <key>color</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
-                            <modelProperties>1</modelProperties>
+                            <valueClass>javafx.scene.paint.Color</valueClass>
+                            <modelProperties>gray</modelProperties>
                         </value>
                     </entry>
                     <entry>
                         <key>alpha</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -80,6 +89,7 @@
                         <key>width</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -87,6 +97,7 @@
                         <key>terrainThickness</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -94,6 +105,7 @@
                         <key>height</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -109,6 +121,7 @@
                         <key>depth</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -116,13 +129,15 @@
                         <key>color</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
-                            <modelProperties>1</modelProperties>
+                            <valueClass>javafx.scene.paint.Color</valueClass>
+                            <modelProperties>gray</modelProperties>
                         </value>
                     </entry>
                     <entry>
                         <key>alpha</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -130,6 +145,7 @@
                         <key>width</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -137,6 +153,7 @@
                         <key>terrainThickness</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -144,6 +161,7 @@
                         <key>height</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -159,6 +177,7 @@
                         <key>depth</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -166,13 +185,15 @@
                         <key>color</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
-                            <modelProperties>1</modelProperties>
+                            <valueClass>javafx.scene.paint.Color</valueClass>
+                            <modelProperties>blue</modelProperties>
                         </value>
                     </entry>
                     <entry>
                         <key>alpha</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -180,6 +201,7 @@
                         <key>width</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -187,6 +209,7 @@
                         <key>terrainThickness</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>
@@ -194,6 +217,7 @@
                         <key>height</key>
                         <value>
                             <mapperClassId>dev.javacity.core.visual.mapper.ConstantMapper</mapperClassId>
+                            <valueClass>java.lang.Double</valueClass>
                             <modelProperties>1</modelProperties>
                         </value>
                     </entry>

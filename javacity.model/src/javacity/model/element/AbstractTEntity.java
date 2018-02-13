@@ -22,6 +22,7 @@ public abstract class AbstractTEntity implements SoftwareEntity {
 	 */
 	protected final EntityIdentifier identifier;
 
+
 	/**
 	 * 指定された識別子を使用してエンティティを作成します。
 	 * @param identifier エンティティの識別子
@@ -88,6 +89,16 @@ public abstract class AbstractTEntity implements SoftwareEntity {
 	@Override
 	public void setParent(SoftwareEntity parent) {
 		this.parent = parent;
+	}
+
+	@Override
+	public SoftwareEntity getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public boolean hasParent() {
+		return this.parent != null;
 	}
 
 }

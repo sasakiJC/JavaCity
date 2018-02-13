@@ -17,4 +17,16 @@ public class TProject implements SoftwareEntity {
 		return null;
 	}
 
+	@Override
+	public SoftwareEntity getParent() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public boolean hasParent() {
+		// TODO 自動生成されたメソッド・スタブ
+		return false;
+	}
+
 }

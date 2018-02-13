@@ -1,5 +1,6 @@
 package javacity.model.importer;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
@@ -40,17 +41,31 @@ public class ProjectAnalyzer {
 	}
 
 	private void analyzeProject(IProject project) throws JavaModelException {
-//		List<TargetPackage> list = new LinkedList<TargetPackage>();
+		List<TPackage> hasSubPack = new LinkedList<>();
+		List<TPackage> allPack = new LinkedList<>();
 		IPackageFragmentRoot[] packageRoots = JavaCore.create(project).getPackageFragmentRoots();
 		for(IPackageFragmentRoot packageRoot : packageRoots) {
 			if(packageRoot.getKind() == IPackageFragmentRoot.K_SOURCE) {
 				for(IJavaElement pack : packageRoot.getChildren()) {
-					SoftwareEntity targetPack = this.analyzePackage((IPackageFragment)pack);
-//					list.add(targetPack);
+					IPackageFragment packageFragment = (IPackageFragment)pack;
+					TPackage targetPack = (TPackage) this.analyzePackage(packageFragment);
+					allPack.add(targetPack);
+					if(packageFragment.hasSubpackages()) {
+						hasSubPack.add(targetPack);
+					}
 				}
 			}
 		}
-//		this.solvePackageRelation(list);
+
+		for(TPackage parentPack : hasSubPack) {
+			for(TPackage pack : allPack) {
+				if(pack.isParentPackage(parentPack.getName())) {
+					pack.setParent(parentPack);
+					parentPack.addChild(pack);
+//					pack.addRelation(parentPack);
+				}
+			}
+		}
 	}
 
 
@@ -60,6 +75,8 @@ public class ProjectAnalyzer {
 		SoftwareEntity pack = this.dataModel.newEntity(packageFragment.getElementName(), TPackage.class, metrics);
 		for (ICompilationUnit unit : packageFragment.getCompilationUnits()) {
 			SoftwareEntity clazz = this.analyzeClass(unit);
+			pack.addChild(clazz);
+			clazz.setParent(pack);
 		}
 		return pack;
 	}

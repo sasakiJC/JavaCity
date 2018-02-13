@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import dev.javacity.core.Activator;
-import dev.javacity.core.BuildingGlyph;
+import dev.javacity.core.DistrictGlyph;
 import dev.javacity.core.Glyph;
 import dev.javacity.core.visual.InnerLayout;
 import dev.javacity.core.visual.MVConverter;
@@ -29,14 +29,8 @@ public class ElementConfig {
 	ConfigInnerLayout configInnerLayout;
 
 	ElementConfig() {
-		this.isVisible = false;
-		this.glyphClass = BuildingGlyph.class;
-		this.mappings = new HashMap<>();
-		Glyph glyph = Activator.getMetaphorExtensionLoader().getGlyph(this.glyphClass);
-		for(String str : glyph.getAttributes()) {
-			this.mappings.put(str, new ConfigMapping());
-		}
-		this.configInnerLayout = new ConfigInnerLayout();
+		this(false);
+
 	}
 
 	ElementConfig(boolean isVisible, Class<? extends Glyph> glyphClass, Map<String, ConfigMapping> mappings, ConfigInnerLayout configInnerLayout) {
@@ -44,6 +38,17 @@ public class ElementConfig {
 		this.glyphClass = glyphClass;
 		this.mappings = mappings;
 		this.configInnerLayout = configInnerLayout;
+	}
+
+	public ElementConfig(boolean isVisible) {
+		this.isVisible = isVisible;
+		this.glyphClass = DistrictGlyph.class;
+		this.mappings = new HashMap<>();
+		Glyph glyph = Activator.getMetaphorExtensionLoader().getGlyph(this.glyphClass);
+		for(String str : glyph.getAttributes()) {
+			this.mappings.put(str, new ConfigMapping(str));
+		}
+		this.configInnerLayout = new ConfigInnerLayout();
 	}
 
 	public void setVisible(boolean isVisible) {
@@ -59,7 +64,7 @@ public class ElementConfig {
 		List<String> diffConfExt = ConfigUtils.diff(this.mappings.keySet(), extTemp);
 
 		if(!diffExtConf.isEmpty()) {
-			diffExtConf.forEach(item -> this.mappings.put(item, new ConfigMapping()));
+			diffExtConf.forEach(item -> this.mappings.put(item, new ConfigMapping(item)));
 		}
 		if(!diffConfExt.isEmpty()) {
 			diffConfExt.forEach(item -> this.mappings.remove(item));
@@ -69,6 +74,9 @@ public class ElementConfig {
 	}
 
 	public MVConverter createConverter() {
+		if(!this.isVisible)
+			return null;
+
 		Glyph glyph = Activator.getMetaphorExtensionLoader().getGlyph(this.glyphClass);
 		Map<String, Mapper> mapper = new HashMap<>();
 		for(String attr : glyph.getAttributes()) {

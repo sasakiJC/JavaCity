@@ -20,6 +20,8 @@ public interface SoftwareEntity extends SoftwareElement {
 		throw new UnsupportedOperationException(this.toString() + " can't have children");
 	}
 	public void setParent(SoftwareEntity parent);
+	public SoftwareEntity getParent();
+	public boolean hasParent();
 
 	/**
 	 * このエンティティの識別子を返します。
