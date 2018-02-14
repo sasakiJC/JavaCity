@@ -7,11 +7,11 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import dev.javacity.core.TestConverter;
-import dev.javacity.core.visual.CityView;
 import javacity.config.CityConfigService;
 import javacity.config.ConfigDialog;
 import javacity.model.DataModel;
+import javacity.view.CityView;
+import javacity.view.TestConverter;
 
 public class CityViewPartController {
 

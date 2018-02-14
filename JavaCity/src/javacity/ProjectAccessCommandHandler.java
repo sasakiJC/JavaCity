@@ -11,9 +11,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import javacity.infra.ModelImporter;
+import javacity.infra.importer.JavaProjectImporter;
 import javacity.model.DataModel;
-import javacity.model.ModelImporter;
-import javacity.model.importer.JavaProjectImporter;
 import javacity.views.CityViewPartController;
 import javacity.views.ProjectSelectView;
 

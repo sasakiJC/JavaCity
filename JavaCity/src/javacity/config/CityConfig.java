@@ -8,10 +8,10 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import dev.javacity.core.TestConverter;
-import dev.javacity.core.visual.MVConverter;
 import javacity.config.jaxb.MapAdapter;
 import javacity.model.Activator;
+import javacity.view.MVConverter;
+import javacity.view.TestConverter;
 
 public class CityConfig {
 	@XmlJavaTypeAdapter(MapAdapter.class)

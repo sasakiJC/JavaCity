@@ -2,8 +2,8 @@ package javacity.config;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import dev.javacity.core.visual.InnerLayout;
-import dev.javacity.core.visual.layout.ChessboardLayout;
+import javacity.view.InnerLayout;
+import javacity.view.layout.ChessboardLayout;
 
 public class ConfigInnerLayout {
 	@XmlAttribute

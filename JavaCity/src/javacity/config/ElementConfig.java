@@ -8,12 +8,12 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-import dev.javacity.core.Activator;
-import dev.javacity.core.DistrictGlyph;
-import dev.javacity.core.Glyph;
-import dev.javacity.core.visual.InnerLayout;
-import dev.javacity.core.visual.MVConverter;
-import dev.javacity.core.visual.Mapper;
+import javacity.view.Activator;
+import javacity.view.Glyph;
+import javacity.view.InnerLayout;
+import javacity.view.MVConverter;
+import javacity.view.Mapper;
+import javacity.view.glyph.DistrictGlyph;
 
 public class ElementConfig {
 

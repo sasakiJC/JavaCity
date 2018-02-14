@@ -1,6 +1,6 @@
 package javacity.config;
 
-import dev.javacity.core.Activator;
+import javacity.view.Activator;
 
 public class TestBetweenModelandView {
 

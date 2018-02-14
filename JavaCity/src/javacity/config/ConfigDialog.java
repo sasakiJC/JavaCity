@@ -19,8 +19,8 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-import dev.javacity.core.Activator;
-import dev.javacity.core.Glyph;
+import javacity.view.Activator;
+import javacity.view.Glyph;
 
 public class ConfigDialog extends Dialog {
 

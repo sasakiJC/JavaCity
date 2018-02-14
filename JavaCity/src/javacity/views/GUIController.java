@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
-import dev.javacity.core.visual.CityScene;
-import dev.javacity.core.visual.CityView;
+import javacity.view.CityScene;
+import javacity.view.CityView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;

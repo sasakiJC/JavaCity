@@ -2,8 +2,8 @@ package javacity.config;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import dev.javacity.core.visual.Mapper;
-import dev.javacity.core.visual.mapper.ConstantMapper;
+import javacity.view.Mapper;
+import javacity.view.mapper.ConstantMapper;
 import javafx.scene.paint.Color;
 
 public class ConfigMapping {

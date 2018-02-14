@@ -4,8 +4,8 @@ import java.net.URL;
 
 import javax.xml.bind.JAXB;
 
-import dev.javacity.core.TestConverter;
 import javacity.Activator;
+import javacity.view.TestConverter;
 
 public class CityConfigService {
 
