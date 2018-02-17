@@ -21,7 +21,6 @@
 
 package javacity.view.metaphor;
 
-import javacity.view.configuration.VisualProperties;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -39,10 +38,12 @@ public class PosterBorderedBox extends BorderedBox {
 	// =========================== Attributes =================================
 
 	/** The horizontal distance of a poster to the wall of its floor. */
-	private static float xPosterDistance = VisualProperties.getInstance().getPosterHorizontalDistance();
+//	private static float xPosterDistance = VisualProperties.getInstance().getPosterHorizontalDistance();
+	private static float xPosterDistance = 1.0f;
 
 	/** The vertical distance of a poster to the wall of its floor. */
-	private static float yPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
+//	private static float yPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
+	private static float yPosterDistance = 1.0f;
 
 	/** The posters ({@link BorderedBox} objects with border appearances) of this {@link PosterBorderedBox}. */
 	private final BorderedBox[] posters = new BorderedBox[2];
@@ -149,8 +150,10 @@ public class PosterBorderedBox extends BorderedBox {
 	 */
 	public static void reloadAttributes() {
 
-		xPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
-		yPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
+//		xPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
+//		yPosterDistance = VisualProperties.getInstance().getPosterVerticalDistance();
+		xPosterDistance = 1.0f;
+		yPosterDistance = 1.0f;
 	}
 
 }

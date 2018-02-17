@@ -64,8 +64,11 @@ public class Arrow extends Pipe {
 		super(radius, length);
 //		this.setCollidable(true);
 
-		final float arrowheadDiameter = VisualProperties.getInstance().getLineArrowheadDiameter();
-		float arrowheadHeigth = VisualProperties.getInstance().getLineArrowheadHeight();
+//		final float arrowheadDiameter = VisualProperties.getInstance().getLineArrowheadDiameter();
+//		float arrowheadHeigth = VisualProperties.getInstance().getLineArrowheadHeight();
+
+		final float arrowheadDiameter = 1.0f;
+		float arrowheadHeigth = 1.0f;
 
 		// correct arrow measures, if necessary
 		final float ratio = arrowheadHeigth / length;

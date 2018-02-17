@@ -1,9 +1,8 @@
 package javacity.view.layout;
 
 import javacity.view.InnerLayout;
-import javacity.view.VisualizedComposite;
 
-public class AbstractLayout implements InnerLayout {
+public abstract class AbstractLayout implements InnerLayout {
 
 	private String name;
 
@@ -48,12 +47,6 @@ public class AbstractLayout implements InnerLayout {
 	@Override
 	public void setVerticalGap(float verticalGap) {
 		this.verticalGap = verticalGap;
-	}
-
-	@Override
-	public void layout(VisualizedComposite comp) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 
